@@ -49363,10 +49363,21 @@ $('#promote').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var name = button.data('myname');
   var id = button.data('myid');
+  var status = button.data('mystatus');
+  var show = "";
+
+  if (status == 'TRAINEE') {
+    show = 'PROBATIONARY';
+  } else {
+    show = 'REGULAR';
+  }
+
   var modal = $(this);
   console.log(id);
   modal.find('.modal-body #myname').val(name);
   modal.find('.modal-body #myid').val(id);
+  document.getElementById('myname').textContent = "  " + name;
+  document.getElementById('mystatus').textContent = "  " + show;
 });
 
 /***/ }),

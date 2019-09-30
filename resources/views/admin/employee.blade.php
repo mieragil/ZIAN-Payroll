@@ -22,9 +22,9 @@
 
                     <h3 class="ml-3">Employment status: <u>{{$user->emp_status}}</u></h3>
                     <button class="btn btn-danger float-right" style="margin-left:500px">Terminate</button>
-                    <a class="btn btn-success ml-5" 
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}"
-                        data-toggle="modal" data-target="#promote">Promote</a>
+                    <button class="btn btn-success ml-5" 
+                        data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
+                        data-toggle="modal" data-target="#promote" >Promote</button>
                     
                 </div>
                 <hr>
@@ -74,7 +74,7 @@
 
     <div class="modal fade" id="promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content modal-lg">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">PROMOTION</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -82,16 +82,24 @@
               </button>
             </div>
             <div class="modal-body">
-                <div class="row">
 
-                    <p class="ml-3">Are you sure you want to promote:</p>
-                    <input type="text" name="myname" id="myname" class="form-control col-md-3 ml-5" disabled>
+                    <p class="ml-3">Are you sure you want to promote:  </p>
+                    <strong>
+                        <label id="myname" class="ml-3"></label>
+                    </strong>
+                    <p class="ml-3">He will be promoted as:  </p>
+                    <strong>
+                        <h3>
+                            <label id="mystatus" class="ml-3 badge badge-success"></label>
+                            </h3>
+                    </strong>
+
                     <input type="text" name="myid" id="myid" hidden>
-                </div>
+                    <a href="" class="badge badge-light" name="myname" id="myname"></a>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" >Save changes</button>
+              <button type="button" class="btn btn-primary" >Continue</button>
             </div>
           </div>
         </div>
