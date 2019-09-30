@@ -30,3 +30,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+$('#promote').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget)
+    var name = button.data('myname')
+    var id = button.data('myid')
+    var modal = $(this)
+    console.log(id);
+    modal.find('.modal-body #myname').val(name);
+    modal.find('.modal-body #myid').val(id);
+})  
+

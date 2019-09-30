@@ -22,8 +22,9 @@
 
                     <h3 class="ml-3">Employment status: <u>{{$user->emp_status}}</u></h3>
                     <button class="btn btn-danger float-right" style="margin-left:500px">Terminate</button>
-                    <a class="btn btn-success ml-5" data-toggle="modal" data-target="#promote"
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}" onclick="hello();">Promote</a>
+                    <a class="btn btn-success ml-5" 
+                        data-myid="{{$user->id}}" data-myname="{{$user->name}}"
+                        data-toggle="modal" data-target="#promote">Promote</a>
                     
                 </div>
                 <hr>
@@ -81,9 +82,12 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Are you sure you want to promote:</p>
-              <a href="" id="myname" class="badge badge-primary"></a>
-              <input type="text" name="" id="myid" hidden>
+                <div class="row">
+
+                    <p class="ml-3">Are you sure you want to promote:</p>
+                    <input type="text" name="myname" id="myname" class="form-control col-md-3 ml-5" disabled>
+                    <input type="text" name="myid" id="myid" hidden>
+                </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -93,16 +97,5 @@
         </div>
     </div>
 
+    
 @endsection
-    <script>
-        $('#promote').on('show.bs.modal', function(event){
-            var button = $(event.relatedTarget)
-            var name = button.data('myname')
-            var id = button.data('myid')
-            var modal = $(this)
-            
-            console.log(id);
-            modal.find('.modal-body #myname').val(name);
-            modal.find('.modal-body #myid').val(id);
-        })  
-    </script>
