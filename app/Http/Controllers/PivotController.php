@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -95,9 +96,24 @@ class PivotController extends Controller
             $promotion = 'REGULAR';
         }
 
-        User::where('id', $user->id)->update(['emp_status' => $promotion
-        ]);
+        User::where('id', $user->id)->update(['emp_status' => $promotion]);
 
         return redirect()->back()->with('success', 'Successfully promoted ' . $user->name . ' to : ' .$promotion);
+    }
+
+    public function terminate($id){
+        $user = User::findOrFail($id);
+        User::where('id',$id)->update([
+            'active' => '0'
+            ]);
+        return redirect()->route('dashboard')->with('success','YOU HAVE TERMINATED ' . $user->name);
+    }
+
+    public function accountability($id){
+        $data = array();
+        $data['user'] = User::findOrFail($id);
+        $data['items'] = Item::where('emp_id', $id)->where('quantity','!=','0')->get();
+        // return $data['items'];
+        return view ('admin.accountability', compact('data'));
     }
 }

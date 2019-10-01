@@ -81,10 +81,16 @@
         </main>
     </div>
 
+    @auth
+        @if (Auth::user()->priority == 'HI')
+            
+        <a href="#" class="float">
+            <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
+        </a>
+        @endif
+    @endauth
+    
 
-    <a href="#" class="float">
-        <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
-    </a>
 
     <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -102,7 +108,6 @@
                     <div class="row">
 
                         <div class="col-md-6">
-
                             <label for="name">Employee Name</label>
                             <input type="text" name="name" class="form-control" required value="{{old('name')}}">
                         </div>
@@ -131,9 +136,7 @@
                     <hr class="col-md-5">
                     
                     <div class="row">
-
                         <div class="col-md-6">
-
                             <label for="rate"><strong>Enter DAILY RATE:</strong></label>
                             <input type="number" name="rate" class="form-control" required value="{{old('rate')}}" min="1" max="10000">
                         </div>
