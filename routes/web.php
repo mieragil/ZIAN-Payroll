@@ -27,6 +27,7 @@ Auth::routes();
 Route::resource('employee', 'PivotController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
 
     
 Route::post('users/create-new', function (Request $request) {
@@ -48,7 +49,7 @@ Route::post('users/create-new', function (Request $request) {
         'priority' => 'LO',
         'active' => '1',
         ]);
-    return redirect()->back()->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
+    return redirect()->route('dashboard')->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
 
 
 })->name('users.create');

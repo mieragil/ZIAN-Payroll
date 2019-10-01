@@ -50,7 +50,9 @@
                                 <th scope="col">{{$user->department}}</th>
                                 <th scope="col">{{$user->position}}</th>
                                 <th scope="col">{{$user->rate}}</th>
-                                <th scope="col"><a href="{{route('employee.show', $user->id)}}" class="btn btn-success">View Employee</a></th>
+                                <th scope="col"><a href="{{route('employee.show', $user->id)}}" class="btn btn-success">
+                                    
+                                    View Employee</a></th>
                             </tr>
                             @endforeach
                         </tbody>

@@ -3,6 +3,14 @@
 @section('content')
     
     <div class="container">
+
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <a class="btn btn-secondary" href="{{route('dashboard')}}">Back</a>
         <div class="card">
             <div class="card-header">
             <div class="row justify-content-between">
@@ -22,9 +30,15 @@
 
                     <h3 class="ml-3">Employment status: <u>{{$user->emp_status}}</u></h3>
                     <button class="btn btn-danger float-right" style="margin-left:500px">Terminate</button>
-                    <button class="btn btn-success ml-5" 
+
+                    @if ($user->emp_status != 'REGULAR')
+                    
+                        <button class="btn btn-success ml-5" 
                         data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
                         data-toggle="modal" data-target="#promote" >Promote</button>
+
+                    @endif
+
                     
                 </div>
                 <hr>
@@ -73,6 +87,7 @@
 
 
     <div class="modal fade" id="promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="{{route('employee.promote',$user->id)}}" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content modal-lg">
             <div class="modal-header">
@@ -81,28 +96,33 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
-
-                    <p class="ml-3">Are you sure you want to promote:  </p>
-                    <strong>
-                        <label id="myname" class="ml-3"></label>
-                    </strong>
-                    <p class="ml-3">He will be promoted as:  </p>
-                    <strong>
-                        <h3>
-                            <label id="mystatus" class="ml-3 badge badge-success"></label>
+                    @csrf
+                    {{-- @method('PATCH') --}}
+                    <h3>
+                        <p class="ml-3">Are you sure you want to promote:  </p>
+                            <strong><label id="myname" class="ml-3"></label></strong>
+                        <p class="ml-3">Employee will be promoted as:  </p>
+                        <strong>
+                            <h3>
+                            <label id="mystatus" class="ml-3 badge badge-success" ></label>
                             </h3>
-                    </strong>
-
+                        </strong>
+                    </h3>
+                    
                     <input type="text" name="myid" id="myid" hidden>
                     <a href="" class="badge badge-light" name="myname" id="myname"></a>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </div>
+                
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" >Continue</button>
-            </div>
-          </div>
         </div>
+    </form>
     </div>
 
     

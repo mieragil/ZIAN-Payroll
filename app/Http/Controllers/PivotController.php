@@ -83,4 +83,21 @@ class PivotController extends Controller
     {
         //
     }
+
+    public function promote($id, Request $request){
+        $user = User::findOrFail($id);
+        // return $user;
+
+        $promotion = '';
+        if($user->emp_status == 'TRAINEE'){
+            $promotion = 'PROBATIONARY';
+        }else{
+            $promotion = 'REGULAR';
+        }
+
+        User::where('id', $user->id)->update(['emp_status' => $promotion
+        ]);
+
+        return redirect()->back()->with('success', 'Successfully promoted ' . $user->name . ' to : ' .$promotion);
+    }
 }
