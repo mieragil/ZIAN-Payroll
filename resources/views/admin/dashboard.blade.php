@@ -46,24 +46,31 @@
                         <tbody>
                             @foreach ($users as $user)
                             <tr>
-                                <th scope="col">{{$user->name}}</th>
-                                <th scope="col">{{$user->department}}</th>
-                                <th scope="col">{{$user->position}}</th>
-                                <th scope="col">{{$user->rate}}</th>
-                                <th scope="col" class="">
-                                    <div class="row">
-                                        <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ml-3">
-                                                <i class="far fa-eye"></i>&nbsp;View Details</a>
-                                        <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
-                                                <i class="fas fa-archive"></i>&nbsp;Accountability</a>
-                                    </div>
-                                </th>
+                                <td scope="col">{{$user->name}}</td>
+                                <td scope="col">{{$user->department}}</td>
+                                <td scope="col">{{$user->position}}</td>
+                                <td scope="col">{{$user->rate}}</td>
+                                <td scope="col" class="d-flex justify-content-between">
+                                    
+                                    {{-- <div class="row"> --}}
+
+                                            <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ml-3">
+                                                    <i class="far fa-eye"></i>&nbsp;View Details</a>
+                                            <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
+                                                    <i class="fas fa-archive"></i>&nbsp;Accountability</a>
+                                            <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
+                                                    <i class="fas fa-archive"></i>&nbsp;Leave</a>
+                                    {{-- </div> --}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+
+
+            {{$users->links()}}
         </div>
     </div>
 </div>

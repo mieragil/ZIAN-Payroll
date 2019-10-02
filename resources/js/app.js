@@ -68,11 +68,23 @@ $('#terminate').on('show.bs.modal', function(event){
 $('#minus').on('show.bs.modal', function(event){
     var button = $(event.relatedTarget)
     var name = button.data('myitemded')
-    var id = button.data('myitemidded')
-
-    console.log(name);
+    var quantity = button.data('myquantityded')
+    var itemid = button.data('myitemidded')
+    var userid = button.data('myuserid')
+    console.log(name + " " + quantity + " " + itemid + " " + userid);
     var modal = $(this)
-    modal.find('.modal-body #myitemded').val(name);
-    modal.find('.modal-body #myitemidded').val(id);
+    modal.find('.modal-body #ded_item').val(name);
+    modal.find('.modal-body #ded_item_id').val(itemid);
 });  
 
+$('#add').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget)
+    var name = button.data('myitemadd')
+    var quantity = button.data('myquantityadd')
+    var itemid = button.data('myitemidadd')
+    var userid = button.data('myuserid')
+    console.log(name + " " + quantity + " " + itemid + " " + userid);
+    var modal = $(this)
+    modal.find('.modal-body #add_item').val(name);
+    modal.find('.modal-body #add_item_id').val(itemid);
+});  
