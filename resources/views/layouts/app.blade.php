@@ -23,7 +23,7 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>
-<body>
+<body >
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -81,11 +81,13 @@
         </main>
     </div>
 
-
-    <a href="#" class="float">
-        <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
-    </a>
-
+    @auth
+        @if (Auth::user()->priority == "HI")
+            <a href="#" class="float">
+                <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
+            </a>
+        @endif
+    @endauth
     <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -98,7 +100,7 @@
             <form action="{{route('users.create')}}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    
+
                     <div class="row">
 
                         <div class="col-md-6">
@@ -106,7 +108,7 @@
                             <label for="name">Employee Name</label>
                             <input type="text" name="name" class="form-control" required value="{{old('name')}}">
                         </div>
-                        
+
                         <div class="col-md-6">
                             <label for="hired">Date Hired</label>
                             <input type="date" name="hired" id="hired" class="form-control mb-3" required value="{{old('hired')}}">
@@ -129,7 +131,7 @@
                     </div>
 
                     <hr class="col-md-5">
-                    
+
                     <div class="row">
 
                         <div class="col-md-6">
