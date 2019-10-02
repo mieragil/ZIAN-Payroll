@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container-fluid">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            
+
             {{-- Error message --}}
             @if ($errors->any())
                 <p class="badge badge-danger"><h3>Error in adding new employee:</h3></p>
@@ -14,7 +15,7 @@
             @endif
 
             <h3 class="title">
-                You are logged in, 
+                You are logged in,
                 <strong>
                     {{Auth::user()->name}}!
                 </strong>
@@ -50,9 +51,14 @@
                                 <th scope="col">{{$user->department}}</th>
                                 <th scope="col">{{$user->position}}</th>
                                 <th scope="col">{{$user->rate}}</th>
-                                <th scope="col"><a href="{{route('employee.show', $user->id)}}" class="btn btn-success">
-                                    
-                                    View Employee</a></th>
+                                <th scope="col" class="">
+                                    <div class="row">
+                                        <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ml-3">
+                                                <i class="far fa-eye"></i>&nbsp;View Details</a>
+                                        <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
+                                                <i class="fas fa-archive"></i>&nbsp;Accountability</a>
+                                    </div>
+                                </th>
                             </tr>
                             @endforeach
                         </tbody>

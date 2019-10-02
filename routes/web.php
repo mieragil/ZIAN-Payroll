@@ -25,9 +25,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('employee', 'PivotController');
+Route::resource('item', 'ItemController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
+Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
+Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
+Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.subtract');
 
     
 Route::post('users/create-new', function (Request $request) {

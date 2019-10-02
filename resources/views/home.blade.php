@@ -81,7 +81,7 @@
 
             <div class="col">
                 <div class="card shadow-sm">
-                    <h5 class="card-header text-dark">Attendance SHIT</h5>
+                    <h5 class="card-header text-light bg-secondary">Attendance SHIT</h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item py-0">Friday - 10/02/2019 <br>

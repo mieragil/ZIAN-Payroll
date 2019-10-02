@@ -27,56 +27,45 @@
             </div>
             <div class="card-body">
                 <div class="row">
-
                     <h3 class="ml-3">Employment status: <u>{{$user->emp_status}}</u></h3>
-                    <button class="btn btn-danger float-right" style="margin-left:500px">Terminate</button>
+                    <button class="btn btn-danger float-right" style="margin-left:500px" 
+                        data-myid="{{$user->id}}" data-myname="{{$user->name}}"
+                        data-target="#terminate" data-toggle="modal">Terminate</button>
 
                     @if ($user->emp_status != 'REGULAR')
-                    
                         <button class="btn btn-success ml-5" 
                         data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
                         data-toggle="modal" data-target="#promote" >Promote</button>
 
                     @endif
-
-                    
                 </div>
                 <hr>
                 <div class="row">
-
                     <div class="col-md-6">
                         <label for="name">Employee Name</label>
-                        <input type="text" name="name" class="form-control" required value="{{$user->name}}">
+                        <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
+                        
                     </div>
-                        {{-- <div class="col-md-6">
-                            <label for="hired">Date Hired</label>
-                            <input type="date" name="hired" id="hired" class="form-control mb-3" required value="{{$user->date_hired}}">
-                        </div> --}}
+                    <div class="col-md-6">
+                        <label for="email">Username</label>
+                        <a href="" class="badge badge-primary float-right"><i class="fas fa-pencil-alt fa-2x "></i></a>
+                        <input type="text" name="email" class="form-control" required value="{{$user->username}}" disabled>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="email">Username</label>
-                            <input type="text" name="email" class="form-control" required value="{{$user->email}}">
-                        </div>
+                </div>
+                <div class="row">
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="rate"><strong>DAILY RATE:</strong></label>
+                        <input type="number" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
                     </div>
+                    <div class="col-md-6">
 
-                    <hr>
-            
-                    <div class="row">
-
-                        <div class="col-md-6">
-
-                            <label for="rate"><strong>DAILY RATE:</strong></label>
-                            <input type="number" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000">
-                        </div>
-                        <div class="col-md-6">
-
-                            <label for="inlineRadio1">WEEKS OF TRAINING:</label>
-                            <input type="number" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000">
-                        </div>
+                        <label for="inlineRadio1">WEEKS OF TRAINING:</label>
+                        <input type="number" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
                     </div>
-
+                </div>
             </div>
 
             <div class="card-footer">
@@ -124,6 +113,40 @@
         </div>
     </form>
     </div>
+
+    <div class="modal fade" id="terminate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form action="{{route('employee.terminate',$user->id)}}" method="POST">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content modal-lg">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">TERMINATE</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+    
+                <div class="modal-body">
+                        @csrf
+                        <h3>
+                            <p class="ml-3">Are you sure you want to TERMINATE:  </p>
+                                <strong><label id="mynameterminate" class="ml-3"></label></strong>
+                                <p>This cannot be undone</p>
+
+                        </h3>
+                        
+                        <input type="text" name="myidterminate" id="myid" hidden>
+                        <a href="" class="badge badge-light" name="myname" id="myname"></a>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+        </div>
 
     
 @endsection

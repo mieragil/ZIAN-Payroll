@@ -49379,6 +49379,16 @@ $('#promote').on('show.bs.modal', function (event) {
   document.getElementById('myname').textContent = "  " + name;
   document.getElementById('mystatus').textContent = "  " + show;
 });
+$('#terminate').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var name = button.data('myname');
+  var id = button.data('myid');
+  console.log(name);
+  var modal = $(this);
+  modal.find('.modal-body #mynameterminate').val(name);
+  modal.find('.modal-body #myidterminate').val(id);
+  document.getElementById('mynameterminate').textContent = "  " + name;
+});
 
 /***/ }),
 

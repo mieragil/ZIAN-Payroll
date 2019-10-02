@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'ZIAN') }}</title>
 
 
     <!-- Scripts -->
@@ -23,12 +23,13 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>
+
 <body >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'ZIAN') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -82,12 +83,16 @@
     </div>
 
     @auth
-        @if (Auth::user()->priority == "HI")
-            <a href="#" class="float">
-                <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
-            </a>
+        @if (Auth::user()->priority == 'HI')
+
+        <a href="#" class="float">
+            <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
+        </a>
         @endif
     @endauth
+
+
+
     <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -104,7 +109,6 @@
                     <div class="row">
 
                         <div class="col-md-6">
-
                             <label for="name">Employee Name</label>
                             <input type="text" name="name" class="form-control" required value="{{old('name')}}">
                         </div>
@@ -133,9 +137,7 @@
                     <hr class="col-md-5">
 
                     <div class="row">
-
                         <div class="col-md-6">
-
                             <label for="rate"><strong>Enter DAILY RATE:</strong></label>
                             <input type="number" name="rate" class="form-control" required value="{{old('rate')}}" min="1" max="10000">
                         </div>
