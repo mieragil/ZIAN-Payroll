@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $users = User::all()->where('priority','LO')->where('active','1');
+        $users = User::where('priority','LO')->where('active','1')->paginate(3);
         return view('admin.dashboard', compact('users'));
     }
 }

@@ -91,4 +91,39 @@ class ItemController extends Controller
     {
         //
     }
+
+    public function deduct(Request $request){
+        $left = '';
+        // return $request;
+
+        $item = Item::findOrFail($request->ded_item_id);
+        // return $item;
+
+        if($request->ded_quantity > $item->quantity){
+            $left = '0';
+        }else{
+            $left = $item->quantity - $request->ded_quantity;
+        }
+
+        Item::where('id', $request->ded_item_id)
+            ->where('emp_id', $request->ded_user_id)
+            ->update(['quantity' => $left]);
+        return back()->with('success', 'Deducted ' . $request->ded_quantity . ' to ' . $item->item_name);
+    }
+
+    public function add(Request $request){
+        $left = '';
+        // return $request;
+
+        $item = Item::findOrFail($request->add_item_id);
+        // return $item;
+
+
+        $left = $item->quantity + $request->add_quantity;
+
+        Item::where('id', $request->add_item_id)
+            ->where('emp_id', $request->add_user_id)
+            ->update(['quantity' => $left]);
+        return back()->with('success', 'Added ' . $request->add_quantity . ' to ' . $item->item_name);
+    }
 }
