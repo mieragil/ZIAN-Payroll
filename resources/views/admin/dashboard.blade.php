@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content-dashboard')
+
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
             {{-- Error message --}}
             @if ($errors->any())
                 <p class="badge badge-danger"><h3>Error in adding new employee:</h3></p>
@@ -14,7 +17,7 @@
             @endif
 
             <h3 class="title">
-                You are logged in, 
+                You are logged in,
                 <strong>
                     {{Auth::user()->name}}!
                 </strong>
@@ -33,7 +36,7 @@
                     @endif
 
                     {{-- Employee table --}}
-                    <table class="table table-bordered table-hover table-striped table-dark">
+                    <table class="table table-bordered table-hover table-striped table-dark table-fluid">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Employee Name</th>
@@ -51,7 +54,7 @@
                                 <td scope="col">{{$user->position}}</td>
                                 <td scope="col">{{$user->rate}}</td>
                                 <td scope="col" class="d-flex justify-content-between">
-                                    
+
                                     {{-- <div class="row"> --}}
 
                                             <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ml-3">
@@ -74,4 +77,5 @@
         </div>
     </div>
 </div>
+
 @endsection

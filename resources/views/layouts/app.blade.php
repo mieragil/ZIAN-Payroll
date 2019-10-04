@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'ZIAN') }}</title>
 
 
     <!-- Scripts -->
@@ -25,10 +25,11 @@
 </head>
 <body >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'ZIAN') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -38,7 +39,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                    
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -77,20 +78,63 @@
             </div>
         </nav>
 
+        @auth
+            @if (Auth::user()->priority == 'HI')
+            <div id="wrapper">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper" class="bg-dark">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand bg-primary px-5">
+                            <a href="#" class="text-white">
+                                Zian Payroll
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/homedashboard"> <i class="fas fa-home m-3"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard"><i class="fas fa-users m-3"></i> Employees</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-chart-bar m-3"></i>Attendance</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-cogs m-3"></i>Settings</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+                <div id="page-content-wrapper">
+                <a href="#menu-toggle" class="btn btn-lg btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
+                    <main class="py-4">
+                        @yield('content-dashboard')
+                    </main>
+                </div>
+                </div>
+            @endif
+        @endauth
+
         <main class="py-4">
             @yield('content')
         </main>
+
+
+
     </div>
 
     @auth
         @if (Auth::user()->priority == 'HI')
-            
+
         <a href="#" class="float">
             <i class="fa fa-plus my-float fa-3x" data-toggle="modal" data-target="#addnew"></i>
         </a>
         @endif
     @endauth
-    
+
 
 
     <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -105,14 +149,14 @@
             <form action="{{route('users.create')}}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    
+
                     <div class="row">
 
                         <div class="col-md-6">
                             <label for="name">Employee Name</label>
                             <input type="text" name="name" class="form-control" required value="{{old('name')}}">
                         </div>
-                        
+
                         <div class="col-md-6">
                             <label for="hired">Date Hired</label>
                             <input type="date" name="hired" id="hired" class="form-control mb-3" required value="{{old('hired')}}">
@@ -135,7 +179,7 @@
                     </div>
 
                     <hr class="col-md-5">
-                    
+
                     <div class="row">
                         <div class="col-md-4">
                             <label for="rate"><strong>Enter DAILY RATE:</strong></label>
@@ -182,6 +226,8 @@
         </div>
     </div>
 
+
     <script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 </html>

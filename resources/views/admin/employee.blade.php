@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
-@section('content')
-    
+@section('content-dashboard')
+
     <div class="container">
 
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $err)
+                    <li>{{$err}}</li>
+                @endforeach
             </div>
         @endif
 
@@ -48,13 +56,14 @@
                 @method('PATCH')
                 @csrf
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="name">Employee Name</label>
-                        <input type="text" name="name" id="name" class="form-control" required value="{{$user->name}}" disabled>
+                        <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
+
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                        {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
                         <label for="email">Username</label>
-                        <button class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt fa-1x "></i></button>
                         <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
                     </div>
                 </div>
@@ -87,36 +96,40 @@
               </button>
             </div>
 
-            <div class="modal-body">
-                    @csrf
-                    {{-- @method('PATCH') --}}
-                    <h3>
-                        <p class="ml-3">Are you sure you want to promote:  </p>
-                            <strong><label id="myname" class="ml-3"></label></strong>
-                        <p class="ml-3">Employee will be promoted as:  </p>
-                        <strong>
-                            <h3>
-                            <label id="mystatus" class="ml-3 badge badge-success" ></label>
-                            </h3>
-                        </strong>
-                    </h3>
+            <div class="modal-body text-center">
+                @csrf
+                {{-- @method('PATCH') --}}
+                <h3>
+                    <p class="ml-3">Are you sure you want to promote:  </p>
+                        <strong><label id="myname" class="ml-3"></label></strong>
+                    <p class="ml-3">Employee will be promoted to:  </p>
+                    <strong>
+                        <h3>
+                        <label id="mystatus" class="ml-3 badge badge-success" ></label>
+                        </h3>
+                    </strong>
+                </h3>
+                <input type="text" name="myid" id="myid" hidden>
+                <a href="" class="badge badge-light" name="myname" id="myname"></a>
+                <div class="row">
                     
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="new_rate">Enter New Rate:</label>
-                            <input type="text" name="new_rate" id="new_rate"class="form-control" value="{{$user->rate}}">
-                        </div>
-                        
+                    <div class="col-md-6">
+                        <label for="new_rate">Enter New Rate / Day:</label>
+                        <input type="number" name="new_rate" min="1" max="999999" class="form-control" required value="{{old('new_rate')}}">
                     </div>
-                    <input type="text" name="myid" id="myid" hidden>
-                    <a href="" class="badge badge-light" name="myname" id="myname"></a>
+                    <div class="col-md-6">
+                        @if ($user->emp_status == 'TRAINEE')
+                            <label for="new_rate">Enter Weeks as Probationary:</label>
+                            <input type="number" name="new_training" min="1" max="999999" class="form-control" required value="{{old('new_training')}}">                         
+                        @endif
+                    </div>
                 </div>
-                
+            </div>  
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Continue</button>
                 </div>
-                
+
             </div>
         </div>
     </form>
@@ -132,39 +145,27 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-    
-                <div class="modal-body">
-                        @csrf
-                        <h3>
-                            <p class="ml-3">Are you sure you want to TERMINATE:  </p>
-                                <strong><label id="mynameterminate" class="ml-3"></label></strong>
-                                <p>This cannot be undone</p>
 
-                        </h3>
-                        
-                        <input type="text" name="myidterminate" id="myid" hidden>
-                        <a href="" class="badge badge-light" name="myname" id="myname"></a>
-                    </div>
-                    
+                <div class="modal-body text-center">
+                    @csrf
+                    <h3>
+                        <p class="ml-3">Are you sure you want to TERMINATE:  </p>
+                            <strong><label id="mynameterminate" class="text-center"></label></strong>
+                            <p>This cannot be undone</p>
+                    </h3>
+                    <input type="text" name="myidterminate" id="myid" hidden>
+                    <a href="" class="badge badge-light" name="myname" id="myname"></a>
+                </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Continue</button>
                     </div>
-                    
+
                 </div>
             </div>
         </form>
         </div>
 
-    
+
 @endsection
-
-<script>
-function runedit() {
-    document.getElementById('name').disabled = false;
-    document.getElementById('rate').disabled = false;
-    document.getElementById('weeks_of_training').disabled = false;
-    document.getElementById('email').disabled = false;
-
-}
-</script>

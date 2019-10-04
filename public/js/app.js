@@ -49411,10 +49411,10 @@ $('#add').on('show.bs.modal', function (event) {
   modal.find('.modal-body #add_item').val(name);
   modal.find('.modal-body #add_item_id').val(itemid);
 });
-
-function runedit() {
-  alert("hey");
-}
+$("#menu-toggle").click(function (e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
 
 /***/ }),
 

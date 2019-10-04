@@ -51,7 +51,7 @@ $('#promote').on('show.bs.modal', function(event){
     document.getElementById('myname').textContent = "  "+name;
     document.getElementById('mystatus').textContent = "  "+show;
 
-});  
+});
 
 $('#terminate').on('show.bs.modal', function(event){
     var button = $(event.relatedTarget)
@@ -63,7 +63,7 @@ $('#terminate').on('show.bs.modal', function(event){
     modal.find('.modal-body #mynameterminate').val(name);
     modal.find('.modal-body #myidterminate').val(id);
     document.getElementById('mynameterminate').textContent = "  "+name;
-});  
+});
 
 $('#minus').on('show.bs.modal', function(event){
     var button = $(event.relatedTarget)
@@ -75,7 +75,7 @@ $('#minus').on('show.bs.modal', function(event){
     var modal = $(this)
     modal.find('.modal-body #ded_item').val(name);
     modal.find('.modal-body #ded_item_id').val(itemid);
-});  
+});
 
 $('#add').on('show.bs.modal', function(event){
     var button = $(event.relatedTarget)
@@ -87,8 +87,11 @@ $('#add').on('show.bs.modal', function(event){
     var modal = $(this)
     modal.find('.modal-body #add_item').val(name);
     modal.find('.modal-body #add_item_id').val(itemid);
-});  
+});
 
-function runedit(){
-    alert("hey");
-}
+
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+
