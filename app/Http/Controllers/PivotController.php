@@ -115,4 +115,8 @@ class PivotController extends Controller
         // return $data['items'];
         return view ('admin.accountability', compact('data'));
     }
+
+    public function editEmp($id, Request $request){
+        return request()->all();
+    }
 }

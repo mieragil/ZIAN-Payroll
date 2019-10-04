@@ -49412,6 +49412,10 @@ $('#add').on('show.bs.modal', function (event) {
   modal.find('.modal-body #add_item_id').val(itemid);
 });
 
+function runedit() {
+  alert("hey");
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

@@ -5,6 +5,7 @@
 
 
         <div class="container">
+            <a class="btn btn-secondary" href="{{route('dashboard')}}">Back</a>
             
             @if ($errors->any())
                 <div class="alert alert-danger col-md-10">

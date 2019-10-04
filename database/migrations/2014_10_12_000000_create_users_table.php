@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('emp_status')->nullable();
             $table->string('weeks_of_training')->nullable();
             $table->string('rate')->nullable();
+            $table->string('salary_type')->nullable();
             $table->string('position')->nullable();
             $table->string('department')->nullable();
             $table->string('priority')->nullable();

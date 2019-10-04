@@ -12,65 +12,66 @@
 
         <a class="btn btn-secondary" href="{{route('dashboard')}}">Back</a>
         <div class="card">
+            @csrf
             <div class="card-header">
-            <div class="row justify-content-between">
-                <p class="h1">
+                <div class="row justify-content-between">
+                    
+                    <p class="h1 ml-3">
                         DETAILS OF {{strtoupper($user->name)}}
                     </p>
                     <p class="float-right"><strong>
                         {{strtoupper($user->department)}}
-                    </strong>
-                    |
+                    </strong>|
                     {{strtoupper($user->position)}}
                 </p>
             </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <h3 class="ml-3 ">Employment status: <u>{{$user->emp_status}}</u></h3>
+                
+                <h3 class="ml-5 ">Salary type: <u>{{$user->salary_type}}</u></h3>
+                
+                <button class="btn btn-danger float-right" style="margin-left:200px" 
+                    data-myid="{{$user->id}}" data-myname="{{$user->name}}"
+                    data-target="#terminate" data-toggle="modal">Terminate</button>
+                
+                @if ($user->emp_status != 'REGULAR')
+                    <button class="btn btn-success ml-5" 
+                    data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
+                    data-toggle="modal" data-target="#promote" >Promote</button>
+                
+                @endif
             </div>
-            <div class="card-body">
+            <hr>
+            <form action="{{route('employee.editEmp', $user->id)}}" method="post">
+                @method('PATCH')
+                @csrf
                 <div class="row">
-                    <h3 class="ml-3">Employment status: <u>{{$user->emp_status}}</u></h3>
-                    <button class="btn btn-danger float-right" style="margin-left:500px" 
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}"
-                        data-target="#terminate" data-toggle="modal">Terminate</button>
-
-                    @if ($user->emp_status != 'REGULAR')
-                        <button class="btn btn-success ml-5" 
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
-                        data-toggle="modal" data-target="#promote" >Promote</button>
-
-                    @endif
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="name">Employee Name</label>
-                        <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
-                        
+                        <input type="text" name="name" id="name" class="form-control" required value="{{$user->name}}" disabled>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="email">Username</label>
-                        <a href="" class="badge badge-primary float-right"><i class="fas fa-pencil-alt fa-2x "></i></a>
-                        <input type="text" name="email" class="form-control" required value="{{$user->username}}" disabled>
+                        <button class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt fa-1x "></i></button>
+                        <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
                     </div>
-                </div>
-                <div class="row">
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="rate"><strong>DAILY RATE:</strong></label>
-                        <input type="number" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
+                        <input type="number"  id="rate" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
                     </div>
                     <div class="col-md-6">
-
                         <label for="inlineRadio1">WEEKS OF TRAINING:</label>
-                        <input type="number" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
+                        <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
                     </div>
                 </div>
-            </div>
-
-            <div class="card-footer">
-                <a href="" class="btn btn-primary float-right">Save Changes</a>
-            </div>
+                <button type="submit" class="btn btn-primary float-right">Save Changes</a>
+            </form>
+        </div>
         </div>
     </div>
 
@@ -100,6 +101,13 @@
                         </strong>
                     </h3>
                     
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="new_rate">Enter New Rate:</label>
+                            <input type="text" name="new_rate" id="new_rate"class="form-control" value="{{$user->rate}}">
+                        </div>
+                        
+                    </div>
                     <input type="text" name="myid" id="myid" hidden>
                     <a href="" class="badge badge-light" name="myname" id="myname"></a>
                 </div>
@@ -150,3 +158,13 @@
 
     
 @endsection
+
+<script>
+function runedit() {
+    document.getElementById('name').disabled = false;
+    document.getElementById('rate').disabled = false;
+    document.getElementById('weeks_of_training').disabled = false;
+    document.getElementById('email').disabled = false;
+
+}
+</script>
