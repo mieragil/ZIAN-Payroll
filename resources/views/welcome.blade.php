@@ -80,8 +80,9 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    ZIAN
+                <div class="title">
+                     ZIAN <hr>
+                    <p style="font-size:2rem; letter-spacing:7px;">PAYROLL</p>
                 </div>
 
             </div>

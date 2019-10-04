@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-                <div class="card shadow-sm">
+                <div class="card shadow">
                     <div class="card-header ">
                         <div class="row">
                             <div class="col-6">
@@ -81,23 +81,23 @@
 
             <div class="col">
                 <div class="card shadow-sm">
-                    <h5 class="card-header text-light bg-secondary">Attendance SHIT</h5>
+                    <h5 class="card-header text-light bg-primary">Attendance SHIT</h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item py-0">Friday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-check mr-2"></i> Present</p>
+                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i></i> Present</p>
                             </li>
                             <li class="list-group-item py-1">Thursday - 10/02/2019 <br>
-                            <p class="text-danger"> <i class="fas fa-times mr-2"></i> Absent</p>
+                            <p class="text-danger"> <i class="fas fa-circle mr-2"></i></i> Absent</p>
                             </li>
                             <li class="list-group-item py-1">Wednesday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-check mr-2"></i> Present</p>
+                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i> Present</p>
                             </li>
                             <li class="list-group-item py-1">Tuesday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-check mr-2"></i> Present</p>
+                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i> Present</p>
                             </li>
                             <li class="list-group-item py-1">Tuesday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-check mr-2"></i> Present</p>
+                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i> Present</p>
                             </li>
                         </ul>
                         <br>
@@ -108,7 +108,7 @@
                 </div>
                 <br>
                 <div class="card shadow-sm">
-                        <h5 class="card-header text-dark">Accountability</h5>
+                        <h5 class="card-header text-light bg-primary">Accountability</h5>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item py-0">

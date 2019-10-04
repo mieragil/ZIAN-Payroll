@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Hash;
 
 
-    
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,8 +28,11 @@ Route::resource('employee', 'PivotController');
 Route::resource('item', 'ItemController');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+
+
 
 
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
@@ -39,7 +42,7 @@ Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
 
 
-    
+
 Route::post('users/create-new', function (Request $request) {
     request()->validate([
         'username' => 'unique:users',

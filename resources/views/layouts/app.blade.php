@@ -26,7 +26,8 @@
 
 <body >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'ZIAN') }}
@@ -77,9 +78,52 @@
             </div>
         </nav>
 
+        @auth
+            @if (Auth::user()->priority == 'HI')
+            <div id="wrapper">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper" class="bg-dark">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand bg-primary px-5">
+                            <a href="#" class="text-white">
+                                Zian Payroll
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/homedashboard"> <i class="fas fa-home m-3"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard"><i class="fas fa-users m-3"></i> Employees</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-chart-bar m-3"></i>Attendance</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-cogs m-3"></i>Settings</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+                <div id="page-content-wrapper">
+                <a href="#menu-toggle" class="btn btn-lg btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
+                    <main class="py-4">
+                        @yield('content-dashboard')
+                    </main>
+                </div>
+                </div>
+            @endif
+        @endauth
+
         <main class="py-4">
             @yield('content')
         </main>
+
+
+
     </div>
 
     @auth
@@ -175,6 +219,8 @@
         </div>
     </div>
 
+
     <script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 </html>

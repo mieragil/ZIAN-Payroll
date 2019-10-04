@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('content')
-    
+@section('content-dashboard')
+
     <div class="container">
 
         @if (session('success'))
@@ -28,12 +28,12 @@
             <div class="card-body">
                 <div class="row">
                     <h3 class="ml-3">Employment status: <u>{{$user->emp_status}}</u></h3>
-                    <button class="btn btn-danger float-right" style="margin-left:500px" 
+                    <button class="btn btn-danger float-right" style="margin-left:500px"
                         data-myid="{{$user->id}}" data-myname="{{$user->name}}"
                         data-target="#terminate" data-toggle="modal">Terminate</button>
 
                     @if ($user->emp_status != 'REGULAR')
-                        <button class="btn btn-success ml-5" 
+                        <button class="btn btn-success ml-5"
                         data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
                         data-toggle="modal" data-target="#promote" >Promote</button>
 
@@ -44,7 +44,7 @@
                     <div class="col-md-6">
                         <label for="name">Employee Name</label>
                         <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
-                        
+
                     </div>
                     <div class="col-md-6">
                         <label for="email">Username</label>
@@ -99,16 +99,16 @@
                             </h3>
                         </strong>
                     </h3>
-                    
+
                     <input type="text" name="myid" id="myid" hidden>
                     <a href="" class="badge badge-light" name="myname" id="myname"></a>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Continue</button>
                 </div>
-                
+
             </div>
         </div>
     </form>
@@ -124,7 +124,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-    
+
                 <div class="modal-body">
                         @csrf
                         <h3>
@@ -133,20 +133,20 @@
                                 <p>This cannot be undone</p>
 
                         </h3>
-                        
+
                         <input type="text" name="myidterminate" id="myid" hidden>
                         <a href="" class="badge badge-light" name="myname" id="myname"></a>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Continue</button>
                     </div>
-                    
+
                 </div>
             </div>
         </form>
         </div>
 
-    
+
 @endsection

@@ -33,4 +33,10 @@ class HomeController extends Controller
         $users = User::where('priority','LO')->where('active','1')->paginate(3);
         return view('admin.dashboard', compact('users'));
     }
+
+    public function homedashboard()
+    {
+        $users = User::where('priority','LO')->where('active','1');
+        return view('admin.homedashboard', compact('users'));
+    }
 }
