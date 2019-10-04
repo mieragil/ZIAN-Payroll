@@ -49411,6 +49411,10 @@ $('#add').on('show.bs.modal', function (event) {
   modal.find('.modal-body #add_item').val(name);
   modal.find('.modal-body #add_item_id').val(itemid);
 });
+$("#menu-toggle").click(function (e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
 
 /***/ }),
 
@@ -49546,8 +49550,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ZARI\Desktop\ZIAN-SYSTEM\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ZARI\Desktop\ZIAN-SYSTEM\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
