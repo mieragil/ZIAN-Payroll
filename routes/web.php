@@ -31,7 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 
 
 

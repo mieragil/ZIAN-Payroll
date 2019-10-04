@@ -90,10 +90,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/homedashboard"> <i class="fas fa-home m-3"></i> Dashboard</a>
+                            <a href="{{route('homedashboard')}}"> <i class="fas fa-home m-3"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/dashboard"><i class="fas fa-users m-3"></i> Employees</a>
+                            <a href="{{route('dashboard')}}"><i class="fas fa-users m-3"></i> Employees</a>
                         </li>
                         <li>
                             <a href="#"><i class="fas fa-chart-bar m-3"></i>Attendance</a>

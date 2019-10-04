@@ -29,58 +29,58 @@
                     </p>
                     <p class="float-right"><strong>
                         {{strtoupper($user->department)}}
-                    </strong>|
-                    {{strtoupper($user->position)}}
-                </p>
+                        </strong>|
+                        {{strtoupper($user->position)}}
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <h3 class="ml-3 ">Employment status: <u>{{$user->emp_status}}</u></h3>
-                
-                <h3 class="ml-5 ">Salary type: <u>{{$user->salary_type}}</u></h3>
-                
-                <button class="btn btn-danger float-right" style="margin-left:200px" 
-                    data-myid="{{$user->id}}" data-myname="{{$user->name}}"
-                    data-target="#terminate" data-toggle="modal">Terminate</button>
-                
-                @if ($user->emp_status != 'REGULAR')
-                    <button class="btn btn-success ml-5" 
-                    data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
-                    data-toggle="modal" data-target="#promote" >Promote</button>
-                
-                @endif
-            </div>
-            <hr>
-            <form action="{{route('employee.editEmp', $user->id)}}" method="post">
-                @method('PATCH')
-                @csrf
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="name">Employee Name</label>
-                        <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
-
-                    </div>
-                    <div class="col-md-6">
-                        {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
-                        <label for="email">Username</label>
-                        <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
-                    </div>
+                    <h3 class="ml-3 ">Employment status: <u>{{$user->emp_status}}</u></h3>
+                    
+                    <h3 class="ml-5 ">Salary type: <u>{{$user->salary_type}}</u></h3>
+                    
+                    <button class="btn btn-danger float-right" style="margin-left:200px" 
+                        data-myid="{{$user->id}}" data-myname="{{$user->name}}"
+                        data-target="#terminate" data-toggle="modal">Terminate</button>
+                    
+                    @if ($user->emp_status != 'REGULAR')
+                        <button class="btn btn-success ml-5" 
+                        data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
+                        data-toggle="modal" data-target="#promote" >Promote</button>
+                    
+                    @endif
                 </div>
                 <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="rate"><strong>DAILY RATE:</strong></label>
-                        <input type="number"  id="rate" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
+                <form action="{{route('employee.editEmp', $user->id)}}" method="post">
+                    @method('PATCH')
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">Employee Name</label>
+                            <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
+
+                        </div>
+                        <div class="col-md-6">
+                            {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
+                            <label for="email">Username</label>
+                            <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="inlineRadio1">WEEKS OF TRAINING:</label>
-                        <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="rate"><strong>DAILY RATE:</strong></label>
+                            <input type="number"  id="rate" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inlineRadio1">WEEKS OF TRAINING:</label>
+                            <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary float-right">Save Changes</a>
-            </form>
-        </div>
+                    <button type="submit" class="btn btn-primary float-right">Save Changes</a>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -132,7 +132,7 @@
 
             </div>
         </div>
-    </form>
+        </form>
     </div>
 
     <div class="modal fade" id="terminate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -165,7 +165,7 @@
                 </div>
             </div>
         </form>
-        </div>
+    </div>
 
 
 @endsection
