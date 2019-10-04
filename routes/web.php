@@ -26,6 +26,7 @@ Auth::routes();
 
 Route::resource('employee', 'PivotController');
 Route::resource('item', 'ItemController');
+Route::resource('leave', 'LeaveController');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -37,7 +38,7 @@ Route::post('/employee/{id}/terminate','PivotController@terminate')->name('emplo
 Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
-
+Route::post('/accept-leave/{id}', 'LeaveController@acceptleave')->name('leave.accept-leave');
 
     
 Route::post('users/create-new', function (Request $request) {

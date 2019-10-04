@@ -90,36 +90,36 @@
 
     {{-- Subtract quantity --}}
     <div class="modal fade" id="minus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Deduct Quantity</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="{{route('item.deduct', $data['user']->id)}}" method="POST">
-                        @csrf
-                        <div class="modal-body">
-                            <label for="item_name">Item:</label>
-                            <input type="text" class="form-control" name="ded_item" id="ded_item" disabled readonly>
-
-                            <label for="item_name">Quantity to Deduct: </label>
-                            <input type="text" class="form-control" name="ded_quantity" id="ded_quantity" placeholder="Quantity" required>
-
-                            <input type="text" name="ded_item_id" id="ded_item_id" hidden> 
-                            <input type="text" name="ded_user_id" id="ded_user_id" hidden value="{{$data['user']->id}}"> 
-    
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Send message</button>
-                        </div>
-                    </form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deduct Quantity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <form action="{{route('item.deduct', $data['user']->id)}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <label for      ="item_name">Item:</label>
+                        <input type="text" class="form-control" name="ded_item" id="ded_item" disabled readonly>
+
+                        <label for="item_name">Quantity to Deduct: </label>
+                        <input type="text" class="form-control" name="ded_quantity" id="ded_quantity" placeholder="Quantity" required>
+
+                        <input type="text" name="ded_item_id" id="ded_item_id" hidden> 
+                        <input type="text" name="ded_user_id" id="ded_user_id" hidden value="{{$data['user']->id}}"> 
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
         <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
