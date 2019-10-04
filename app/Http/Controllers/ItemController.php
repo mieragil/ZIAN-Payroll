@@ -118,7 +118,6 @@ class ItemController extends Controller
         $item = Item::findOrFail($request->add_item_id);
         // return $item;
 
-
         $left = $item->quantity + $request->add_quantity;
 
         Item::where('id', $request->add_item_id)

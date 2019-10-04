@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\User;
+use App\Leave;
+use DateTime;
 use Illuminate\Http\Request;
 
 class PivotController extends Controller
@@ -87,7 +89,6 @@ class PivotController extends Controller
 
     public function promote($id, Request $request){
         $user = User::findOrFail($id);
-        // return $user;
 
         $promotion = '';
         if($user->emp_status == 'TRAINEE'){
@@ -95,9 +96,7 @@ class PivotController extends Controller
         }else{
             $promotion = 'REGULAR';
         }
-
         User::where('id', $user->id)->update(['emp_status' => $promotion]);
-
         return redirect()->back()->with('success', 'Successfully promoted ' . $user->name . ' to : ' .$promotion);
     }
 

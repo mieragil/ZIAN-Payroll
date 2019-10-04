@@ -23,7 +23,6 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>
-
 <body >
     <div id="app">
 
@@ -39,6 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
 
                     </ul>
 

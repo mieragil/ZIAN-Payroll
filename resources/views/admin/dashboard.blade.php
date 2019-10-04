@@ -61,8 +61,8 @@
                                                     <i class="far fa-eye"></i>&nbsp;View Details</a>
                                             <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
                                                     <i class="fas fa-archive"></i>&nbsp;Accountability</a>
-                                            <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
-                                                    <i class="fas fa-archive"></i>&nbsp;Leave</a>
+                                            <a href="{{route('leave.show', $user->id)}}" class="btn btn-warning ml-3">
+                                                    <i class="fas fa-plane-departure"></i>&nbsp;Leave</a>
                                     {{-- </div> --}}
                                 </td>
                             </tr>

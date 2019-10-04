@@ -79,6 +79,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <div class="col">
                 <div class="card shadow-sm">
                     <h5 class="card-header text-light bg-primary">Attendance SHIT</h5>
@@ -105,6 +106,10 @@
                             <a href="#" class="">View More...</a>
                         </div>
                     </div>
+=======
+                    
+                    You are logged in!
+>>>>>>> upstream/master
                 </div>
                 <br>
                 <div class="card shadow-sm">
