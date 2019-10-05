@@ -23,7 +23,7 @@
                 </strong>
             </h3>
 
-            <div class="card mt-3">
+            <div class="card mt-3 col-md-10 offset-1">
                 <div class="card-header">ADMIN DASHBOARD</div>
 
                 <div class="card-body">
@@ -43,7 +43,7 @@
                                 <th scope="col">Department</th>
                                 <th scope="col">Position</th>
                                 <th scope="col">Rate / Day</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,17 +53,16 @@
                                 <td scope="col">{{$user->department}}</td>
                                 <td scope="col">{{$user->position}}</td>
                                 <td scope="col">{{$user->rate}}</td>
-                                <td scope="col" class="d-flex justify-content-between">
+                                <td class="">
 
-                                    {{-- <div class="row"> --}}
-
-                                            <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ml-3">
-                                                    <i class="far fa-eye"></i>&nbsp;View Details</a>
-                                            <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ml-3">
-                                                    <i class="fas fa-archive"></i>&nbsp;Accountability</a>
-                                            <a href="{{route('leave.show', $user->id)}}" class="btn btn-warning ml-3">
-                                                    <i class="fas fa-plane-departure"></i>&nbsp;Leave</a>
-                                    {{-- </div> --}}
+                                    <div class="text-center">
+                                        <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ">
+                                                <i class="far fa-eye"></i>&nbsp;View Details</a>
+                                        <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ">
+                                                <i class="fas fa-archive"></i>&nbsp;Accountability</a>
+                                        <a href="{{route('leave.show', $user->id)}}" class="btn btn-warning ">
+                                                <i class="fas fa-plane-departure"></i>&nbsp;Leave</a>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

@@ -27,6 +27,7 @@ Auth::routes();
 Route::resource('employee', 'PivotController');
 Route::resource('item', 'ItemController');
 Route::resource('leave', 'LeaveController');
+Route::resource('attendance', 'AttendanceController');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
@@ -39,6 +40,9 @@ Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
 Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
 Route::post('/employee/{id}/edit-emp','PivotController@editEmp')->name('employee.editEmp');
+Route::post('/employee/{id}/time','PivotController@time')->name('employee.time');
+
+
 Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');

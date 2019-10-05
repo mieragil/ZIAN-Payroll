@@ -128,4 +128,5 @@ class PivotController extends Controller
     public function editEmp($id, Request $request){
         return request()->all();
     }
+
 }
