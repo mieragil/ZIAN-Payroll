@@ -90,10 +90,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/homedashboard"> <i class="fas fa-home m-3"></i> Dashboard</a>
+                            <a href="{{route('homedashboard')}}"> <i class="fas fa-home m-3"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/dashboard"><i class="fas fa-users m-3"></i> Employees</a>
+                            <a href="{{route('dashboard')}}"><i class="fas fa-users m-3"></i> Employees</a>
                         </li>
                         <li>
                             <a href="#"><i class="fas fa-chart-bar m-3"></i>Attendance</a>
@@ -181,14 +181,21 @@
                     <hr class="col-md-5">
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="rate"><strong>Enter DAILY RATE:</strong></label>
                             <input type="number" name="rate" class="form-control" required value="{{old('rate')}}" min="1" max="10000">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
 
                             <label for="inlineRadio1">Enter WEEKS of training:</label>
                             <input type="number" name="weeks_of_training" class="form-control" required value="{{old('rate')}}" min="1" max="10000">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="salary_type">FIXED SALARY?</label>
+                            <select class="form-control" name="salary_type" id="salary_type">
+                                <option value="FIXED">Yes</option>
+                                <option value="UNFIXED">No</option>
+                            </select>
                         </div>
                     </div>
                     <hr>

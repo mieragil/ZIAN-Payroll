@@ -122,7 +122,7 @@ trait AuthenticatesUsers
     protected function authenticated(Request $request, $user)
     {
         if(Auth::user()->priority == 'HI'){
-            return redirect()->route('dashboard');
+            return redirect()->route('homedashboard');
         }else{
             return redirect()->route('home');
         }

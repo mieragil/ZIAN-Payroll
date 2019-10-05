@@ -88,7 +88,13 @@ class PivotController extends Controller
     }
 
     public function promote($id, Request $request){
+        // return $request;
         $user = User::findOrFail($id);
+
+        if($user->rate > $request->new_rate){
+            return back()->withErrors('Please enter a higher rate for ptomotion');
+        }
+        
 
         $promotion = '';
         if($user->emp_status == 'TRAINEE'){
@@ -96,7 +102,10 @@ class PivotController extends Controller
         }else{
             $promotion = 'REGULAR';
         }
-        User::where('id', $user->id)->update(['emp_status' => $promotion]);
+        User::where('id', $user->id)->update(['emp_status' => $promotion,
+            'weeks_of_training' => $request->new_training,
+            'rate' => $request->new_rate
+        ]);
         return redirect()->back()->with('success', 'Successfully promoted ' . $user->name . ' to : ' .$promotion);
     }
 
@@ -114,5 +123,9 @@ class PivotController extends Controller
         $data['items'] = Item::where('emp_id', $id)->where('quantity','!=','0')->get();
         // return $data['items'];
         return view ('admin.accountability', compact('data'));
+    }
+
+    public function editEmp($id, Request $request){
+        return request()->all();
     }
 }

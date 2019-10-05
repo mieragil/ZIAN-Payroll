@@ -31,13 +31,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 
 
 
 
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
 Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
+Route::post('/employee/{id}/edit-emp','PivotController@editEmp')->name('employee.editEmp');
 Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
@@ -59,6 +60,7 @@ Route::post('users/create-new', function (Request $request) {
         'emp_status' => 'TRAINEE',
         'department' => $request->department,
         'rate' => $request->rate,
+        'salary_type' => $request->salary_type,
         'position' => $request->position,
         'priority' => 'LO',
         'active' => '1',
