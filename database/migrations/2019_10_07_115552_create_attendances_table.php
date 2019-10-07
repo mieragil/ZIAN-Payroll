@@ -21,6 +21,9 @@ class CreateAttendancesTable extends Migration
             $table->string('attend_date')->nullable();
             $table->integer('overtime')->nullable();
             $table->integer('undertime')->nullable();
+            $table->integer('pay_for_day')->nullable();
+            $table->integer('otpay_for_day')->nullable();
+            $table->integer('ded_for_day')->nullable();
             $table->timestamps();
         });
     }
