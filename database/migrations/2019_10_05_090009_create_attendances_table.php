@@ -16,8 +16,11 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('emp_id');
-            $table->string('time_in');
-            $table->string('time_out');
+            $table->string('time_in')->nullable();
+            $table->string('time_out')->nullable();
+            $table->string('attend_date')->nullable();
+            $table->integer('overtime')->nullable();
+            $table->integer('undertime')->nullable();
             $table->timestamps();
         });
     }

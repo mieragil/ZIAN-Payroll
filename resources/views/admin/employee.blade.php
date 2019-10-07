@@ -82,6 +82,16 @@
             </div>
         </div>
     </div>
+    
+    <form action="{{route('attendance.store',$user->id)}}" method="post">
+    <div class="card">
+            @csrf
+            <div class="card-body">
+                <input type="text" name="emp_id" id="emp_id" value="{{$user->id}}">
+                <button type="submit">submit</button>
+            </div>
+        </div>
+    </form>
 
 
     <div class="modal fade" id="promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

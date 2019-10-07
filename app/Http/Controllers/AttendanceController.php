@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -35,7 +36,23 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Carbon::now('GMT+8')->format('Y-m-d');
+        $time = Carbon::now('GMT+8')->format('H:i');
+        $checker = Attendance::where('attend_date', $date)->where('emp_id',$request->emp_id)->get();
+        if($checker->isEmpty()){
+            Attendance::create([
+                'emp_id' => $request->emp_id,
+                'time_in' => $time,
+                'attend_date' => $date
+            ]);
+            echo "timein";
+        }else{
+            Attendance::where('attend_date',$date)->where('emp_id',$request->emp_id)->update([
+                'time_out' => $time
+            ]);
+            echo "timeout";
+        }
+        //subtract time
     }
 
     /**
