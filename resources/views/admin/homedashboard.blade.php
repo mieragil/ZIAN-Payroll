@@ -8,8 +8,9 @@
                 <div class="card-body">
                     <h4 class="card-title">Hello {{Auth::user()->name}}!</h4>
                     <p class="card-text">Welcome to Zian's Payroll Management System.</p>
-                    <h1 class="text-secondary font-weight-bold">12:36 PM</h1>
-                   <p class="text-secondary">Oct 6, 2019</p>
+                    <h1 class="text-secondary font-weight-bold">{{ date("h:i A") }}</h1>
+                    <p class="text-secondary"> {{ date("l") }}</p>
+                    <p class="text-secondary"> {{ date("M. d, Y") }}</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
@@ -45,6 +46,41 @@
                         <div class="text-right"><small><a href=""class="text-light">Show All</a></small></div>
                     </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                        <div class="card mb-3 shadow">
+                            <div class="card-body">
+                                    <h1 class="text-secondary">Today</h1>
+                                    <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col" class="text-secondary">#</th>
+                                            <th scope="col" class="text-secondary">Name</th>
+                                            <th scope="col" class="text-info">Time In</th>
+                                            <th scope="col" class="text-danger">Time Out</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <hr>
+                                      <div class="text-right"><small><a href=""class="">Show All</a></small></div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

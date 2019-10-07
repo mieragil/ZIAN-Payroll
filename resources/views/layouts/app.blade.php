@@ -24,6 +24,7 @@
 
 </head>
 <body >
+
     <div id="app">
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
@@ -96,13 +97,13 @@
                             <a href="{{route('dashboard')}}"><i class="fas fa-users m-3"></i> Employees</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fas fa-chart-bar m-3"></i>Attendance</a>
+                            <a href="{{route('attendance')}}"><i class="fas fa-chart-bar m-3"></i>Attendance</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
+                            <a href=""><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fas fa-cogs m-3"></i>Settings</a>
+                            <a href="{{route('settings')}}"><i class="fas fa-cogs m-3"></i>Settings</a>
                         </li>
 
                     </ul>

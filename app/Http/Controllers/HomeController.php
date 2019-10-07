@@ -28,6 +28,7 @@ class HomeController extends Controller
     }
 
 
+
     public function dashboard()
     {
         $users = User::where('priority','LO')->where('active','1')->paginate(3);
@@ -38,5 +39,17 @@ class HomeController extends Controller
     {
         $users = User::where('priority','LO')->where('active','1');
         return view('admin.homedashboard', compact('users'));
+    }
+
+    public function attendance()
+    {
+        $users = User::where('priority','LO')->where('active','1')->paginate(2);
+        return view('admin.attendance', compact('users'));
+    }
+
+    public function settings()
+    {
+        $users = User::where('priority','LO')->where('active','1')->paginate(2);
+        return view('admin.settings', compact('users'));
     }
 }

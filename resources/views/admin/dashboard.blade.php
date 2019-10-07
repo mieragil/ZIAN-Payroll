@@ -16,16 +16,8 @@
                 @endforeach
             @endif
 
-            <h3 class="title">
-                You are logged in,
-                <strong>
-                    {{Auth::user()->name}}!
-                </strong>
-            </h3>
-
-            <div class="card mt-3 col-md-10 offset-1">
-                <div class="card-header">ADMIN DASHBOARD</div>
-
+            <div class="card shadow">
+                <div class="card-header"><h2 class="text-secondary">EMPLOYEES</h2></div>
                 <div class="card-body">
 
                     {{-- Success message --}}

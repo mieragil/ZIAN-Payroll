@@ -95,3 +95,11 @@ $("#menu-toggle").click(function(e) {
     $("#wrapper").toggleClass("toggled");
 });
 
+$("#new-position").click(function(e){
+    $("#new-position-input").show();
+});
+
+$(".btn-cancel").click(function(e){
+    $("#new-position-input").hide();
+});
+

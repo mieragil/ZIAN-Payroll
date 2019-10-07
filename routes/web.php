@@ -34,6 +34,10 @@ Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboar
 
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 
+Route::get('/attendance', 'HomeController@attendance')->name('attendance');
+
+Route::get('/settings', 'HomeController@settings')->name('settings');
+
 
 
 

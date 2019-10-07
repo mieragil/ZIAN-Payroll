@@ -2,7 +2,7 @@
 
 @section('content-dashboard')
 
-    <div class="container">
+    <div class="container-fluid">
 
         @if (session('success'))
             <div class="alert alert-success" role="alert">
@@ -18,7 +18,8 @@
             </div>
         @endif
 
-        <a class="btn btn-secondary" href="{{route('dashboard')}}">Back</a>
+        <a class="btn btn-secondary" href="{{route('dashboard')}}"><i class="fas fa-arrow-left"></i> Back</a>
+        <br><br>
         <div class="card">
             @csrf
             <div class="card-header">
@@ -82,7 +83,7 @@
             </div>
         </div>
     </div>
-    
+
     <form action="{{route('attendance.store',$user->id)}}" method="post">
     <div class="card">
             @csrf
