@@ -36,7 +36,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Department::create([
+            'department_name' => $request->department_name,
+            'position' => $request->position,
+        ]);
+
+        return back()->with('success', 'Added: ' . $request->department_name);
     }
 
     /**

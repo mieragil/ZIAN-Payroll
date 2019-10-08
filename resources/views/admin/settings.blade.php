@@ -62,25 +62,23 @@
 
 {{-- New Department Mondal --}}
 <div class="modal fade" id="new-department-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="" method="POST">
+    <form action="{{route('department.store')}}" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content modal-lg">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">New Department</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body text-center">
+            <div class="modal-body">
                 @csrf
-                <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Department Name: </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="..." aria-label="Username" aria-describedby="basic-addon1">
-                      </div>
-                <input type="text" name="myidterminate" id="myid" hidden>
-                <a href="" class="badge badge-light" name="myname" id="myname"></a>
+
+                <p class="mb-0">Department Name:</p>
+                <input type="text" class="form-control" name="department_name" id="department_name" placeholder="department" required>
+                <br>
+
+                <p class="mb-0">Position under this department:</p>
+                <input type="text" class="form-control" name="position" id="position" placeholder="position" required>
+
             </div>
 
                 <div class="modal-footer">

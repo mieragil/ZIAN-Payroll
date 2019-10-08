@@ -28,6 +28,8 @@ Route::resource('employee', 'PivotController');
 Route::resource('item', 'ItemController');
 Route::resource('leave', 'LeaveController');
 Route::resource('attendance', 'AttendanceController');
+Route::resource('department', 'DepartmentController');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
