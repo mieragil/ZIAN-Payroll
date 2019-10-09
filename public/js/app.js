@@ -49415,11 +49415,12 @@ $("#menu-toggle").click(function (e) {
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
-$("#new-position").click(function (e) {
-  $("#new-position-input").show();
+$(".btn-new-position").click(function (e) {
+  $(this).closest(".card").find('.new-position-input').show();
+  $(this).closest('.card').find(".nex-pos-text").focus();
 });
 $(".btn-cancel").click(function (e) {
-  $("#new-position-input").hide();
+  $(this).closest('.card').find(".new-position-input").hide();
 });
 
 /***/ }),

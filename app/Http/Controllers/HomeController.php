@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +50,11 @@ class HomeController extends Controller
 
     public function settings()
     {
-        $users = User::where('priority','LO')->where('active','1')->paginate(2);
-        return view('admin.settings', compact('users'));
+        $department = Department::distinct()->get('department_name');
+        return view('admin.settings', compact('department'));
     }
+
+
+
+
 }

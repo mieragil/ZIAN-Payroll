@@ -11,45 +11,56 @@
                         <br>
                         <div class="row">
                             <div class="col-lg-12">
+                                @if (session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+
+                            @foreach ($department as $row)
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="row">
-                                            <div class="col-9"><h3>IT</h3></div>
-                                            <div class="col-3 text-right"><button class="btn btn-primary" id="new-position"><i class="fas fa-plus"></i> Add New Position</button></div>
+                                        <div class="col-9"><h3>{{$row->department_name}}</h3></div>
+                                            <div class="col-3 text-right"><button class="btn btn-primary btn-new-position" id=""><i class="fas fa-plus"></i> Add New Position</button></div>
                                         </div>
                                     </div>
+
 
                                     <div class="card-body">
                                        <h5>Positions</h5>
                                        <table class="table table-hover">
                                             <tbody>
+
                                               <tr>
-                                                <td>Sr. Programmer</td>
+                                              <td>IT</td>
                                                 <td class="text-right">
                                                     <i class="fas fa-edit text-primary"></i>
                                                     <i class="fas fa-trash text-danger"></i>
                                                 </td>
                                               </tr>
-                                              <tr>
-                                                <td>Jr. Programmer</td>
-                                                <td class="text-right">
-                                                    <i class="fas fa-edit text-primary"></i>
-                                                    <i class="fas fa-trash text-danger"></i>
-                                                </td>
-                                              </tr>
+
+
                                             </tbody>
                                           </table>
-                                        <div id="new-position-input" style="display:none">
-                                            <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter New Position" aria-label="Enter New Position" aria-describedby="button-addon4">
-                                            <div class="input-group-append" id="button-addon4">
-                                                <button class="btn btn-success px-5" type="button">Save</button>
-                                                <button class="btn btn-secondary btn-cancel" type="button">Cancel</button>
+
+                                        <form action="{{route('department.position', $row->department_name)}}" method="POST">
+                                            @csrf
+                                            <div class="new-position-input" style="display:none">
+                                                <div class="input-group">
+                                                <input type="hidden" name="department_name" value="{{$row->department_name}}">
+                                                <input type="text" class="form-control new-pos-text" name="new_position" placeholder="Enter New Position" aria-label="Enter New Position" aria-describedby="button-addon4">
+                                                <div class="input-group-append" id="button-addon4">
+                                                    <button class="btn btn-success px-5" type="submit">Save</button>
+                                                    <button class="btn btn-secondary btn-cancel" type="button">Cancel</button>
+                                                </div>
+                                                </div>
                                             </div>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
+                                <br>
+                                @endforeach
                             </div>
                         </div>
                         <br>
@@ -85,7 +96,6 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Continue</button>
                 </div>
-
             </div>
         </div>
     </form>

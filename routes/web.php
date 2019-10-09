@@ -40,6 +40,8 @@ Route::get('/attendance', 'HomeController@attendance')->name('attendance');
 
 Route::get('/settings', 'HomeController@settings')->name('settings');
 
+Route::get('department/{id}', 'DepartmentController@show');
+
 
 
 
@@ -47,6 +49,8 @@ Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.
 Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
 Route::post('/employee/{id}/edit-emp','PivotController@editEmp')->name('employee.editEmp');
 Route::post('/employee/{id}/time','PivotController@time')->name('employee.time');
+
+Route::post('/department/{department_name}/position','DepartmentController@newPosition')->name('department.position');
 
 
 Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');

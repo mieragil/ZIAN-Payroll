@@ -40,8 +40,15 @@ class DepartmentController extends Controller
             'department_name' => $request->department_name,
             'position' => $request->position,
         ]);
-
         return back()->with('success', 'Added: ' . $request->department_name);
+    }
+
+    public function newPosition($department_name, Request $request){
+        Department::create([
+            'department_name' => $request->department_name,
+            'position' => $request->new_position,
+        ]);
+        return back()->with('success', 'Added Position: ' . $request->new_position . ' to '. $request->department_name);
     }
 
     /**
