@@ -29,12 +29,14 @@ Route::resource('item', 'ItemController');
 Route::resource('leave', 'LeaveController');
 Route::resource('attendance', 'AttendanceController');
 Route::resource('department', 'DepartmentController');
+Route::resource('deduction', 'DeductionController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
+Route::get('/employees/{id}/deductions', 'HomeController@deductions')->name('deduction');
 
 Route::get('/attendance', 'HomeController@attendance')->name('attendance');
 
@@ -59,6 +61,10 @@ Route::get('/employee/{id}/accountability', 'PivotController@accountability')->n
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
 Route::post('/accept-leave/{id}', 'LeaveController@acceptleave')->name('leave.accept-leave');
+Route::get('/cash-advance', 'DeductionController@showCA')->name('ded.showCA');
+Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
+
+
 
 
 Route::post('users/create-new', function (Request $request) {
@@ -67,7 +73,7 @@ Route::post('users/create-new', function (Request $request) {
         'password' => 'required|min:3',
     ]);
 
-    User::create([
+    $user = User::create([
         'name' => $request->name,
         'date_hired' => $request->hired,
         'username' => $request->username,
@@ -81,7 +87,8 @@ Route::post('users/create-new', function (Request $request) {
         'priority' => 'LO',
         'active' => '1',
         ]);
-    return redirect()->route('dashboard')->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
+
+    return redirect()->route('deduction.show', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
 
 
 })->name('users.create');

@@ -7,6 +7,7 @@
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
+                <p>Please set the employee's deductions.</p>
             </div>
         @endif
 

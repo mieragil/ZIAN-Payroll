@@ -58,4 +58,10 @@ class HomeController extends Controller
         return view('admin.settings', compact('department', 'position'));
 
     }
+
+    public function deductions($id)
+    {
+        // $user = User::where('id', $id);
+        // return $id;
+    }
 }

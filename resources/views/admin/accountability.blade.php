@@ -69,7 +69,6 @@
                 <form action="{{route('item.store')}}" method="POST">
                     @csrf
                     <div class="modal-body">
-
                         <label for="item_name">Item:</label>
                         <input type="text" class="form-control" name="item_name" id="item_name" placeholder="Item Name" required>
 
