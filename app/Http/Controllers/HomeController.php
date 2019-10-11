@@ -39,11 +39,4 @@ class HomeController extends Controller
         $users = User::where('priority','LO')->where('active','1');
         return view('admin.homedashboard', compact('users'));
     }
-
-    public function deductions($id)
-    {
-        // $user = User::where('id', $id);
-        // return $id;
-        
-    }
 }

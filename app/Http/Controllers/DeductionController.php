@@ -104,7 +104,10 @@ class DeductionController extends Controller
     public function storeCA($id, Request $request){
 
         // dd($request);
-        // $user = User::findOrFail($request->employees);
+        $check = CashAdvance::where('emp_id', $request->get('employees'))->all();
+        return $check;
+
+        $user = User::findOrFail($request->employees);
         
         CashAdvance::create([
             'emp_id' => $request->get('employees'),
