@@ -102,6 +102,9 @@
                             <a href="#"><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
                         </li>
                         <li>
+                            <a href="{{route('ded.showCA')}}"><i class="fas fa-cash-register m-3"></i>Cash Advance</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fas fa-cogs m-3"></i>Settings</a>
                         </li>
 
