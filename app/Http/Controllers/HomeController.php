@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,10 @@ class HomeController extends Controller
     }
 
 
+
     public function dashboard()
     {
-        $users = User::where('priority','LO')->where('active','1')->paginate(3);
+        $users = User::where('priority','LO')->where('active','1')->paginate(6);
         return view('admin.dashboard', compact('users'));
     }
 
@@ -40,10 +42,26 @@ class HomeController extends Controller
         return view('admin.homedashboard', compact('users'));
     }
 
+    public function attendance()
+    {
+        $users = User::where('priority','LO')->where('active','1')->paginate(2);
+        return view('admin.attendance', compact('users'));
+    }
+
+    public function settings()
+    {
+        $department = Department::distinct()->get('department_name');
+
+        $position = Department::all();
+
+        // return compact('position');
+        return view('admin.settings', compact('department', 'position'));
+
+    }
+
     public function deductions($id)
     {
         // $user = User::where('id', $id);
         // return $id;
-        
     }
 }

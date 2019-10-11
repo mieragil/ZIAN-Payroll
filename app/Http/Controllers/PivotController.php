@@ -94,7 +94,7 @@ class PivotController extends Controller
         if($user->rate > $request->new_rate){
             return back()->withErrors('Please enter a higher rate for ptomotion');
         }
-        
+
 
         $promotion = '';
         if($user->emp_status == 'TRAINEE'){

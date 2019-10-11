@@ -9,7 +9,11 @@ return array(
     'App\\Attendance' => $baseDir . '/app/Attendance.php',
     'App\\CashAdvance' => $baseDir . '/app/CashAdvance.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+<<<<<<< HEAD
+    'App\\Department' => $baseDir . '/app/Department.php',
+=======
     'App\\Deduction' => $baseDir . '/app/Deduction.php',
+>>>>>>> upstream/master
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AttendanceController' => $baseDir . '/app/Http/Controllers/AttendanceController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

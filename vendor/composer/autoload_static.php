@@ -383,7 +383,11 @@ class ComposerStaticInitb4515c8f94c79a4b2b873d3fa9cbc383
         'App\\Attendance' => __DIR__ . '/../..' . '/app/Attendance.php',
         'App\\CashAdvance' => __DIR__ . '/../..' . '/app/CashAdvance.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+<<<<<<< HEAD
+        'App\\Department' => __DIR__ . '/../..' . '/app/Department.php',
+=======
         'App\\Deduction' => __DIR__ . '/../..' . '/app/Deduction.php',
+>>>>>>> upstream/master
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AttendanceController' => __DIR__ . '/../..' . '/app/Http/Controllers/AttendanceController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

@@ -49415,6 +49415,36 @@ $("#menu-toggle").click(function (e) {
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
+$(".btn-new-position").click(function (e) {
+  $(this).closest(".card").find('.new-position-input').show();
+  $(this).closest('.card').find(".nex-pos-text").focus();
+});
+$(".btn-cancel").click(function (e) {
+  $(this).closest('.card').find(".new-position-input").hide();
+});
+
+function remove_disabled() {
+  $("#profile-tab").removeClass('disabled');
+} // new employee modal next button
+
+
+$("#btnNext").click(function (e) {
+  var reqlength = $('.new-employee-input').length;
+  console.log(reqlength);
+  var value = $('.new-employee-input').filter(function () {
+    return this.value != '';
+  });
+
+  if (value.length >= 0 && value.length !== reqlength) {
+    $("#error-empty").show();
+  } else {
+    remove_disabled();
+    $("#profile-tab").click();
+    $("#btnSave").show();
+    $("#btnNext").hide();
+    $("#error-empty").hide();
+  }
+});
 
 /***/ }),
 
@@ -49550,8 +49580,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ZARI\Desktop\ZIAN-SYSTEM\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ZARI\Desktop\ZIAN-SYSTEM\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
