@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content-dashboard')
-<div class="container">
+<div class="container-fluid">
         <div class="col-lg-12">
             <div class="card shadow">
                 <div class="card-body">
@@ -21,25 +21,27 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="row">
-                                        <div class="col-9"><h3>{{$row->department_name}}</h3></div>
+                                        <div class="col-9"><h3>{{$dept = $row->department_name}}</h3></div>
                                             <div class="col-3 text-right"><button class="btn btn-primary btn-new-position" id=""><i class="fas fa-plus"></i> Add New Position</button></div>
                                         </div>
                                     </div>
 
-
                                     <div class="card-body">
-                                       <h5>Positions</h5>
+                                    <h5>Position</h5>
                                        <table class="table table-hover">
-                                            <tbody>
+                                        <tbody>
 
-                                              <tr>
-                                              <td>IT</td>
-                                                <td class="text-right">
-                                                    <i class="fas fa-edit text-primary"></i>
-                                                    <i class="fas fa-trash text-danger"></i>
-                                                </td>
-                                              </tr>
-
+                                            @foreach ($position as $item)
+                                                @if($item->department_name == $dept)
+                                                    <tr>
+                                                    <td>{{$item->position}}</td>
+                                                    <td class="text-right">
+                                                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-edit"></i></button>
+                                                        <button class="btn btn-outline-danger" type="submit"> <i class="fas fa-trash"></i></button>
+                                                    </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
 
                                             </tbody>
                                           </table>

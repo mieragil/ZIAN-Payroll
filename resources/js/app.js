@@ -104,3 +104,25 @@ $(".btn-cancel").click(function(e){
     $(this).closest('.card').find(".new-position-input").hide();
 });
 
+function remove_disabled(){
+    $("#profile-tab").removeClass('disabled');
+     }
+// new employee modal next button
+$("#btnNext").click(function(e){
+    var reqlength = $('.new-employee-input').length;
+    console.log(reqlength);
+    var value = $('.new-employee-input').filter(function () {
+        return this.value != '';
+    });
+    if (value.length>=0 && (value.length !== reqlength)) {
+        $("#error-empty").show();
+    } else {
+        remove_disabled();
+        $("#profile-tab").click();
+        $("#btnSave").show();
+        $("#btnNext").hide();
+        $("#error-empty").hide();
+    }
+
+});
+

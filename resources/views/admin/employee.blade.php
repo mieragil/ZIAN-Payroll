@@ -37,19 +37,24 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <h3 class="ml-3 ">Employment status: <u>{{$user->emp_status}}</u></h3>
-
-                    <h3 class="ml-5 ">Salary type: <u>{{$user->salary_type}}</u></h3>
-
-                    <button class="btn btn-danger float-right" style="margin-left:200px"
+                    <div class="col-lg-4">
+                        <h3 class="">Employment status: <u>{{$user->emp_status}}</u></h3>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h3 class="">Salary type: <u>{{$user->salary_type}}</u></h3>
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <button class="btn btn-danger"
                         data-myid="{{$user->id}}" data-myname="{{$user->name}}"
                         data-target="#terminate" data-toggle="modal">Terminate</button>
 
-                    @if ($user->emp_status != 'REGULAR')
-                        <button class="btn btn-success ml-5"
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
-                        data-toggle="modal" data-target="#promote" >Promote</button>
-                    @endif
+                        @if ($user->emp_status != 'REGULAR')
+                            <button class="btn btn-success"
+                            data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
+                            data-toggle="modal" data-target="#promote" >Promote</button>
+                        @endif
+                    </div>
+
                 </div>
                 <hr>
                 <form action="{{route('employee.editEmp', $user->id)}}" method="post">

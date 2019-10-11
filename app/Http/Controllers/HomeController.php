@@ -32,7 +32,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $users = User::where('priority','LO')->where('active','1')->paginate(3);
+        $users = User::where('priority','LO')->where('active','1')->paginate(6);
         return view('admin.dashboard', compact('users'));
     }
 
@@ -51,10 +51,11 @@ class HomeController extends Controller
     public function settings()
     {
         $department = Department::distinct()->get('department_name');
-        return view('admin.settings', compact('department'));
+
+        $position = Department::all();
+
+        // return compact('position');
+        return view('admin.settings', compact('department', 'position'));
+
     }
-
-
-
-
 }
