@@ -74,9 +74,4 @@ class HomeController extends Controller
 
 
 
-    public function deductions($id)
-    {
-        // $user = User::where('id', $id);
-        // return $id;
-    }
 }

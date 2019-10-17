@@ -91,7 +91,7 @@ class LeaveController extends Controller
         //
     }
 
-    public function acceptleave($id, Request $request){
+    public function acceptleave(Request $request){
         // return $request;
 
         if($request->firstdate > $request->seconddate){
@@ -100,7 +100,7 @@ class LeaveController extends Controller
         }else{
             $first = $request->firstdate;
             $second = $request->seconddate;
-
+            $id = $request->id;
             $to = \Carbon\Carbon::createFromFormat('Y-m-d', $first);
             $from = \Carbon\Carbon::createFromFormat('Y-m-d', $second);
             $diff_in_days = $to->diffInDays($from);
@@ -116,7 +116,7 @@ class LeaveController extends Controller
                 'paid' => $request->paid
             ]);
 
-            return redirect()->back()->with('success','Added leave.');
+            return redirect('leave')->with('success','Added leave.');
         }
     }
 }

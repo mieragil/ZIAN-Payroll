@@ -170,6 +170,10 @@
     color: #FF7F50;
 }
 
+.bg-pink{
+    background-color: rgb(255, 133, 188);
+}
+
 .active-sidebar{
     background-color: rgb(123, 123, 123)
 }

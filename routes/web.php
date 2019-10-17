@@ -33,10 +33,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
+Route::get('/deductions', 'DeductionController@index')->name('deductions');
+
 Route::post('/depid', 'HomeController@fetchdepartment');
 
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
-Route::get('/employees/{id}/deductions', 'HomeController@deductions')->name('deduction');
 Route::get('/attendance', 'HomeController@attendance')->name('attendance');
 
 
@@ -58,7 +59,7 @@ Route::post('/department/{department_name}/position','DepartmentController@newPo
 Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
-Route::post('/accept-leave/{id}', 'LeaveController@acceptleave')->name('leave.accept-leave');
+Route::post('/accept-leave', 'LeaveController@acceptleave')->name('leave.accept-leave');
 Route::get('/cash-advance', 'DeductionController@showCA')->name('ded.showCA');
 Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
 

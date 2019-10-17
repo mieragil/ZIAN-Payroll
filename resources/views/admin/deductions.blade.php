@@ -1,29 +1,50 @@
 @extends('layouts.app')
 
-@section('content')
-    
-@if (session('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
-@endif
-    <div class="container">
-        <form action="{{route('deduction.store', $user->id)}}" method="POST">
-            <div class="card">
-                <div class="card-header card-title  " style="background-color:#f1f1f1">Deductions for {{$user->name}}</div>
-                <div class="card-body">
+@section('content-dashboard')
 
-                    <div class="row">
-                        <input type="text" name="SSS" id="SSS" placeholder="SSS deduction" class="form-control form-control-lg col-md-3">
-                        <input type="text" name="pag_ibig" id="pag_ibig" placeholder="Pag-ibig deduction" class="form-control form-control-lg col-md-3 ml-3">
-                        <input type="text" name="philhealth" id="philhealth" placeholder="PHIC deduction" class="form-control form-control-lg col-md-3 ml-3">
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary float-right">Save Deduction</button>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card shadow">
+                <h5 class="card-header bg-dark text-light">Deductions</h5>
+                <div class="card-body">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+
+                        <th scope="col">Employee</th>
+                        <th scope="col">PHIC</th>
+                        <th scope="col">PAG IBIG</th>
+                        <th scope="col">SSS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                        <td>sa</td>
+                        <td>ss</td>
+                        <td>ss</td>
+                        <td>ss</td>
+                        </tr>
+
+                    </tbody>
+                    </table>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
+
+</div>
 
 @endsection

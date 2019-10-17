@@ -99,8 +99,8 @@
                         <li  class="{{ (request()->is('attendance')) ? 'active-sidebar' : '' }}">
                             <a href="{{route('attendance')}}"><i class="fas fa-chart-bar m-3"></i>Attendance</a>
                         </li>
-                        <li>
-                            <a href=""><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
+                        <li class="{{ (request()->is('deductions')) ? 'active-sidebar' : '' }}">
+                        <a href="{{route('deductions')}}"><i class="fas fa-comments-dollar m-3"></i>Deductions</a>
                         </li>
                         <li  class="{{ (request()->is('cash-advance')) ? 'active-sidebar' : '' }}">
                             <a href="{{route('ded.showCA')}}"><i class="fas fa-cash-register m-3"></i>Cash Advance</a>

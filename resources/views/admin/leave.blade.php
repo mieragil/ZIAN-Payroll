@@ -7,7 +7,7 @@
         <div class="container-fluid">
 
             @if ($errors->any())
-                <div class="alert alert-danger col-md-10">
+                <div class="alert alert-danger shadow-sm">
                     @foreach ($errors->all() as $error)
                         <li>{{$error}}</li>
                     @endforeach
@@ -28,19 +28,19 @@
                                 <table class="table table-hover">
                                         <thead>
                                           <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            {{-- <th scope="col">#</th> --}}
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Reason</th>
+                                            <th scope="col">Date</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($leavers as $row)
                                             <tr>
-                                            <th scope="row">1</th>
+                                            {{-- <th scope="row">1</th> --}}
                                             <td>{{$row->emp_name}}</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td>{{$row->reason}}</td>
+                                            <td>{{$row->dates_of_leave}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -54,16 +54,14 @@
                             New Leave Request
                         </div>
                         <div class="card-body">
-                            <form action="" method="">
+                        <form action="{{route('leave.accept-leave')}}" method="POST">
                                 @csrf
                                     <label for="employees">Choose Employee:</label>
-                                    <select class="form-control" name="employees" id="employees">
+                                    <select class="form-control" name="id" id="employees" required>
                                         <option value="">--SELECT EMPLOYEE--</option>
                                         @foreach ($data as $item)
-                                        <option value="{{$item->name}}" name="">{{$item->name}}</option>
+                                        <option value="{{$item->id}}" name="">{{$item->name}}</option>
                                         @endforeach
-
-
                                     </select>
                                     <br>
                                     <label for="reason">Reason for leave</label>
