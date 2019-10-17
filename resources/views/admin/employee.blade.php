@@ -19,22 +19,24 @@
             </div>
         @endif
 
-        <a class="btn btn-secondary" href="{{route('dashboard')}}"><i class="fas fa-arrow-left"></i> Back</a>
-        <br><br>
-        <div class="card">
+
+
+        <div class="card shadow">
             @csrf
             <div class="card-header">
-                <div class="row justify-content-between">
-
-                    <p class="h1 ml-3">
-                        DETAILS OF {{strtoupper($user->name)}}
-                    </p>
-                    <p class="float-right"><strong>
-                        {{strtoupper($user->department)}}
-                        </strong>|
-                        {{strtoupper($user->position)}}
-                    </p>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h4><a class="btn btn-secondary mr-2" href="{{route('dashboard')}}"><i class="fas fa-arrow-left"></i> Back</a> DETAILS OF {{strtoupper($user->name)}}</h4>
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <p class="float-right"><strong>
+                            {{strtoupper($user->department)}}
+                            </strong>|
+                            {{strtoupper($user->position)}}
+                        </p>
+                    </div>
                 </div>
+
             </div>
             <div class="card-body">
                 <div class="row">
@@ -84,7 +86,9 @@
                             <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary float-right">Save Changes</a>
+                    <div class="text-right py-3">
+                        <button type="submit" class="btn btn-primary">Save Changes</a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -182,6 +186,7 @@
             </div>
         </form>
     </div>
+
 
 
 @endsection

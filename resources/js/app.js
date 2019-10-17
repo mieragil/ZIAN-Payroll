@@ -96,12 +96,12 @@ $("#menu-toggle").click(function(e) {
 });
 
 $(".btn-new-position").click(function(e){
-    $(this).closest(".card").find('.new-position-input').show();
+    $(this).closest(".card").find('.new-position-input').slideDown();
     $(this).closest('.card').find(".nex-pos-text").focus();
 });
 
 $(".btn-cancel").click(function(e){
-    $(this).closest('.card').find(".new-position-input").hide();
+    $(this).closest('.card').find(".new-position-input").slideUp();
 });
 
 function remove_disabled(){
@@ -123,6 +123,42 @@ $("#btnNext").click(function(e){
         $("#btnNext").hide();
         $("#error-empty").hide();
     }
+});
+
+
+ // edit position
+$(".btn-edit-position").click(function(e){
+    var posid = $(this).closest(".trposition").find(".position-id").val();
+    var posname = $(this).closest(".trposition").find('.position-name').text();
+    $("#modal-position-id").val(posid);
+    $("#edit-position").val(posname);
+})
+
+ // delete position
+ $(".btn-delete-position").click(function(e){
+    var posid = $(this).closest(".trposition").find(".position-id").val();
+    var posname = $(this).closest(".trposition").find('.position-name').text();
+    $("#delete-id").val(posid);
+    $("#delete-position").text(posname);
+})
+
+
+
+$("#department").change(function(){
+    var dep_id = $("#department option:selected").val();
+    var _token = $('input[name="_token"]').val();
+    $.ajax({
+        url: "/depid",
+        type:'POST',
+        data: {_token:_token, dep_id:dep_id},
+        datatype:'json',
+        cache: false,
+        success: function(data) {
+        $("#position").empty();
+           $("#position").append(data);
+        }
+    });
+
 
 });
 

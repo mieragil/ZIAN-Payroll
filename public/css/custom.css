@@ -169,3 +169,13 @@
 .text-orange{
     color: #FF7F50;
 }
+
+.active-sidebar{
+    background-color: rgb(123, 123, 123)
+}
+
+.sidebar-nav .active-sidebar a {
+    text-decoration: none;
+    color: rgb(243, 243, 243);
+}
+

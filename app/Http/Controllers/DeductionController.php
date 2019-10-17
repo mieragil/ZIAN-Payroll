@@ -89,7 +89,7 @@ class DeductionController extends Controller
 
     public function showCA(){
         $data = array();
-        $data['users'] = User::where('priority','LO')->get(); 
+        $data['users'] = User::where('priority','LO')->get();
         $data['CA'] = CashAdvance::where('request','!=', 0)->get();
         $data['tables'] = DB::table('users')->select([
                         'users.name', 'cashadvances.request', 'cashadvances.ded_per_pay', 'cashadvances.months_to_pay','cashadvances.date_issued'
@@ -105,7 +105,7 @@ class DeductionController extends Controller
 
         // dd($request);
         // $user = User::findOrFail($request->employees);
-        
+
         CashAdvance::create([
             'emp_id' => $request->get('employees'),
             'reason' => $request->get('reason'),
@@ -115,7 +115,8 @@ class DeductionController extends Controller
             'months_to_pay' => $request->get('months_to_pay')
         ]);
 
-        // return redirect()->route('dashboard')->with('success', 'Registered ' . $request->request . ' Cash Advance to: ' . $user->name);
-
+        // return back()->with('success', 'Registered ' . $request->request . ' Cash Advance to: ' . $request->name);
+        // return redirect()->route('dashboard')->with('success', 'Registered ' . $request->request . ' Cash Advance to: ' . $request->name);
+        return redirect()->route('ded.showCA');
     }
 }

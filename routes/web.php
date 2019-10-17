@@ -14,9 +14,7 @@ use Carbon\Carbon;
 use App\User;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Hash;
-
-
-
+use Symfony\Component\Console\Input\Input;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,18 +33,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
+Route::post('/depid', 'HomeController@fetchdepartment');
+
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 Route::get('/employees/{id}/deductions', 'HomeController@deductions')->name('deduction');
-
 Route::get('/attendance', 'HomeController@attendance')->name('attendance');
-
 
 
 Route::get('/settings', 'HomeController@settings')->name('settings');
 
+Route::get('/leave', 'LeaveController@index')->name('leave');
 
-
-
+Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
+Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
 
 
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
@@ -56,15 +55,12 @@ Route::post('/employee/{id}/time','PivotController@time')->name('employee.time')
 
 Route::post('/department/{department_name}/position','DepartmentController@newPosition')->name('department.position');
 
-
 Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
 Route::post('/accept-leave/{id}', 'LeaveController@acceptleave')->name('leave.accept-leave');
 Route::get('/cash-advance', 'DeductionController@showCA')->name('ded.showCA');
 Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
-
-
 
 
 Route::post('users/create-new', function (Request $request) {
@@ -88,7 +84,7 @@ Route::post('users/create-new', function (Request $request) {
         'active' => '1',
         ]);
 
-    return redirect()->route('deduction.show', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
+    return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
 
 
 })->name('users.create');

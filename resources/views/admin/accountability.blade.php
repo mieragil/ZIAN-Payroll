@@ -2,23 +2,24 @@
 
 @section('content-dashboard')
 
-    <div class="container">
-        <a href="{{route('dashboard')}}" class="btn btn-secondary">Back</a>
-        <h1>
-            Accountability of:
-            <p class="font-weight-bold">{{$data['user']->name}}</p>
-        </h1>
-
+    <div class="container-fluid">
 
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
         @endif
-
         <div class="card">
             <div class="card-header">
-                <button class="btn btn-success float-right" data-toggle="modal" data-target="#newitem">Add Item</button>
+                <div class="row">
+                    <div class="col-lg-8">
+
+                        <h4><a href="{{route('dashboard')}}" class="btn btn-secondary mr-2"><i class="fas fa-arrow-left"></i> Back</a>ACCOUNTABILITY OF: {{strtoupper($data['user']->name)}}</h4>
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#newitem">Add Item</button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 @if (!$data['items']->isEmpty())

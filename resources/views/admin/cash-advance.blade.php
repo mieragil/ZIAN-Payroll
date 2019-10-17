@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('content')
-    
-    <div class="container">
+@section('content-dashboard')
+
+    <div class="container-fluid">
 
         <div class="row">
-            
+
         <div class="col-md-8">
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-striped table-hover table-bordered shadow">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -28,10 +28,10 @@
                 </tbody>
             </table>
         </div>
-        
+
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-light">
                     New Cash Advance Request
                 </div>
                 <form action="{{route('ded.storeCA', 'accept')}}">
@@ -56,8 +56,8 @@
 
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary float-right">Save Record</button>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Save Record</button>
                     </div>
                 </form>
             </div>

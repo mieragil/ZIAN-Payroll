@@ -51,6 +51,19 @@ class DepartmentController extends Controller
         return back()->with('success', 'Added Position: ' . $request->new_position . ' to '. $request->department_name);
     }
 
+    public function setPosition(Request $request){
+        $id = $request->id;
+        $newPos = $request->new_position;
+        Department::where('id',$id)->update(['position' => $newPos]);
+        return back()->with('success', 'Position Updated to: '. $newPos);
+    }
+
+    public function delPosition(Request $request){
+        $id = $request->id;
+        Department::where('id',$id)->delete();
+        return back()->with('success', 'Position successfully deleted');
+    }
+
     /**
      * Display the specified resource.
      *

@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4">
-                                    <h2 class="text-secondary"><label for="hired">Select date</label></h2>
+                                    <h3><small class="text-muted">SELECT DATE</small></h3>
                                     <div class="input-group">
                                             <input type="date" name="hired" id="hired" class="form-control mb-3" required value="{{old('hired')}}">
                                             <span class="input-group-btn">

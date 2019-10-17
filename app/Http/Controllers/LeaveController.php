@@ -15,7 +15,9 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        
+        $data = User::all()->where('priority', 'LO');
+        $leavers = Leave::all();
+        return view('admin.leave', compact('data', 'leavers'));
     }
 
     /**
@@ -28,6 +30,8 @@ class LeaveController extends Controller
         //
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +40,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -45,12 +49,12 @@ class LeaveController extends Controller
      * @param  \App\Leave  $leave
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $data = array();
-        $data['user'] = User::findOrFail($id);
-        $data['leave'] = Leave::where('emp_id',$id)->get();
-        return view('admin.leave', compact('data'));
+        // $data = array();
+        // $data['user'] = User::findOrFail($id);
+        // $data['leave'] = Leave::where('emp_id',$id)->get();
+        // return view('admin.leave', compact('data'));
     }
 
     /**
@@ -101,7 +105,7 @@ class LeaveController extends Controller
             $from = \Carbon\Carbon::createFromFormat('Y-m-d', $second);
             $diff_in_days = $to->diffInDays($from);
             $user = User::findOrFail($id);
-    
+
 
             Leave::create([
                 'emp_id' => $id,
