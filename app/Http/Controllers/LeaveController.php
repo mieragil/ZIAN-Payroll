@@ -15,7 +15,9 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        
+        $data = User::all()->where('priority', 'LO');
+        $leavers = Leave::all();
+        return view('admin.leave', compact('data', 'leavers'));
     }
 
     /**
@@ -28,6 +30,8 @@ class LeaveController extends Controller
         //
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,7 +40,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -45,12 +49,12 @@ class LeaveController extends Controller
      * @param  \App\Leave  $leave
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $data = array();
-        $data['user'] = User::findOrFail($id);
-        $data['leave'] = Leave::where('emp_id',$id)->get();
-        return view('admin.leave', compact('data'));
+        // $data = array();
+        // $data['user'] = User::findOrFail($id);
+        // $data['leave'] = Leave::where('emp_id',$id)->get();
+        // return view('admin.leave', compact('data'));
     }
 
     /**
@@ -87,7 +91,7 @@ class LeaveController extends Controller
         //
     }
 
-    public function acceptleave($id, Request $request){
+    public function acceptleave(Request $request){
         // return $request;
 
         if($request->firstdate > $request->seconddate){
@@ -96,12 +100,12 @@ class LeaveController extends Controller
         }else{
             $first = $request->firstdate;
             $second = $request->seconddate;
-
+            $id = $request->id;
             $to = \Carbon\Carbon::createFromFormat('Y-m-d', $first);
             $from = \Carbon\Carbon::createFromFormat('Y-m-d', $second);
             $diff_in_days = $to->diffInDays($from);
             $user = User::findOrFail($id);
-    
+
 
             Leave::create([
                 'emp_id' => $id,
@@ -112,7 +116,7 @@ class LeaveController extends Controller
                 'paid' => $request->paid
             ]);
 
-            return redirect()->back()->with('success','Added leave.');
+            return redirect('leave')->with('success','Added leave.');
         }
     }
 }

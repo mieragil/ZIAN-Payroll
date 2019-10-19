@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
-@section('content')
-    
+@section('content-dashboard')
 
 
-        <div class="container">
-            <a class="btn btn-secondary" href="{{route('dashboard')}}">Back</a>
-            
+
+        <div class="container-fluid">
+
             @if ($errors->any())
-                <div class="alert alert-danger col-md-10">
+                <div class="alert alert-danger shadow-sm">
                     @foreach ($errors->all() as $error)
                         <li>{{$error}}</li>
-                    @endforeach    
+                    @endforeach
                 </div>
             @endif
 
@@ -21,57 +20,78 @@
                 </div>
             @endif
             <div class="row">
-                
-
-            <div class="card col-md-7">
-                <h5 class="card-header">Application for Leave of {{$data['user']->name}}</h5>
-                <div class="card-body">
-                    <form action="{{route('leave.accept-leave',$data['user']->id)}}" method="POST">
-                        @csrf
-                            <label for="reason">Reason for leave</label>
-                            <textarea type="text" class="form-control" name="reason" id="reason" required>
-                                {{old('reason')}}
-                            </textarea>
-                            <div class="row mt-3">
-                                <div class="col-md-5">
-                                    <label for="firstdate">From:</label>
-                                    <input type="date" name="firstdate" id="firstdate" class="form-control mb-3" required value="{{old('firstdate')}}">
-                                </div>
-    
-                                <div class="col-md-5 offset-2">
-                                        <label for="seconddate">To:</label>
-                                        <input type="date" name="seconddate" id="seconddate" class="form-control mb-3" required value="{{old('seconddate')}}">
-                                    </div>
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <h5 class="card-header bg-dark text-white">Leave Records:</h5>
+                            <div class="card-body">
+                                {{-- <div class="alert alert-primary">No Leave Record</div> --}}
+                                <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                            {{-- <th scope="col">#</th> --}}
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Reason</th>
+                                            <th scope="col">Date</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($leavers as $row)
+                                            <tr>
+                                            {{-- <th scope="row">1</th> --}}
+                                            <td>{{$row->emp_name}}</td>
+                                            <td>{{$row->reason}}</td>
+                                            <td>{{$row->dates_of_leave}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                      </table>
                             </div>
-                            <div class="form-group">
-                            <label for="paid">Is it a paid leave?</label>
-                                <select multiple class="form-control col-md-5" name="paid" id="paid" style="height:60px" required>
-                                    <option value="yes">Yes, it's a paid leave.</option>
-                                    <option value="no">No, it's not.</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary float-right">Accept Leave</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="card col-md-4 ml-5">
-                <h5 class="card-header orange text-white">Leave Record:</h5>
-
-                @if (!$data['leave']->isEmpty())
-                    @foreach ($data['leave'] as $liv)
-                        <div class="card-body">
-                            <h5 class="card-title font-weight-bolder">{{$liv->reason}}</h5>
-                            <p>{{$liv->dates_of_leave}}</p>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <div class="col-lg-4">
+                    <div class="card shadow">
+                        <div class="card-header text-light orange">
+                            New Leave Request
                         </div>
-                    <hr>
-                    @endforeach
-                @else
-                    <div class="alert alert-primary">No Leave Record</div>
-                @endif
+                        <div class="card-body">
+                        <form action="{{route('leave.accept-leave')}}" method="POST">
+                                @csrf
+                                    <label for="employees">Choose Employee:</label>
+                                    <select class="form-control" name="id" id="employees" required>
+                                        <option value="">--SELECT EMPLOYEE--</option>
+                                        @foreach ($data as $item)
+                                        <option value="{{$item->id}}" name="">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <br>
+                                    <label for="reason">Reason for leave</label>
+                                    <textarea type="text" class="form-control" name="reason" id="reason" required>
+                                    </textarea>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label for="firstdate">From:</label>
+                                            <input type="date" name="firstdate" id="firstdate" class="form-control mb-3" required value="{{old('firstdate')}}">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="seconddate">To:</label>
+                                            <input type="date" name="seconddate" id="seconddate" class="form-control mb-3" required value="{{old('seconddate')}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="paid">Is it a paid leave?</label>
+                                        <select multiple class="form-control" name="paid" id="paid" style="height:60px" required>
+                                            <option value="yes">Yes, it's a paid leave.</option>
+                                            <option value="no">No, it's not.</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary float-right">Accept Leave</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
     </div>
 
 

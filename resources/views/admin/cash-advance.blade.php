@@ -1,37 +1,25 @@
 @extends('layouts.app')
 
-@section('content')
-    
-    <div class="container">
+@section('content-dashboard')
+
+    <div class="container-fluid">
 
         <div class="row">
-            
         <div class="col-md-8">
-            @if ($errors->any())
-                <div class="alert alert-success" role="alert">
-                    @foreach ($errors->all() as $err)
-                        {{$err}}
-                    @endforeach
-                </div>
-            @endif
-
-            @if (session('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Employee Name</th>
-                        <th scope="col">Balance</th>
-                        <th scope="col"># of Payroll Left to Pay</th>
-                        <th scope="col">Deduction / Payroll</th>
-                        <th scope="col">Date Issued</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data['tables'] as $x)
+            <div class="card shadow">
+                <h5 class="card-header bg-dark text-white">Cash Advance Records:</h5>
+                <div class="card-body">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr class="text-secondary">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Requested Cash</th>
+                        <th scope="col">Months to Pay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data['tables'] as $x)
                         <tr>
                             <td>{{$x->name}}</td>
                             <td>{{$x->request}}</td>
@@ -39,14 +27,17 @@
                             <td>{{$x->ded_per_pay}}</td>
                             <td>{{$x->date_issued}}</td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
-        
+
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-light">
                     New Cash Advance Request
                 </div>
                 <form action="{{route('ded.storeCA', 'accept')}}">
@@ -71,8 +62,8 @@
 
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary float-right">Save Record</button>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary">Save Record</button>
                     </div>
                 </form>
             </div>

@@ -92,7 +92,7 @@ class PivotController extends Controller
         $user = User::findOrFail($id);
 
         if($user->rate > $request->new_rate){
-            return back()->withErrors('Please enter a higher rate for ptomotion');
+            return back()->withErrors('Please enter a higher rate for promotion');
         }
 
 

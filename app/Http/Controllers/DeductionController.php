@@ -17,9 +17,15 @@ class DeductionController extends Controller
      */
     public function index()
     {
-        $user = DB::table('users')->select(['users.name', 'deductions.SSS', 'deductions.PHIC', 'deductions.PAG_IBIG'])
-                ->join('deductions','deductions.emp_id', '=', 'users.id')->get();
-        return view('admin.deduction', compact('user'));
+        $data = array();
+        $data['users'] = User::where('priority','LO')->get();
+        $data['deduct'] = Deduction::all();
+        $data['tables'] = DB::table('users')->select([
+                        'users.name', 'users.id', 'deductions.phic', 'deductions.sss', 'deductions.pag-ibig as pagibig' ,
+                        ])->join('deductions','deductions.emp_id','=','users.id')
+                        ->get();
+        return view('admin.deductions', compact('data'));
+        // return $data;
     }
 
     /**
@@ -43,6 +49,16 @@ class DeductionController extends Controller
         //
     }
 
+    public function editDeduction(Request $request)
+    {
+        $id = $request->id;
+        $phic = $request->phic;
+        $sss = $request->sss;
+        $pagibig = $request->pagibig;
+        Deduction::where('emp_id',$id)->update(['phic' => $phic, 'sss' => $sss, 'pag-ibig' => $pagibig]);
+        return back()->with('success', 'Deductions Successfully Updated');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -52,7 +68,7 @@ class DeductionController extends Controller
     public function show($id)
     {
 
-        
+
     }
 
     /**
@@ -91,7 +107,7 @@ class DeductionController extends Controller
 
     public function showCA(){
         $data = array();
-        $data['users'] = User::where('priority','LO')->get(); 
+        $data['users'] = User::where('priority','LO')->get();
         $data['CA'] = CashAdvance::where('request','!=', 0)->get();
         $data['tables'] = DB::table('users')->select([
                         'users.name', 'cashadvances.request', 'cashadvances.ded_per_pay', 'cashadvances.months_to_pay','cashadvances.date_issued'
@@ -132,6 +148,6 @@ class DeductionController extends Controller
             ]);
             return redirect()->back()->with('success', 'Updated' . $request->get('request') . ' Cash Advance to: ' . $user->name);
 
-        } 
+        }
     }
 }
