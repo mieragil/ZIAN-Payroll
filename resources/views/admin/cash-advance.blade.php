@@ -21,10 +21,11 @@
                     <tbody>
                         @foreach ($data['tables'] as $x)
                         <tr>
-                            <th scope="row">1</th>
                             <td>{{$x->name}}</td>
                             <td>{{$x->request}}</td>
                             <td>{{$x->months_to_pay}}</td>
+                            <td>{{$x->ded_per_pay}}</td>
+                            <td>{{$x->date_issued}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -49,15 +50,15 @@
                                 @endforeach
                             </select>
                             <label for="reason" class="mt-3">Reason for Cash Advance</label>
-                            <textarea type="text" name="reason" id="reason" class="form-control" placeholder="Reason" style="height:75px">{{ old('reason') }}</textarea>
+                            <textarea type="text" name="reason" id="reason" class="form-control" placeholder="Reason" style="height:75px" required>{{ old('reason') }}</textarea>
                             <label for="amount" class="mt-3">Amount Requested</label>
-                            <input type="number" min="1" max="99999" class="form-control" name="request" placeholder="Amount Requested">
+                            <input type="number" min="1" max="99999" class="form-control" name="request" placeholder="Amount Requested" required>
                             <label for="amount" class="mt-3">Deduction per Payroll</label>
-                            <input type="number" min="1" max="99999" class="form-control" name="ded_per_pay" placeholder="Deduction per Payroll">
+                            <input type="number" min="1" max="99999" class="form-control" name="ded_per_pay" placeholder="Deduction per Payroll" required>
                             <label for="amount" class="mt-3">Months to Pay</label>
-                            <input type="number" min="1" max="99999" class="form-control" name="months_to_pay" placeholder="Months to Pay">
+                            <input type="number" min="1" max="99999" class="form-control" name="months_to_pay" placeholder="Months to Pay" required>
                             <label for="date_issued" class="mt-3">Date Issued for Request:</label>
-                            <input type="date" name="date_issued" id="date_issued" class="form-control">
+                            <input type="date" name="date_issued" id="date_issued" class="form-control" req>
 
                         </div>
                     </div>

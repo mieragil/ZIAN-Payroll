@@ -67,8 +67,8 @@ class DeductionController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('admin.deductions', compact('user'));
+
+
     }
 
     /**
@@ -121,20 +121,33 @@ class DeductionController extends Controller
 
     public function storeCA($id, Request $request){
 
-        // dd($request);
-        // $user = User::findOrFail($request->employees);
+        // if($request->get('request') > 100000){
+        //     return redirect()->back()->withErrors($request->get('request') . ' as requested amount is invalid.');
+        // }elseif($request->get(''))
 
-        CashAdvance::create([
-            'emp_id' => $request->get('employees'),
-            'reason' => $request->get('reason'),
-            'request' => $request->get('request'),
-            'ded_per_pay' => $request->get('ded_per_pay'),
-            'date_issued' => $request->get('date_issued'),
-            'months_to_pay' => $request->get('months_to_pay')
-        ]);
+        $user = User::findOrFail($request->employees);
+        $check = CashAdvance::where('emp_id', $request->employees)->where('request','!=', '0')->get();
+        if($check->isEmpty()){
+            CashAdvance::create([
+                'emp_id' => $request->get('employees'),
+                'reason' => $request->get('reason'),
+                'request' => $request->get('request'),
+                'ded_per_pay' => $request->get('ded_per_pay'),
+                'date_issued' => $request->get('date_issued'),
+                'months_to_pay' => $request->get('months_to_pay')
+            ]);
+            return redirect()->back()->with('success', 'Registered ' . $request->get('request') . ' Cash Advance to: ' . $user->name);
+        }else{
+            $record = CashAdvance::where('emp_id', $request->employees)->first();
+            $new_amount = (int)$record->request + (int)$request->get('request');
+            CashAdvance::where('emp_id', $request->employees)->update([
+                'request' => $new_amount,
+                'date_issued' => $request->get('date_issued'),
+                'ded_per_pay' => $request->get('ded_per_pay'),
+                'months_to_pay' => $request->get('months_to_pay')
+            ]);
+            return redirect()->back()->with('success', 'Updated' . $request->get('request') . ' Cash Advance to: ' . $user->name);
 
-        // return back()->with('success', 'Registered ' . $request->request . ' Cash Advance to: ' . $request->name);
-        // return redirect()->route('dashboard')->with('success', 'Registered ' . $request->request . ' Cash Advance to: ' . $request->name);
-        return redirect()->route('ded.showCA');
+        }
     }
 }

@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Deduction;
 use Carbon\Carbon;
 use App\User;
-use App\Deduction;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Input\Input;
@@ -40,7 +41,6 @@ Route::post('/depid', 'HomeController@fetchdepartment');
 
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 Route::get('/attendance', 'AttendanceController@index')->name('attendance');
-
 
 Route::get('/settings', 'HomeController@settings')->name('settings');
 

@@ -174,3 +174,36 @@ $(".btn-edit-duduction").click(function(){
     $(".ded-name").text(dname);
     $(".ded-id").val(did);
 });
+$(document).ready(function() {
+    var div = document.getElementById("edit");
+    div.style.display = "none";
+
+});
+
+$('.table tbody').on('click','.btn',function(){
+    var row = $(this).closest('tr');
+    var name = row.find('td:eq(0)').text();
+    var sss = row.find('td:eq(1)').text();
+    var phic = row.find('td:eq(2)').text();
+    var pi = row.find('td:eq(3)').text();
+    var div = document.getElementById("edit");
+    var editbtn = $("#editbtn").text();
+
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    }
+
+    $("#sss").val(sss);
+    $("#phic").val(phic);
+    $("#pi").val(pi);
+    document.getElementById('name').textContent = "DISPLAYING DEDUCTIONS OF:  "+name;
+});
+
+
+$("#close").click(function(e){
+    var div = document.getElementById("edit");
+    div.style.display = "none";
+});
+
+
+

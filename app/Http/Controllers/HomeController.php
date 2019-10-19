@@ -94,6 +94,4 @@ class HomeController extends Controller
         return view('admin.settings', compact('department', 'position'));
     }
 
-
-
 }

@@ -383,8 +383,13 @@ class ComposerStaticInitb4515c8f94c79a4b2b873d3fa9cbc383
         'App\\Attendance' => __DIR__ . '/../..' . '/app/Attendance.php',
         'App\\CashAdvance' => __DIR__ . '/../..' . '/app/CashAdvance.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+<<<<<<< HEAD
         'App\\Department' => __DIR__ . '/../..' . '/app/Department.php',
         'App\\Deduction' => __DIR__ . '/../..' . '/app/Deduction.php',
+=======
+        'App\\Deduction' => __DIR__ . '/../..' . '/app/Deduction.php',
+        'App\\Department' => __DIR__ . '/../..' . '/app/Department.php',
+>>>>>>> upstream/master
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AttendanceController' => __DIR__ . '/../..' . '/app/Http/Controllers/AttendanceController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -394,6 +399,7 @@ class ComposerStaticInitb4515c8f94c79a4b2b873d3fa9cbc383
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DeductionController' => __DIR__ . '/../..' . '/app/Http/Controllers/DeductionController.php',
+        'App\\Http\\Controllers\\DepartmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/DepartmentController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/ItemController.php',
         'App\\Http\\Controllers\\LeaveController' => __DIR__ . '/../..' . '/app/Http/Controllers/LeaveController.php',
