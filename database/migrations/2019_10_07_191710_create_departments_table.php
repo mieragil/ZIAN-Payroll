@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeductionsTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateDeductionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deductions', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('department_name');
+            $table->string('position');
             $table->timestamps();
+
         });
     }
 
@@ -26,6 +29,6 @@ class CreateDeductionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deductions');
+        Schema::dropIfExists('departments');
     }
 }

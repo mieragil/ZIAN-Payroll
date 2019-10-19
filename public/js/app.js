@@ -49415,6 +49415,62 @@ $("#menu-toggle").click(function (e) {
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
+$(".btn-new-position").click(function (e) {
+  $(this).closest(".card").find('.new-position-input').show();
+  $(this).closest('.card').find(".nex-pos-text").focus();
+});
+$(".btn-cancel").click(function (e) {
+  $(this).closest('.card').find(".new-position-input").hide();
+});
+
+function remove_disabled() {
+  $("#profile-tab").removeClass('disabled');
+} // new employee modal next button
+
+
+$("#btnNext").click(function (e) {
+  var reqlength = $('.new-employee-input').length;
+  console.log(reqlength);
+  var value = $('.new-employee-input').filter(function () {
+    return this.value != '';
+  });
+
+  if (value.length >= 0 && value.length !== reqlength) {
+    $("#error-empty").show();
+  } else {
+    remove_disabled();
+    $("#profile-tab").click();
+    $("#btnSave").show();
+    $("#btnNext").hide();
+    $("#error-empty").hide();
+  }
+});
+$(document).ready(function () {
+  var div = document.getElementById("edit");
+  div.style.display = "none";
+});
+$('.table tbody').on('click', '.btn', function () {
+  var row = $(this).closest('tr');
+  var name = row.find('td:eq(0)').text();
+  var sss = row.find('td:eq(1)').text();
+  var phic = row.find('td:eq(2)').text();
+  var pi = row.find('td:eq(3)').text();
+  var div = document.getElementById("edit");
+  var editbtn = $("#editbtn").text();
+
+  if (div.style.display === "none") {
+    div.style.display = "block";
+  }
+
+  $("#sss").val(sss);
+  $("#phic").val(phic);
+  $("#pi").val(pi);
+  document.getElementById('name').textContent = "DISPLAYING DEDUCTIONS OF:  " + name;
+});
+$("#close").click(function (e) {
+  var div = document.getElementById("edit");
+  div.style.display = "none";
+});
 
 /***/ }),
 

@@ -2,7 +2,7 @@
 
 @section('content-dashboard')
 
-    <div class="container">
+    <div class="container-fluid">
 
         @if (session('success'))
             <div class="alert alert-success" role="alert">
@@ -19,12 +19,13 @@
             </div>
         @endif
 
-        <a class="btn btn-secondary" href="{{route('dashboard')}}">Back</a>
+        <a class="btn btn-secondary" href="{{route('dashboard')}}"><i class="fas fa-arrow-left"></i> Back</a>
+        <br><br>
         <div class="card">
             @csrf
             <div class="card-header">
                 <div class="row justify-content-between">
-                    
+
                     <p class="h1 ml-3">
                         DETAILS OF {{strtoupper($user->name)}}
                     </p>
@@ -37,20 +38,24 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <h3 class="ml-3 ">Employment status: <u>{{$user->emp_status}}</u></h3>
-                    
-                    <h3 class="ml-5 ">Salary type: <u>{{$user->salary_type}}</u></h3>
-                    
-                    <button class="btn btn-danger float-right" style="margin-left:200px" 
+                    <div class="col-lg-4">
+                        <h3 class="">Employment status: <u>{{$user->emp_status}}</u></h3>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h3 class="">Salary type: <u>{{$user->salary_type}}</u></h3>
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <button class="btn btn-danger"
                         data-myid="{{$user->id}}" data-myname="{{$user->name}}"
                         data-target="#terminate" data-toggle="modal">Terminate</button>
-                    
-                    @if ($user->emp_status != 'REGULAR')
-                        <button class="btn btn-success ml-5" 
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
-                        data-toggle="modal" data-target="#promote" >Promote</button>
-                    
-                    @endif
+
+                        @if ($user->emp_status != 'REGULAR')
+                            <button class="btn btn-success"
+                            data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
+                            data-toggle="modal" data-target="#promote" >Promote</button>
+                        @endif
+                    </div>
+
                 </div>
                 <hr>
                 <form action="{{route('employee.editEmp', $user->id)}}" method="post">
@@ -84,7 +89,7 @@
             </div>
         </div>
     </div>
-    
+
     <form action="{{route('attendance.store',$user->id)}}" method="post">
     <div class="card">
             @csrf
@@ -123,7 +128,7 @@
                 <input type="text" name="myid" id="myid" hidden>
                 <a href="" class="badge badge-light" name="myname" id="myname"></a>
                 <div class="row">
-                    
+
                     <div class="col-md-6">
                         <label for="new_rate">Enter New Rate / Day:</label>
                         <input type="number" name="new_rate" min="1" max="999999" class="form-control" required value="{{old('new_rate')}}">
@@ -131,11 +136,11 @@
                     <div class="col-md-6">
                         @if ($user->emp_status == 'TRAINEE')
                             <label for="new_rate">Enter Weeks as Probationary:</label>
-                            <input type="number" name="new_training" min="1" max="999999" class="form-control" required value="{{old('new_training')}}">                         
+                            <input type="number" name="new_training" min="1" max="999999" class="form-control" required value="{{old('new_training')}}">
                         @endif
                     </div>
                 </div>
-            </div>  
+            </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Continue</button>
