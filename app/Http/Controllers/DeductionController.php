@@ -17,7 +17,15 @@ class DeductionController extends Controller
      */
     public function index()
     {
-        return view('admin.deductions');
+        $data = array();
+        $data['users'] = User::where('priority','LO')->get();
+        $data['deduct'] = Deduction::all();
+        $data['tables'] = DB::table('users')->select([
+                        'users.name', 'users.id', 'deductions.phic', 'deductions.sss', 'deductions.pag-ibig as pagibig' ,
+                        ])->join('deductions','deductions.emp_id','=','users.id')
+                        ->get();
+        return view('admin.deductions', compact('data'));
+        // return $data;
     }
 
     /**
@@ -39,6 +47,16 @@ class DeductionController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function editDeduction(Request $request)
+    {
+        $id = $request->id;
+        $phic = $request->phic;
+        $sss = $request->sss;
+        $pagibig = $request->pagibig;
+        Deduction::where('emp_id',$id)->update(['phic' => $phic, 'sss' => $sss, 'pag-ibig' => $pagibig]);
+        return back()->with('success', 'Deductions Successfully Updated');
     }
 
     /**

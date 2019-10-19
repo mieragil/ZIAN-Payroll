@@ -11,11 +11,11 @@
                 <div class="card-body">
                     <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-secondary">
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Reason</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Requested Cash</th>
+                        <th scope="col">Months to Pay</th>
                         </tr>
                     </thead>
                     <tbody>

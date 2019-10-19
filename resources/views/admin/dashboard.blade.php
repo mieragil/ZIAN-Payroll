@@ -3,12 +3,8 @@
 @section('content-dashboard')
 
 <div class="container-fluid">
-
     <div class="row">
-
         <div class="col-lg-12">
-
-            {{-- Error message --}}
             @if ($errors->any())
                 <p class="badge badge-danger"><h3>Error in adding new employee:</h3></p>
                 @foreach ($errors->all() as $error)
@@ -17,16 +13,16 @@
             @endif
 
             <div class="card shadow">
-                <div class="card-header">
+                <h4 class="card-header text-light bg-secondary">
                     <div class="row">
                     <div class="col-lg-8">
-                        <h2 class="text-secondary">EMPLOYEES</h2>
+                        EMPLOYEES
                     </div>
                     <div class="col-lg-4 text-right">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addnew"><i class="fa fa-plus"></i> New Employee</button>
+                        <button class="btn btn-primary btn-sm shadow" data-toggle="modal" data-target="#addnew"><i class="fa fa-plus"></i> New Employee</button>
                     </div>
                     </div>
-                </div>
+                </h4>
                 <div class="card-body">
 
                     {{-- Success message --}}
@@ -37,8 +33,8 @@
                     @endif
 
                     {{-- Employee table --}}
-                    <table class="table table-bordered table-hover table-striped table-dark table-fluid">
-                        <thead class="thead-light">
+                    <table class="table table-hover">
+                        <thead class="text-secondary">
                             <tr>
                                 <th scope="col">Employee Name</th>
                                 <th scope="col">Department</th>
@@ -57,9 +53,9 @@
                                 <td class="">
 
                                     <div class="text-center">
-                                        <a href="{{route('employee.show', $user->id)}}" class="btn btn-success ">
+                                        <a href="{{route('employee.show', $user->id)}}" class="btn btn-success btn-sm">
                                                 <i class="far fa-eye"></i>&nbsp;View Details</a>
-                                        <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary ">
+                                        <a href="{{route('employee.accountability', $user->id)}}" class="btn btn-secondary btn-sm">
                                                 <i class="fas fa-archive"></i>&nbsp;Accountability</a>
                                     </div>
                                 </td>
@@ -74,13 +70,14 @@
             {{$users->links()}}
         </div>
     </div>
+
 </div>
 
 <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle"><strong>Add New Employee Details</strong></h5>
+            <div class="modal-header  text-light bg-primary">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Employee Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -100,7 +97,7 @@
                              {{-- modalbody --}}
                 <div class="modal-body">
                     <div class="alert alert-warning" id="error-empty" role="alert" style="display:none;">
-                        Please fill out all the fields. lol
+                        Please fill out all the fields.
                       </div>
                         <div class="row">
 
@@ -174,30 +171,36 @@
                     {{-- endmodalbody --}}
                         </div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-lg-12 p-4">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">PHIC</label>
-                                                <input type="" class="form-control" id="inputEmail4" placeholder="amount">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                            <div class="form-row">
+                                                <div class="col-3 text-right">
+                                                    <label for="inputPhic">PHIC</label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <input type="number" class="form-control" name="phic" value="0" id="inputPhic" placeholder="amount" required>
+                                                </div>
+                                            </div><br>
+                                            <div class="form-row">
+                                                <div class="col-3 text-right">
+                                                    <label for="inputSSS">SSS</label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <input type="number" class="form-control" value="0"  name="sss" id="inputSSS" placeholder="amount" required>
+                                                </div>
+                                            </div><br>
+                                            <div class="form-row">
+                                                <div class="col-3 text-right">
+                                                    <label for="inputPagIbig">PAG-IBIG</label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <input type="number" class="form-control" value="0"  name="pagibig" id="inputPagIbig" placeholder="amount" required>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">SSS</label>
-                                                <input type="" class="form-control" id="inputPassword4" placeholder="amount">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">PAGIVIF</label>
-                                                <input type="" class="form-control" id="inputEmail4" placeholder="amount">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">MORE</label>
-                                                <input type="" class="form-control" id="inputPassword4" placeholder="amount">
-                                            </div>
-                                        </div>
+                                    </div>
                                 </div>
-                             </div>
+                            </div>
                         </div>
 
                       </div>

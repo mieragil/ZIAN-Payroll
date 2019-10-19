@@ -11,7 +11,7 @@
                     <h1 class="text-secondary font-weight-bold">{{ date("h:i A") }}</h1>
                     <p class="text-secondary"> {{ date("l") }}</p>
                     <p class="text-secondary"> {{ date("M. d, Y") }}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+
                 </div>
             </div>
         </div>
@@ -58,25 +58,27 @@
                                         <thead>
                                           <tr>
                                             <th scope="col" class="text-secondary">#</th>
-                                            <th scope="col" class="text-secondary">Name</th>
-                                            <th scope="col" class="text-info">Time In</th>
-                                            <th scope="col" class="text-danger">Time Out</th>
+                                            <th scope="col" class="text-secondary">Employee</th>
+                                            <th scope="col" class="text-info"><i class="fas fa-clock"></i> Time In</th>
+                                            <th scope="col" class="text-danger"><i class="far fa-clock"></i> Time Out</th>
                                           </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($attendance as $item)
 
                                             <tr>
-                                            <th scope="row"></th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                              </tr>
+                                            <th scope="row">{{$item->id}}</th>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->time_in}}</td>
+                                            <td>{{$item->time_out}}</td>
+                                            </tr>
+                                            @endforeach
 
 
                                         </tbody>
                                       </table>
                                       <hr>
-                                      <div class="text-right"><small><a href=""class="">Show All</a></small></div>
+                                    <div class="text-right"><small><a href="{{route('attendance')}}"class="">Show All</a></small></div>
                             </div>
                         </div>
                 </div>

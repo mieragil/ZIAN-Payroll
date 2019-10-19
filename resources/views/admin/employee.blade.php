@@ -20,79 +20,98 @@
         @endif
 
 
+        <div class="row">
 
-        <div class="card shadow">
-            @csrf
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <h4><a class="btn btn-secondary mr-2" href="{{route('dashboard')}}"><i class="fas fa-arrow-left"></i> Back</a> DETAILS OF {{strtoupper($user->name)}}</h4>
-                    </div>
-                    <div class="col-lg-4 text-right">
-                        <p class="float-right"><strong>
-                            {{strtoupper($user->department)}}
-                            </strong>|
-                            {{strtoupper($user->position)}}
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <h3 class="">Employment status: <u>{{$user->emp_status}}</u></h3>
-                    </div>
-                    <div class="col-lg-4 text-center">
-                        <h3 class="">Salary type: <u>{{$user->salary_type}}</u></h3>
-                    </div>
-                    <div class="col-lg-4 text-right">
-                        <button class="btn btn-danger"
-                        data-myid="{{$user->id}}" data-myname="{{$user->name}}"
-                        data-target="#terminate" data-toggle="modal">Terminate</button>
-
-                        @if ($user->emp_status != 'REGULAR')
-                            <button class="btn btn-success"
-                            data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
-                            data-toggle="modal" data-target="#promote" >Promote</button>
-                        @endif
-                    </div>
-
-                </div>
-                <hr>
-                <form action="{{route('employee.editEmp', $user->id)}}" method="post">
-                    @method('PATCH')
+            <div class="col-lg-9">
+                <div class="card shadow">
                     @csrf
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="name">Employee Name</label>
-                            <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
+                    <h4 class="card-header text-light bg-dark">
+                        <a class="btn btn-light mr-2" href="{{route('dashboard')}}"><i class="fas fa-arrow-left"></i> Back</a> EMPLOYEE DETAILS
+                    </h4>
+                    <div class="card-body">
+                            <div class="jumbotron py-5 jumbotron-fluid">
+                                <div class="container">
+                                    <h1 class="display-4">{{($user->name)}}</h1>
+                                    <h5 class="lead">{{strtoupper($user->department)}} | {{strtoupper($user->position)}}</h5>
+                                </div>
+                            </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <h3 class="">Employment status: <u>{{$user->emp_status}}</u></h3>
+                            </div>
+                            <div class="col-lg-4 text-center">
+                                <h3 class="">Salary type: <u>{{$user->salary_type}}</u></h3>
+                            </div>
+
 
                         </div>
-                        <div class="col-md-6">
-                            {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
-                            <label for="email">Username</label>
-                            <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
-                        </div>
+                        <hr>
+                        <form action="{{route('employee.editEmp', $user->id)}}" method="post">
+                            @method('PATCH')
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="name">Employee Name</label>
+                                    <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
+
+                                </div>
+                                <div class="col-md-6">
+                                    {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
+                                    <label for="email">Username</label>
+                                    <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="rate"><strong>DAILY RATE:</strong></label>
+                                    <input type="number"  id="rate" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inlineRadio1">WEEKS OF TRAINING:</label>
+                                    <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
+                                </div>
+                            </div>
+                            <div class="text-right py-3">
+                                <button type="submit" class="btn btn-primary">Save Changes</a>
+                            </div>
+                        </form>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="rate"><strong>DAILY RATE:</strong></label>
-                            <input type="number"  id="rate" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inlineRadio1">WEEKS OF TRAINING:</label>
-                            <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
-                        </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card shadow">
+                    <h4 class="card-header bg-secondary text-light">Actions</h4>
+                    <div class="card-body">
+                            @if ($user->emp_status != 'REGULAR')
+                                    <button class="btn btn-success btn-lg btn-block"
+                                    data-myid="{{$user->id}}" data-myname="{{$user->name}}" data-mystatus="{{$user->emp_status}}"
+                                    data-toggle="modal" data-target="#promote" >Promote</button>
+                                @endif
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <br>
+                            <button class="btn btn-outline-danger btn-lg btn-block"
+                                data-myid="{{$user->id}}" data-myname="{{$user->name}}"
+                                data-target="#terminate" data-toggle="modal">Terminate</button>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
                     </div>
-                    <div class="text-right py-3">
-                        <button type="submit" class="btn btn-primary">Save Changes</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
+
+
     </div>
+
+
+
+
+
+
+
 
     <form action="{{route('attendance.store',$user->id)}}" method="post">
     <div class="card">
@@ -109,7 +128,7 @@
         <form action="{{route('employee.promote',$user->id)}}" method="POST">
         <div class="modal-dialog" role="document">
           <div class="modal-content modal-lg">
-            <div class="modal-header">
+            <div class="modal-header text-light bg-success">
               <h5 class="modal-title" id="exampleModalLabel">PROMOTION</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -147,9 +166,8 @@
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Continue</button>
+                    <button type="submit" class="btn btn-success">Continue</button>
                 </div>
-
             </div>
         </div>
         </form>
@@ -159,7 +177,7 @@
             <form action="{{route('employee.terminate',$user->id)}}" method="POST">
             <div class="modal-dialog" role="document">
               <div class="modal-content modal-lg">
-                <div class="modal-header">
+                <div class="modal-header text-light bg-danger">
                   <h5 class="modal-title" id="exampleModalLabel">TERMINATE</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -171,7 +189,9 @@
                     <h3>
                         <p class="ml-3">Are you sure you want to TERMINATE:  </p>
                             <strong><label id="mynameterminate" class="text-center"></label></strong>
-                            <p>This cannot be undone</p>
+                            <br>
+                            This cannot be undone
+
                     </h3>
                     <input type="text" name="myidterminate" id="myid" hidden>
                     <a href="" class="badge badge-light" name="myname" id="myname"></a>
@@ -179,7 +199,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Continue</button>
+                        <button type="submit" class="btn btn-outline-danger">Continue</button>
                     </div>
 
                 </div>

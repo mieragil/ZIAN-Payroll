@@ -158,7 +158,19 @@ $("#department").change(function(){
            $("#position").append(data);
         }
     });
-
-
 });
 
+
+$(".btn-edit-duduction").click(function(){
+    var phic = $(this).closest(".trdeduction").find(".td-deduct-phic").text();
+    var sss = $(this).closest(".trdeduction").find(".td-deduct-sss").text();
+    var pagibig = $(this).closest(".trdeduction").find(".td-deduct-pagibig").text();
+    var dname = $(this).closest(".trdeduction").find(".td-deduct-name").text();
+    var did = $(this).closest(".trdeduction").find(".deduct-id").val();
+
+    $(".edit-phic").val(phic);
+    $(".edit-pagibig").val(pagibig);
+    $(".edit-sss").val(sss);
+    $(".ded-name").text(dname);
+    $(".ded-id").val(did);
+});

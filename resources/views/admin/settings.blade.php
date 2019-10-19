@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content-dashboard')
-<div class="container-fluid">
+<div class="container">
         <div class="col-lg-12">
             <div class="card shadow">
+                <h3 class="card-header text-light bg-secondary">
+                        Departments <i class="fas fa-cog mr-3"></i>
+                        <button class="btn btn-primary shadow" data-target="#new-department-modal" data-toggle="modal">  New Department <i class="far fa-building"></i></button>
+                </h3>
                 <div class="card-body">
-                        <h2 class="text-secondary">Departments <i class="fas fa-cog"></i></h2>
-                        <button class="btn btn-outline-primary" data-target="#new-department-modal" data-toggle="modal">  New Department <i class="far fa-building"></i></button>
-                        <br>
                         <br>
                         <div class="row">
                             <div class="col-lg-12">
@@ -21,8 +22,8 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="row">
-                                        <div class="col-9"><h3>{{$dept = $row->department_name}}</h3></div>
-                                            <div class="col-3 text-right"><button class="btn btn-primary btn-new-position" id=""><i class="fas fa-plus"></i> Add New Position</button></div>
+                                        <div class="col-9"><h4>{{$dept = $row->department_name}}</h4></div>
+                                            <div class="col-3 text-right"><button class="btn btn-primary btn-sm btn-new-position" id=""><i class="fas fa-plus"></i> Add New Position</button></div>
                                         </div>
                                     </div>
 
@@ -39,8 +40,8 @@
                                                         <p class="position-name">{{$item->position}}</p>
                                                     </td>
                                                     <td class="text-right">
-                                                        <button class="btn btn-outline-primary btn-edit-position" id="btn-edit-position" data-target="#edit-position-modal" data-toggle="modal"><i class="fas fa-edit"></i></button>
-                                                        <button class="btn btn-outline-danger btn-delete-position" data-target="#delete-position-modal" data-toggle="modal"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-outline-primary btn-sm btn-edit-position" id="btn-edit-position" data-target="#edit-position-modal" data-toggle="modal"><i class="fas fa-edit"></i></button>
+                                                        <button class="btn btn-outline-danger btn-sm btn-delete-position" data-target="#delete-position-modal" data-toggle="modal"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                     </tr>
                                                 @endif

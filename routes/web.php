@@ -12,6 +12,7 @@
 */
 use Carbon\Carbon;
 use App\User;
+use App\Deduction;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Input\Input;
@@ -38,7 +39,7 @@ Route::get('/deductions', 'DeductionController@index')->name('deductions');
 Route::post('/depid', 'HomeController@fetchdepartment');
 
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
-Route::get('/attendance', 'HomeController@attendance')->name('attendance');
+Route::get('/attendance', 'AttendanceController@index')->name('attendance');
 
 
 Route::get('/settings', 'HomeController@settings')->name('settings');
@@ -47,6 +48,8 @@ Route::get('/leave', 'LeaveController@index')->name('leave');
 
 Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
 Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
+
+Route::POST('/editDeduction', 'DeductionController@editDeduction')->name('editDeduction');
 
 
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
@@ -83,6 +86,15 @@ Route::post('users/create-new', function (Request $request) {
         'position' => $request->position,
         'priority' => 'LO',
         'active' => '1',
+        ]);
+
+
+
+        $deduct = Deduction::create([
+            'emp_id' => $user->id,
+            'phic' => $request->phic,
+            'sss' => $request->sss,
+            'pag-ibig' => $request->pagibig,
         ]);
 
     return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);

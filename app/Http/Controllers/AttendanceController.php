@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use DateTime;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
@@ -17,7 +18,11 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        $attendance = DB::table('users')->select([
+            'users.name', 'users.id', 'attendances.time_in', 'attendances.time_out', 'attend_date',
+            ])->join('attendances','attendances.emp_id','=','users.id')->get();
+
+        return view('admin.attendance', compact('attendance') );
     }
 
     /**
@@ -40,7 +45,7 @@ class AttendanceController extends Controller
     {
         //hinde te man proceed
         $date = Carbon::now('GMT+8')->format('Y-m-d');
-        $time = Carbon::now('GMT+8')->format('H:i');    
+        $time = Carbon::now('GMT+8')->format('H:i');
 
         $checker = Attendance::where('attend_date', $date)->where('emp_id',$request->emp_id)->get();
         if($checker->isEmpty()){
@@ -61,18 +66,18 @@ class AttendanceController extends Controller
                 $checkertimeout = Attendance::select('time_out')
                                 ->where('emp_id', $request->emp_id)
                                 ->where('attend_date', $date)
-                                ->first(); 
-                if(is_null($checkertimeout->time_out)) 
+                                ->first();
+                if(is_null($checkertimeout->time_out))
                 {
                     Attendance::where('attend_date',$date)->where('emp_id', $request->emp_id)->update([
                         'time_out' => $time
                     ]);
                 }
-            } 
-        
+            }
+
             //get time in and out of user
             $timein = Attendance::select('time_in')->where('emp_id', $request->emp_id)->where('attend_date', $date)->first();
-            $timeout = Attendance::select('time_out')->where('emp_id', $request->emp_id)->where('attend_date', $date)->first();    
+            $timeout = Attendance::select('time_out')->where('emp_id', $request->emp_id)->where('attend_date', $date)->first();
             $in = strtotime(($timein->time_in));
             $out = strtotime(($timeout->time_out));
             $interval  = abs($out - $in);
@@ -82,7 +87,7 @@ class AttendanceController extends Controller
             $user = User::where('id', $request->emp_id)->first();
             $per_minute = $user->rate / 8 / 60;
             $pay = $minutes * $per_minute;
-    
+
             //overtime
             if ((int)$minutes >= 540) {
                 $overtime = (int)$minutes - 540;
@@ -119,7 +124,7 @@ class AttendanceController extends Controller
                 ]);
             }
         }
-         
+
 
         return redirect()->back();
     }
