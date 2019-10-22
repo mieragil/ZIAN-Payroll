@@ -31,23 +31,23 @@
                     <div class="card-body">
                             <div class="jumbotron py-5 jumbotron-fluid">
                                 <div class="container">
-                                    <h1 class="display-4">{{($user->name)}}</h1>
-                                    <h5 class="lead">{{strtoupper($user->department)}} | {{strtoupper($user->position)}}</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h1 class="display-4">{{($user->name)}}</h1>
+                                            <h5 class="lead">{{strtoupper($user->department)}} | {{strtoupper($user->position)}}</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <small class="text-secondary">Employment Status</small>
+                                            <p class="lead">{{$user->emp_status}}</p>
+                                            <hr>
+                                            <small class="text-secondary">Salary Type</small>
+                                            <p class="lead">{{$user->salary_type}}</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
-                        <div class="row">
-
-                            <div class="col-lg-4">
-                                <h3 class="">Employment status: <u>{{$user->emp_status}}</u></h3>
-                            </div>
-                            <div class="col-lg-4 text-center">
-                                <h3 class="">Salary type: <u>{{$user->salary_type}}</u></h3>
-                            </div>
-
-
-                        </div>
-                        <hr>
                         <form action="{{route('employee.editEmp', $user->id)}}" method="post">
                             @method('PATCH')
                             @csrf

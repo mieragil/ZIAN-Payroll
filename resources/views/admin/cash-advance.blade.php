@@ -12,10 +12,11 @@
                     <table class="table table-hover">
                     <thead>
                         <tr class="text-secondary">
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Employee</th>
                         <th scope="col">Requested Cash</th>
-                        <th scope="col">Months to Pay</th>
+                        <th scope="col">months to Pay</th>
+                        <th scope="col">Deduction/month</th>
+                        <th scope="col">Date Issued</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,7 @@
                         <div class="form-group">
                             <label for="employees">Choose Employee:</label>
                             <select class="form-control" name="employees" id="employees">
+                                <option value="">--SELECT EMPLOYEE--</option>
                                 @foreach ($data['users'] as $user)
                                     <option value="{{$user->id}}" name="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach

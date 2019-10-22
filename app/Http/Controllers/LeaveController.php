@@ -15,7 +15,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $data = User::all()->where('priority', 'LO');
+        $data = User::all()->where('priority', 'LO')->where('active', 1);
         $leavers = Leave::all();
         return view('admin.leave', compact('data', 'leavers'));
     }

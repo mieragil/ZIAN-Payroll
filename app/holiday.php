@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Deduction extends Model
+class holiday extends Model
 {
     protected $fillable = [
-        'emp_id', 'phic', 'sss', 'pag_ibig'
+        'holiday_name', 'holiday_date', 'holiday_day'
     ];
 }

@@ -51,6 +51,8 @@ Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPositi
 
 Route::POST('/editDeduction', 'DeductionController@editDeduction')->name('editDeduction');
 
+Route::POST('/newHoliday', 'HomeController@newHoliday')->name('newHoliday');
+
 
 Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
 Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
@@ -94,7 +96,7 @@ Route::post('users/create-new', function (Request $request) {
             'emp_id' => $user->id,
             'phic' => $request->phic,
             'sss' => $request->sss,
-            'pag-ibig' => $request->pagibig,
+            'pag_ibig' => $request->pag_ibig,
         ]);
 
     return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
