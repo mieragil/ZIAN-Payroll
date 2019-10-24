@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Department;
 use App\Attendance;
 use App\Leave;
+use App\Overtime;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +31,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = array();
+
+        $data['OTs'] = Overtime::where('emp_id', Auth::user()->id)->get();
+        // return $data['OTs'];
+
+
+        return view('home', compact('data'));
     }
 
     public function attendtoday()

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeductionTable extends Migration
+class CreateOvertimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateDeductionTable extends Migration
      */
     public function up()
     {
-        Schema::create('deductions', function (Blueprint $table) {
+        Schema::create('overtimes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('emp_id');
-            $table->integer('phic');
-            $table->integer('sss');
-            $table->integer('pag-ibig');
+            $table->string('reason');
+            $table->string('date');
+            $table->integer('minutes');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateDeductionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deduction');
+        Schema::dropIfExists('overtimes');
     }
 }
