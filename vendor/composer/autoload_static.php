@@ -409,6 +409,7 @@ class ComposerStaticInitb4515c8f94c79a4b2b873d3fa9cbc383
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Item' => __DIR__ . '/../..' . '/app/Item.php',
         'App\\Leave' => __DIR__ . '/../..' . '/app/Leave.php',
+        'App\\Overtime' => __DIR__ . '/../..' . '/app/Overtime.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\User;
 use App\Leave;
+use App\Overtime;
 use DateTime;
 use Illuminate\Http\Request;
+use OverflowException;
 
 class PivotController extends Controller
 {
@@ -127,6 +129,24 @@ class PivotController extends Controller
 
     public function editEmp($id, Request $request){
         return request()->all();
+    }
+
+    public function fileOvertime(Request $request, $id)
+    {
+        $user = Overtime::where(['emp_id'=> $id,
+                        'date' => $request->date])->first();
+        if($user != null || $user != ""){
+            return redirect()->route('home')->withErrors('Overtime request existing for date: ' . date("F jS, Y", strtotime($request->date)));
+        }else{
+            Overtime::create([
+                'emp_id' => $id,
+                'reason' => $request->reason,
+                'date' => $request->date,
+                'minutes' => $request->minutes,
+                'status' => 'PENDING'
+            ]);
+            return redirect()->route('home')->with('success', 'Overtime requested for date: ' . date("F jS, Y", strtotime($request->date)));
+        }
     }
 
 }

@@ -32,23 +32,18 @@ Route::resource('department', 'DepartmentController');
 Route::resource('deduction', 'DeductionController');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
-
 Route::get('/deductions', 'DeductionController@index')->name('deductions');
-
-Route::post('/depid', 'HomeController@fetchdepartment');
-
 Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 Route::get('/attendance', 'AttendanceController@index')->name('attendance');
-
 Route::get('/settings', 'HomeController@settings')->name('settings');
-
 Route::get('/leave', 'LeaveController@index')->name('leave');
+Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
+Route::get('/cash-advance', 'DeductionController@showCA')->name('ded.showCA');
+Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
 
 Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
 Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
-
 Route::POST('/editDeduction', 'DeductionController@editDeduction')->name('editDeduction');
 
 Route::POST('/newHoliday', 'HomeController@newHoliday')->name('newHoliday');
@@ -58,15 +53,12 @@ Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.
 Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
 Route::post('/employee/{id}/edit-emp','PivotController@editEmp')->name('employee.editEmp');
 Route::post('/employee/{id}/time','PivotController@time')->name('employee.time');
-
 Route::post('/department/{department_name}/position','DepartmentController@newPosition')->name('department.position');
-
-Route::get('/employee/{id}/accountability', 'PivotController@accountability')->name('employee.accountability');
 Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
 Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
 Route::post('/accept-leave', 'LeaveController@acceptleave')->name('leave.accept-leave');
-Route::get('/cash-advance', 'DeductionController@showCA')->name('ded.showCA');
-Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
+Route::post('/depid', 'HomeController@fetchdepartment');
+Route::post('/overtime/{id}','PivotController@fileOvertime')->name('employee.fileOvertime');
 
 
 Route::post('users/create-new', function (Request $request) {
