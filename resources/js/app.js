@@ -205,5 +205,7 @@ $("#close").click(function(e){
     div.style.display = "none";
 });
 
-
+$("#editemp").click(function(){
+    $("#divsave").show();
+});
 

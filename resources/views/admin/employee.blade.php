@@ -51,14 +51,16 @@
                         <form action="{{route('employee.editEmp', $user->id)}}" method="post">
                             @method('PATCH')
                             @csrf
+                            <div class="text-right">
+                                <hr>
+                                <a id="editemp" href="#" class="text-primary">edit <i class="fas fa-pencil-alt"></i></a>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="name">Employee Name</label>
                                     <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
-
                                 </div>
                                 <div class="col-md-6">
-                                    {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
                                     <label for="email">Username</label>
                                     <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
                                 </div>
@@ -74,7 +76,7 @@
                                     <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
                                 </div>
                             </div>
-                            <div class="text-right py-3">
+                            <div class="text-right py-3" id="divsave" style="display:none">
                                 <button type="submit" class="btn btn-primary">Save Changes</a>
                             </div>
                         </form>
@@ -113,7 +115,7 @@
 
 
 
-    <form action="{{route('attendance.store',$user->id)}}" method="post">
+    {{-- <form action="{{route('attendance.store',$user->id)}}" method="post">
     <div class="card">
             @csrf
             <div class="card-body">
@@ -121,7 +123,7 @@
                 <button type="submit">submit</button>
             </div>
         </div>
-    </form>
+    </form> --}}
 
 
     <div class="modal fade" id="promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
