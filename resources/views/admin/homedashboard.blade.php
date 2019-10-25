@@ -126,7 +126,8 @@
             @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content modal-lg">
-                <div class="modal-header bg-primary">
+                <div class="modal-header text-light bg-primary">
+                    <h3>Add Holiday</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
