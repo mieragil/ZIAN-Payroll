@@ -80,14 +80,25 @@ class HomeController extends Controller
         $leave = Leave::all();
         $holidays = holiday::all();
 
+        
+        // $overtime = Overtime::where('status', 'PENDING')->get();
+        $overtime = DB::table('users')->select(['users.name', 'overtimes.emp_id', 'overtimes.reason', 'overtimes.minutes', 'overtimes.reason', 'overtimes.date'])
+                    ->join('overtimes', 'users.id', 'overtimes.emp_id')
+                    ->where('status','PENDING')->get();
+
         $day = date("Y-m-d");
         $attendance = DB::table('users')->select([
                         'users.name', 'users.id', 'attendances.time_in', 'attendances.time_out', 'attend_date',
                         ])->join('attendances','attendances.emp_id','=','users.id')->where('attend_date', $day)
                         ->get();
 
+<<<<<<< HEAD
         return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance', 'holidays'));
 
+=======
+        return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance','overtime'));
+        // return $data['attendance'];
+>>>>>>> upstream/master
     }
 
 

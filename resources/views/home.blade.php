@@ -90,7 +90,7 @@
                         <hr>
                         @if (!$data['OTs']->isEmpty())
                             <p class="text-left font-weight-bolder">Overtime Record:</p>
-                            <table class="table table-hover">
+                            <table class="table table-hover table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">Date of OT</th>
@@ -103,7 +103,13 @@
                                         <tr>
                                             <td>{{$ot->date}}</td>
                                             <td>{{$ot->minutes}}</td>
-                                            <td><h4 style="font-size: 15px" class="{{ $ot->status == 'PENDING' ? 'badge badge-primary' : 'badge badge-success'}}">{{$ot->status}}</h4></td>
+                                            @if ($ot->status == 'PENDING')
+                                                <td><h4 style="font-size: 15px" class="badge badge-primary">{{$ot->status}}</h4></td>
+                                            @elseif($ot->status == 'DECLINED')
+                                                <td><h4 style="font-size: 15px" class="badge badge-danger">{{$ot->status}}</h4></td>
+                                            @else
+                                                <td><h4 style="font-size: 15px" class="badge badge-success">{{$ot->status}}</h4></td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -149,4 +149,14 @@ class PivotController extends Controller
         }
     }
 
+    public function OTstatus(Request $request, $id){
+        $user = User::findOrFail($id);
+
+        Overtime::where('emp_id', $id)->update([
+            'status' => strtoupper($request->status)
+        ]);
+
+        return redirect()->route('homedashboard')->with('success', 'YOU ' . strtoupper($request->status) . ' REQUESTED OVERTIME OF '  . $user->name);
+    }
+
 }
