@@ -18,40 +18,9 @@
                     <p class="text-secondary"> {{ date("M. d, Y") }}</p>
                 </div>
             </div>
-            <div class="card shadow">
-                <h4 class="card-header bg-secondary text-light">
-                    <div class="row">
-                        <div class="col-md-10">
-                                Holidays List
-                        </div>
-                        <div class="col-md-2 text-right">
-                            <button class="btn btn-sm btn-primary shadow" data-target="#new-holiday" data-toggle="modal"><i class="fa fa-plus"></i></button>
-                        </div>
-                    </div>
 
 
-                </h4>
-                <div class="card-body">
-                        <table class="table table-hover">
-                                <thead>
-                                  <tr class="text-secondary">
-                                    <th scope="col">Holiday Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Day</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($holidays as $item)
-                                        <tr>
-                                            <td>{{$item->holiday_name}}</td>
-                                            <td>{{date("M. d, Y", strtotime($item->holiday_date))}}</td>
-                                            <td>{{$item->holiday_day}}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                              </table>
-                </div>
-            </div>
+
         </div>
         <div class="col-lg-7">
             <div class="row">
@@ -85,19 +54,24 @@
                     </div>
                     </div>
                 </div>
-                <div class="col-4 offset-4">
-                    <div class="card text-black-50 mb-3 shadow bg-secondary" style="max-width: 18rem;" style="">
-                    <div class="card-body">
-                       <div class="row">
-                           <i class="ml-3 fas fa-clock mr-3 text-white fa-2x"></i><h2 class="{{count($overtime) > 0 ? 'badge badge-danger bounce ' : 'text-white'}}" style="font-size:20px">{{count($overtime)}}</h2>
-                           </div> 
-                        <p class="card-text text-white">Overtime Requests</p>
-                        <hr class="b">
-                    <div class="text-right"><small><a href="#" class="text-light" data-toggle="modal" data-target="#overtime">Show All</a></small></div>
-                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-3 shadow bg-secondary">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h2 class="text-white"><i class="fas fa-clock"></i> <span class="{{count($overtime) > 0 ? 'badge badge-danger bounce ' : ''}}">{{count($overtime)}}</span></h2>
+                                        <p class="card-text text-white">Overtime Requests</p>
+                                    </div>
+                                    <div class="col-3 text-right">
+                                        <small><a href="#" class="text-light" data-toggle="modal" data-target="#overtime">Show All</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             <div class="row">
                 <div class="col-lg-12">
                         <div class="card mb-3 shadow">
@@ -137,35 +111,7 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-{{-- New holiday modal --}}
-<div class="modal fade" id="new-holiday" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="{{route('newHoliday')}}" method="POST">
-            @csrf
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-lg">
-                <div class="modal-header text-light bg-primary">
-                    <h3>Add Holiday</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <br>
-                    <p class="mb-0">Holiday Name:</p>
-                    <input type="text" class="form-control" name="holiday_name" id="edit-position" placeholder="holiday name" required>
-                    <br>
-                    <p class="mb-0">Date:</p>
-                    <input type="date" name="holiday_date" id="hired" class="form-control new-employee-input mb-3" required value="{{old('hired')}}">
-                </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success">SAVE</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    {{-- New holiday modal  --}}
-=======
+
 
 {{-- overtime modal --}}
 
@@ -218,5 +164,4 @@
     </div>
 </div>
 
->>>>>>> upstream/master
 @endsection

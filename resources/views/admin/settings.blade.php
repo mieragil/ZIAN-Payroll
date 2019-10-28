@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content-dashboard')
-<div class="container">
-        <div class="col-lg-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
             <div class="card shadow">
                 <h3 class="card-header text-light bg-secondary">
-                        Departments <i class="fas fa-cog mr-3"></i>
+                         <i class="fas fa-cog mr-1"></i> Departments
                         <button class="btn btn-primary shadow" data-target="#new-department-modal" data-toggle="modal">  New Department <i class="far fa-building"></i></button>
                 </h3>
                 <div class="card-body">
@@ -74,6 +75,41 @@
 
             </div>
         </div>
+        <div class="col-lg-4">
+            <div class="card shadow">
+                    <h5 class="card-header bg-secondary text-light">
+                        <div class="row">
+                            <div class="col-md-10">
+                                Holidays List
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <button class="btn btn-sm btn-primary shadow" data-target="#new-holiday" data-toggle="modal"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </h5>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                        <thead>
+                            <tr class="text-secondary">
+                            <th scope="col">Holiday Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Day</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($holidays as $item)
+                                <tr>
+                                    <td>{{$item->holiday_name}}</td>
+                                    <td>{{date("M. d, Y", strtotime($item->holiday_date))}}</td>
+                                    <td>{{$item->holiday_day}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
 </div>
 
 
@@ -163,6 +199,34 @@
         </form>
     </div>
     {{-- end delete modal  --}}
+
+    {{-- New holiday modal --}}
+<div class="modal fade" id="new-holiday" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="{{route('newHoliday')}}" method="POST">
+                @csrf
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content modal-lg">
+                    <div class="modal-header text-light bg-primary">
+                        <h3>Add Holiday</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        <p class="mb-0">Holiday Name:</p>
+                        <input type="text" class="form-control" name="holiday_name" id="edit-position" placeholder="holiday name" required>
+                        <br>
+                        <p class="mb-0">Date:</p>
+                        <input type="date" name="holiday_date" id="hired" class="form-control new-employee-input mb-3" required value="{{old('hired')}}">
+                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {{-- New holiday modal  --}}
 
 
 @endsection

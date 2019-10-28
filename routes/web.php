@@ -102,16 +102,7 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
         'emp_id' => $user->id,
         'phic' => $request->phic,
         'sss' => $request->sss,
-        'pag-ibig' => $request->pagibig,
-        ]);
-
-
-
-        $deduct = Deduction::create([
-            'emp_id' => $user->id,
-            'phic' => $request->phic,
-            'sss' => $request->sss,
-            'pag_ibig' => $request->pag_ibig,
+        'pag_ibig' => $request->pag_ibig,
         ]);
 
     return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);

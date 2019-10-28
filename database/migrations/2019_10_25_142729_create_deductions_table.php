@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeductionTable extends Migration
+class CreateDeductionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateDeductionTable extends Migration
             $table->integer('emp_id');
             $table->integer('phic');
             $table->integer('sss');
-            $table->integer('pag-ibig');
+            $table->integer('pag_ibig');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDeductionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deduction');
+        Schema::dropIfExists('deductions');
     }
 }

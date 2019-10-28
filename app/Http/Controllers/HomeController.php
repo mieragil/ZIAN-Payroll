@@ -80,7 +80,7 @@ class HomeController extends Controller
         $leave = Leave::all();
         $holidays = holiday::all();
 
-        
+
         // $overtime = Overtime::where('status', 'PENDING')->get();
         $overtime = DB::table('users')->select(['users.name', 'overtimes.emp_id', 'overtimes.reason', 'overtimes.minutes', 'overtimes.reason', 'overtimes.date'])
                     ->join('overtimes', 'users.id', 'overtimes.emp_id')
@@ -92,13 +92,8 @@ class HomeController extends Controller
                         ])->join('attendances','attendances.emp_id','=','users.id')->where('attend_date', $day)
                         ->get();
 
-<<<<<<< HEAD
-        return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance', 'holidays'));
-
-=======
-        return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance','overtime'));
+        return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance','overtime', 'holidays'));
         // return $data['attendance'];
->>>>>>> upstream/master
     }
 
 
@@ -106,8 +101,9 @@ class HomeController extends Controller
     {
         $department = Department::distinct()->get('department_name');
         $position = Department::all();
+        $holidays = holiday::all();
 
-        return view('admin.settings', compact('department', 'position'));
+        return view('admin.settings', compact('department', 'position' , 'holidays'));
     }
 
     public function newHoliday(Request $request)
