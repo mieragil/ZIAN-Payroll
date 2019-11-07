@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="card shadow">
-                    <div class="card-header ">
+                    <div class="card-header text-light bg-dark">
                         <div class="row">
                             <div class="col-6">
                                 <h1>4:20 PM</h1>
@@ -30,29 +30,54 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-4 col-xs-12 text-center px-5" min-height="150px;">
-                                <img src="{{ asset('/img/wew.jpg') }}" alt="..." class="rounded-circle img-fluid" >
+                       <div class="row">
+                           <div class="col-lg-3">
+                                <img src="{{ asset('/img/wew.png') }}" alt="..." class="rounded-circle img-fluid" >
                             </div>
-                            <div class="col-sm-8 col-xs-12">
-                                <br>
-                                <table class="table table-striped">
-                                    <tr>
-                                    <td class="font-weight-bold text-dark">{{strtoupper(Auth::user()->name)}}</td>
-                                    <td> Department: {{strtoupper(Auth::user()->department)}}</td>
-                                    </tr>
-                                    <tr>
-                                    <td> Employment Status: {{strtoupper(Auth::user()->emp_status)}}</td>
-                                    <td>Position: {{strtoupper(Auth::user()->department)}}</td>
-                                    </tr>
-                                </tbody>
-                                </table>
+                            <div class="col-lg-4">
+                                <small class="text-secondary">Name</small>
+                                <p class="lead">{{strtoupper(Auth::user()->name)}}</p>
+
+                                <small class="text-secondary">Employee Status</small>
+                                <p class="lead">{{strtoupper(Auth::user()->emp_status)}}</p>
                             </div>
-                        </div>
+                            <div class="col-lg-5">
+                                <small class="text-secondary">Department</small>
+                                <p class="lead">{{strtoupper(Auth::user()->department)}}</p>
+
+                                <small class="text-secondary">Position</small>
+                                <p class="lead">{{strtoupper(Auth::user()->position)}}</p>
+                            </div>
+                       </div>
                     </div>
                 </div><br>
+                <div class="card shadow mb-4">
+                    <h5 class="card-header text-light bg-primary">
+                       Payments Received
+                    </h5>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                                <thead>
+                                  <tr class="text-secondary">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Period</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Date Received</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Oct. 2,2019 - Oct 10, 2019 </td>
+                                    <td>Php 7,000</td>
+                                    <td>Oct 15, 2019</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                    </div>
+                </div>
 
-                <div class="card shadow-sm">
+                <div class="card shadow">
                     <div class="card-header pb-0" style="background-color:mediumslateblue">
                         <div class="row">
                             <div class="col-6 text-white">
@@ -100,16 +125,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data['OTs'] as $ot) 
+                                    @foreach ($data['OTs'] as $ot)
                                         <tr>
                                             <td>{{$ot->date}}</td>
                                             <td>{{$ot->minutes}}</td>
                                             @if ($ot->status == 'PENDING')
-                                                <td><h4 style="font-size: 15px" class="badge badge-primary">{{$ot->status}}</h4></td> 
+                                                <td><h4 style="font-size: 15px" class="badge badge-primary">{{$ot->status}}</h4></td>
                                             @elseif($ot->status == 'DECLINED')
-                                                <td><h4 style="font-size: 15px" class="badge badge-danger">{{$ot->status}}</h4></td> 
+                                                <td><h4 style="font-size: 15px" class="badge badge-danger">{{$ot->status}}</h4></td>
                                             @else
-                                                <td><h4 style="font-size: 15px" class="badge badge-success">{{$ot->status}}</h4></td> 
+                                                <td><h4 style="font-size: 15px" class="badge badge-success">{{$ot->status}}</h4></td>
                                             @endif
                                         </tr>
                                     @endforeach
@@ -117,46 +142,24 @@
                             </table>
                         @endif
                     </div>
-                </div><hr><br>
+                </div><br>
 
-                <div class="card shadow-sm">
-                    <div class="card-header pb-0">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Current Pay Period</h5>
-                                <small><p>Sep. 26, 2019 - Oct 10, 2019</p></small>
-                            </div>
-                            <div class="col-6 text-right">
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Period</th>
-                                    <th scope="col">Payment</th>
-                                    <th scope="col">Date Received</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Oct. 2,2019 - Oct 10, 2019 </td>
-                                    <td>Php 7,000</td>
-                                    <td>Oct 15, 2019</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                    </div>
-                </div>
             </div>
 
             <div class="col">
-                <div class="card shadow-sm">
-                    <h5 class="card-header text-light bg-primary"><i class="cui-list-rich mr-1"></i>
+                <div class="card shadow mb-4">
+                    <h5 class="card-header text-light bg-secondary"><i class="fas fa-money-check"></i>
+                        Running Salary</h5>
+                    <div class="card-body text-center">
+                        <h3>5,000</h3>
+                        <small><p>Oct 26, 2019 - Nov 10, 2019</p></small>
+                        <p class="text-primary">To receive on Nov. 15, 2019</p>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <h5 class="card-header text-light bg-info"><i class="cui-list-rich mr-1"></i>
                         Attendance SHIT</h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
@@ -183,8 +186,8 @@
                     </div>
                 </div>
                 <br>
-                <div class="card shadow-sm">
-                        <h5 class="card-header text-light bg-primary"><i class="cui-briefcase mr-1"></i>
+                <div class="card shadow">
+                        <h5 class="card-header text-light bg-info"><i class="cui-briefcase mr-1"></i>
                             Accountability</h5>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">

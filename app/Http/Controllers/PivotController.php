@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\holiday;
 use App\Item;
 use App\User;
 use App\Leave;
@@ -88,6 +89,24 @@ class PivotController extends Controller
     {
         //
     }
+
+    //edit holiday
+    public function setHoliday(Request $request){
+        $id = $request->id;
+        $newName = $request->holiday_name;
+        $newDate = $request->holiday_date;
+        holiday::where('id',$id)->update(['holiday_name' => $newName, 'holiday_date' => $newDate]);
+        return back()->with('success-holiday', 'Holiday Successfully Updated');
+    }
+
+    public function delHoliday(Request $request){
+        $id = $request->id;
+        holiday::where('id',$id)->delete();
+        return back()->with('success-holiday', 'Holiday Successfully Deleted');
+    }
+
+
+
 
     public function promote($id, Request $request){
         // return $request;

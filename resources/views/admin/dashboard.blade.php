@@ -195,7 +195,7 @@
                                                     <label for="inputPagIbig">PAG-IBIG</label>
                                                 </div>
                                                 <div class="col-9">
-                                                    <input type="number" class="form-control" value="0"  name="pagibig" id="inputPagIbig" placeholder="amount" required>
+                                                    <input type="number" class="form-control" value="0"  name="pag_ibig" id="inputPagIbig" placeholder="amount" required>
                                                 </div>
                                             </div>
                                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\Attendance;
+use App\holiday;
 use App\Leave;
 use App\Overtime;
 use App\User;
@@ -77,8 +78,9 @@ class HomeController extends Controller
         $users = User::all()->where('priority','LO')->where('active','1');
         $department = Department::distinct()->get('department_name');
         $leave = Leave::all();
+        $holidays = holiday::all();
 
-        
+
         // $overtime = Overtime::where('status', 'PENDING')->get();
         $overtime = DB::table('users')->select(['users.name', 'overtimes.emp_id', 'overtimes.reason', 'overtimes.minutes', 'overtimes.reason', 'overtimes.date'])
                     ->join('overtimes', 'users.id', 'overtimes.emp_id')
@@ -90,22 +92,32 @@ class HomeController extends Controller
                         ])->join('attendances','attendances.emp_id','=','users.id')->where('attend_date', $day)
                         ->get();
 
-        return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance','overtime'));
+        return view('admin.homedashboard', compact('users' , 'department', 'leave', 'attendance','overtime', 'holidays'));
         // return $data['attendance'];
     }
 
-    // public function attendance()
-    // {
-    //     $users = User::where('priority','LO')->where('active','1')->paginate(2);
-    //     return view('admin.attendance', compact('users'));
-    // }
 
     public function settings()
     {
         $department = Department::distinct()->get('department_name');
         $position = Department::all();
+        $holidays = holiday::all();
 
-        return view('admin.settings', compact('department', 'position'));
+        return view('admin.settings', compact('department', 'position' , 'holidays'));
     }
 
+    public function newHoliday(Request $request)
+    {
+        $name = $request->holiday_name;
+        $timestamp = strtotime($request->holiday_date);
+        $date = $request->holiday_date;
+        $day = date('l', $timestamp);
+        holiday::create([
+            'holiday_name' => $name,
+            'holiday_date' => $date,
+            'holiday_day' => $day,
+        ]);
+
+        return back();
+    }
 }

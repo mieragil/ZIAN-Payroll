@@ -18,11 +18,13 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $attendance = DB::table('users')->select([
-            'users.name', 'users.id', 'attendances.time_in', 'attendances.time_out', 'attend_date',
-            ])->join('attendances','attendances.emp_id','=','users.id')->get();
+        $date = Carbon::now('GMT+8')->format('Y-m-d');
 
-        return view('admin.attendance', compact('attendance') );
+        $users = User::all()->where('active', 1)->where('priority', 'LO');
+        $attendance = DB::table('users')->select([
+            'users.name', 'users.id', 'attendances.time_in', 'attendances.time_out', 'attend_date', 'attendances.id as att_id'
+            ])->join('attendances','attendances.emp_id','=','users.id')->where('attend_date', $date)->orderBy('attendances.id', 'DESC')->get();
+        return view('admin.attendance', compact('attendance', 'users') );
     }
 
     /**

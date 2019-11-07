@@ -23,6 +23,23 @@ Route::get('/', function () {
 });
 
 
+Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
+Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
+Route::POST('/editDeduction', 'DeductionController@editDeduction')->name('editDeduction');
+
+Route::POST('/newHoliday', 'HomeController@newHoliday')->name('newHoliday');
+
+
+Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
+Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
+Route::post('/employee/{id}/edit-emp','PivotController@editEmp')->name('employee.editEmp');
+Route::post('/employee/{id}/time','PivotController@time')->name('employee.time');
+Route::post('/department/{department_name}/position','DepartmentController@newPosition')->name('department.position');
+Route::post('/item/{itemid}/deduct', 'ItemController@deduct')->name('item.deduct');
+Route::post('/item/{itemid}/add', 'ItemController@add')->name('item.add');
+Route::post('/accept-leave', 'LeaveController@acceptleave')->name('leave.accept-leave');
+Route::post('/depid', 'HomeController@fetchdepartment');
+Route::post('/overtime/{id}','PivotController@fileOvertime')->name('employee.fileOvertime');
 
 Auth::routes();
 
@@ -43,11 +60,15 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
     Route::get('/cash-advance', 'DeductionController@showCA')->name('ded.showCA');
     Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
     Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
+
     Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 
-    
+
     Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
     Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
+    Route::POST('/setHoliday', 'PivotController@setHoliday')->name('setHoliday');
+    Route::POST('/delHoliday', 'PivotController@delHoliday')->name('delHoliday');
+
     Route::POST('/editDeduction', 'DeductionController@editDeduction')->name('editDeduction');
     Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
     Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');
@@ -59,15 +80,15 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
     Route::post('/accept-leave', 'LeaveController@acceptleave')->name('leave.accept-leave');
     Route::post('/depid', 'HomeController@fetchdepartment');
     Route::post('/OTstatus/{id}', 'PivotController@OTstatus')->name('OT.status');
-    
-    
-    
+
+
+
     Route::post('users/create-new', function (Request $request) {
         request()->validate([
             'username' => 'unique:users',
             'password' => 'required|min:3',
             ]);
-            
+
     $user = User::create([
         'name' => $request->name,
         'date_hired' => $request->hired,
@@ -82,25 +103,26 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
         'priority' => 'LO',
         'active' => '1',
     ]);
-        
+
     $deduct = Deduction::create([
         'emp_id' => $user->id,
         'phic' => $request->phic,
         'sss' => $request->sss,
-        'pag-ibig' => $request->pagibig,
+        'pag_ibig' => $request->pag_ibig,
         ]);
+
     return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
     })->name('users.create');
 });
-            
-            
+
+
 Route::group(['middleware' => ['auth', 'user']], function () {
-    
+
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/overtime/{id}','PivotController@fileOvertime')->name('employee.fileOvertime'); //employee
 });
 
-            
-            
-            
-            
+
+
+
+

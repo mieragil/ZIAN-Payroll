@@ -49416,8 +49416,8 @@ $("#menu-toggle").click(function (e) {
   $("#wrapper").toggleClass("toggled");
 });
 $(".btn-new-position").click(function (e) {
-  $(this).closest(".card").find('.new-position-input').slideDown();
-  $(this).closest('.card').find(".nex-pos-text").focus();
+  $(this).closest(".card").find('.new-position-input').show();
+  $(this).closest('.card').find(".new-pos-text").focus();
 });
 $(".btn-cancel").click(function (e) {
   $(this).closest('.card').find(".new-position-input").slideUp();
@@ -49458,6 +49458,20 @@ $(".btn-delete-position").click(function (e) {
   var posname = $(this).closest(".trposition").find('.position-name').text();
   $("#delete-id").val(posid);
   $("#delete-position").text(posname);
+}); // edit holiday
+
+$(".btn-edit-holiday").click(function (e) {
+  var holid = $(this).closest("tr").find(".holiday-id").val();
+  var holname = $(this).closest("tr").find('.holiday-name').text();
+  var holdate = $(this).closest("tr").find('.holiday-date').val();
+  $("#modal-holiday-id").val(holid);
+  $("#name-holiday").val(holname);
+  $(".date-holiday").val(holdate);
+}); // delete holiday
+
+$(".btn-delete-position").click(function (e) {
+  var posid = $(this).closest("tr").find(".holiday-id").val();
+  $("#delete-holiday").val(posid);
 });
 $("#department").change(function () {
   var dep_id = $("#department option:selected").val();
@@ -49516,6 +49530,9 @@ $('.table tbody').on('click', '.btn', function () {
 $("#close").click(function (e) {
   var div = document.getElementById("edit");
   div.style.display = "none";
+});
+$("#editemp").click(function () {
+  $("#divsave").show();
 });
 
 /***/ }),
@@ -49652,8 +49669,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ZARI\Desktop\LaravelProjects\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ZARI\Desktop\LaravelProjects\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

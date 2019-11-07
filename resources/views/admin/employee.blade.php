@@ -31,34 +31,36 @@
                     <div class="card-body">
                             <div class="jumbotron py-5 jumbotron-fluid">
                                 <div class="container">
-                                    <h1 class="display-4">{{($user->name)}}</h1>
-                                    <h5 class="lead">{{strtoupper($user->department)}} | {{strtoupper($user->position)}}</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h1 class="display-4">{{($user->name)}}</h1>
+                                            <h5 class="lead">{{strtoupper($user->department)}} | {{strtoupper($user->position)}}</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <small class="text-secondary">Employment Status</small>
+                                            <p class="lead">{{$user->emp_status}}</p>
+                                            <hr>
+                                            <small class="text-secondary">Salary Type</small>
+                                            <p class="lead">{{$user->salary_type}}</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
-                        <div class="row">
-
-                            <div class="col-lg-4">
-                                <h3 class="">Employment status: <u>{{$user->emp_status}}</u></h3>
-                            </div>
-                            <div class="col-lg-4 text-center">
-                                <h3 class="">Salary type: <u>{{$user->salary_type}}</u></h3>
-                            </div>
-
-
-                        </div>
-                        <hr>
                         <form action="{{route('employee.editEmp', $user->id)}}" method="post">
                             @method('PATCH')
                             @csrf
+                            <div class="text-right">
+                                <hr>
+                                <a id="editemp" href="#" class="text-primary">edit <i class="fas fa-pencil-alt"></i></a>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="name">Employee Name</label>
                                     <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
-
                                 </div>
                                 <div class="col-md-6">
-                                    {{-- <a class="btn btn-primary float-right" onclick="runedit()"><i class="fas fa-pencil-alt"></i></a> --}}
                                     <label for="email">Username</label>
                                     <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
                                 </div>
@@ -74,7 +76,8 @@
                                     <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
                                 </div>
                             </div>
-                            <div class="text-right py-3">
+                            <div class="text-right py-3" id="divsave" style="display:none">
+                                <button class="btn btn-secondary mr-2">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Save Changes</a>
                             </div>
                         </form>

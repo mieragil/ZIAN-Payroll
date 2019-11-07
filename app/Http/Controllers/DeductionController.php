@@ -18,11 +18,11 @@ class DeductionController extends Controller
     public function index()
     {
         $data = array();
-        $data['users'] = User::where('priority','LO')->get();
+        $data['users'] = User::where('priority','LO')->where('active', 1)->get();
         $data['deduct'] = Deduction::all();
         $data['tables'] = DB::table('users')->select([
-                        'users.name', 'users.id', 'deductions.phic', 'deductions.sss', 'deductions.pag-ibig as pagibig' ,
-                        ])->join('deductions','deductions.emp_id','=','users.id')
+                        'users.name', 'users.id', 'deductions.phic', 'deductions.sss', 'deductions.pag_ibig as pagibig' ,
+                        ])->join('deductions','deductions.emp_id','=','users.id')->where('active', 1)
                         ->get();
         return view('admin.deductions', compact('data'));
         // return $data;
@@ -107,11 +107,11 @@ class DeductionController extends Controller
 
     public function showCA(){
         $data = array();
-        $data['users'] = User::where('priority','LO')->get();
+        $data['users'] = User::where('priority','LO')->where('active', 1)->get();
         $data['CA'] = CashAdvance::where('request','!=', 0)->get();
         $data['tables'] = DB::table('users')->select([
                         'users.name', 'cashadvances.request', 'cashadvances.ded_per_pay', 'cashadvances.months_to_pay','cashadvances.date_issued'
-                        ])->join('cashadvances','cashadvances.emp_id','=','users.id')
+                        ])->join('cashadvances','cashadvances.emp_id','=','users.id')->where('active', 1)
                         ->get();
 
         // return $data['tables'];

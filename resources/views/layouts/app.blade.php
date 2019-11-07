@@ -124,7 +124,7 @@
                 </div>
                 <!-- /#sidebar-wrapper -->
                 <div id="page-content-wrapper">
-                <a href="#menu-toggle" id="menu-toggle"><i class="fas fa-bars fa-3x"></i></a>
+                <a href="#menu-toggle" id="menu-toggle"><i class="fas fa-bars fa-2x"></i></a>
                     <main class="py-4">
                         @yield('content-dashboard')
                     </main>
