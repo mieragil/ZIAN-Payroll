@@ -83,7 +83,7 @@
                             <div class="col-6 text-white">
                                 <div class="row">
                                     <i class="cui-clock fa-2x mr-2 mb-2 ml-2"></i>
-                                    <h5>Application for Overtime</h5>
+                                    <h5 class="mt-1">Application for Overtime</h5>
                                 </div>
                             </div>
                             <div class="col-6 text-right">
@@ -112,6 +112,7 @@
                                     Submit</button>
                         </form>
                         <br><br>
+                
                         <hr>
                         @if (!$data['OTs']->isEmpty())
                             <p class="text-left font-weight-bolder">Overtime Record:</p>

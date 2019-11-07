@@ -61,6 +61,9 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
     Route::get('/cash-advance/{id}', 'DeductionController@storeCA')->name('ded.storeCA');
     Route::get('/homedashboard', 'HomeController@homedashboard')->name('homedashboard');
 
+    Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
+
+
     Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
     Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
     Route::POST('/setHoliday', 'PivotController@setHoliday')->name('setHoliday');
@@ -113,9 +116,13 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
 });
 
 
+Route::group(['middleware' => ['auth', 'user']], function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
-Route::post('/overtime/{id}','PivotController@fileOvertime')->name('employee.fileOvertime'); //employee
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/overtime/{id}','PivotController@fileOvertime')->name('employee.fileOvertime'); //employee
+});
+
+
+
 
 
