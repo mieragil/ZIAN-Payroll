@@ -19,6 +19,34 @@
                 </div>
             </div>
 
+            <div class="card shadow ">
+                <h5 class="card-header text-light bg-info">
+                    Incoming Holidays
+                </h5>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="text-info">Holiday Name</th>
+                            <th scope="col" class="text-info">Date</th>
+                            <th scope="col" class="text-info">Day</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($holidays as $item)
+                            <tr  class="text-muted">
+                                <td>{{$item->holiday_name}}</td>
+                                <td>{{date("M. d, Y", strtotime($item->holiday_date))}}</td>
+                                <td>{{$item->holiday_day}}</td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                      </table>
+                      <small><i> <p class="text-muted">Make sure to always update the list of Holidays in the settings.</p></i></small>
+                </div>
+            </div>
+
 
 
         </div>
@@ -55,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                     <div class="col-lg-12">
                         <div class="card mb-3 shadow bg-secondary">
                             <div class="card-body">
@@ -71,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             <div class="row">
                 <div class="col-lg-12">
                         <div class="card mb-3 shadow">

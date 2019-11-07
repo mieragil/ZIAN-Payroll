@@ -49416,8 +49416,8 @@ $("#menu-toggle").click(function (e) {
   $("#wrapper").toggleClass("toggled");
 });
 $(".btn-new-position").click(function (e) {
-  $(this).closest(".card").find('.new-position-input').slideDown();
-  $(this).closest('.card').find(".nex-pos-text").focus();
+  $(this).closest(".card").find('.new-position-input').show();
+  $(this).closest('.card').find(".new-pos-text").focus();
 });
 $(".btn-cancel").click(function (e) {
   $(this).closest('.card').find(".new-position-input").slideUp();
@@ -49458,6 +49458,20 @@ $(".btn-delete-position").click(function (e) {
   var posname = $(this).closest(".trposition").find('.position-name').text();
   $("#delete-id").val(posid);
   $("#delete-position").text(posname);
+}); // edit holiday
+
+$(".btn-edit-holiday").click(function (e) {
+  var holid = $(this).closest("tr").find(".holiday-id").val();
+  var holname = $(this).closest("tr").find('.holiday-name').text();
+  var holdate = $(this).closest("tr").find('.holiday-date').val();
+  $("#modal-holiday-id").val(holid);
+  $("#name-holiday").val(holname);
+  $(".date-holiday").val(holdate);
+}); // delete holiday
+
+$(".btn-delete-position").click(function (e) {
+  var posid = $(this).closest("tr").find(".holiday-id").val();
+  $("#delete-holiday").val(posid);
 });
 $("#department").change(function () {
   var dep_id = $("#department option:selected").val();

@@ -13,19 +13,21 @@
                                     <h4 class="mr-3"><small class="text-muted">SELECT EMPLOYEE</small></h4>
                                     <select class="form-control" name="id" id="employees" required>
                                         <option value="">--ALL--</option>
+                                        @foreach ($users as $item)
+                                            <option value="">{{$item->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-4">
-
-                                    <div class="input-group">
-                                            <h4 class="mr-3"><small class="text-muted">SELECT DATE</small></h4>
-                                            <input type="date" name="hired" id="hired" class="form-control mb-3" required value="{{old('hired')}}">
-                                            <span class="input-group-btn">
-                                            <button class="btn btn-primary px-3 mx-3">SEARCH</button>
-                                            </span>
-                                        </div>
+                            <div class="input-group">
+                                    <h4 class="mr-3"><small class="text-muted">SELECT DATE</small></h4>
+                                    <input type="date" name="hired" id="hired" class="form-control mb-3" required value="{{old('hired')}}">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-primary px-3 mx-3">SEARCH</button>
+                                    </span>
                                 </div>
+                            </div>
                         </div>
 
                             <table class="table table-hover">
@@ -40,18 +42,25 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($attendance as $item)
+                                    @foreach ($users as $item)
+                                        <tr>
+                                            <th scope="row">{{$item->id}}</th>
+                                            <td>{{$item->name}}</td>
+                                            @foreach ($attendance as $attend)
+                                                @if ($item->name==$attend->name)
+                                                    <td>{{$attend->time_in}}</td>
+                                                    <td>{{$attend->time_out}}</td>
+                                                    <td><i class="fas fa-circle mr-2 text-success"></i> Present</td>
+                                                    <td>{{$attend->attend_date}}</td>
+                                                @endif
+                                            @endforeach
 
-                                    <tr>
-                                    <th scope="row">{{$item->id}}</th>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->time_in}}</td>
-                                        <td>{{$item->time_out}}</td>
-                                        <td><i class="fas fa-circle mr-2 text-success"></i> Present</td>
-                                        <td>{{$item->attend_date}}</td>
-                                    </tr>
+                                            {{-- <td>{{$item->time_in}}</td>
+                                            <td>{{$item->time_out}}</td> --}}
+                                            {{-- <td><i class="fas fa-circle mr-2 text-success"></i> Present</td> --}}
+                                            {{-- <td>{{date("M. d, Y", strtotime($item->attend_date))}}</td> --}}
+                                        </tr>
                                     @endforeach
-
                                 </tbody>
                               </table>
 

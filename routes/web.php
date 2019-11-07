@@ -63,6 +63,9 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
 
     Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
     Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');
+    Route::POST('/setHoliday', 'PivotController@setHoliday')->name('setHoliday');
+    Route::POST('/delHoliday', 'PivotController@delHoliday')->name('delHoliday');
+
     Route::POST('/editDeduction', 'DeductionController@editDeduction')->name('editDeduction');
     Route::post('/employee/{id}/promote','PivotController@promote')->name('employee.promote');
     Route::post('/employee/{id}/terminate','PivotController@terminate')->name('employee.terminate');

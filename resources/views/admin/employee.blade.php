@@ -77,6 +77,7 @@
                                 </div>
                             </div>
                             <div class="text-right py-3" id="divsave" style="display:none">
+                                <button class="btn btn-secondary mr-2">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Save Changes</a>
                             </div>
                         </form>
@@ -115,7 +116,7 @@
 
 
 
-    {{-- <form action="{{route('attendance.store',$user->id)}}" method="post">
+    <form action="{{route('attendance.store',$user->id)}}" method="post">
     <div class="card">
             @csrf
             <div class="card-body">
@@ -123,7 +124,7 @@
                 <button type="submit">submit</button>
             </div>
         </div>
-    </form> --}}
+    </form>
 
 
     <div class="modal fade" id="promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
