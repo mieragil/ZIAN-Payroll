@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
     Route::post('/accept-leave', 'LeaveController@acceptleave')->name('leave.accept-leave');
     Route::post('/depid', 'HomeController@fetchdepartment');
     Route::post('/OTstatus/{id}', 'PivotController@OTstatus')->name('OT.status');
+    Route::post('/seekdate', 'AttendanceController@seekdate')->name('attendance.seekdate');
 
 
 

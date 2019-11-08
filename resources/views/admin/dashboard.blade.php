@@ -108,7 +108,7 @@
 
                             <div class="col-md-6">
                                 <label for="hired">Date Hired</label>
-                                <input type="date" name="hired" id="hired" class="form-control new-employee-input mb-3" required value="{{old('hired')}}">
+                                <input type="date" name="hired" id="hired" class="form-control new-employee-input mb-3" required value="{{date('Y-m-d')}}">
                             </div>
                         </div>
 

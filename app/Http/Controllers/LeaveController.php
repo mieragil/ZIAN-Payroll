@@ -98,20 +98,21 @@ class LeaveController extends Controller
             // echo "tama el date     " . $request->firstdate . "    " . $request->seconddate;
             return back()->withErrors('Leave date is invalid, try again.');
         }else{
+            $final = 
             $first = $request->firstdate;
             $second = $request->seconddate;
             $id = $request->id;
             $to = \Carbon\Carbon::createFromFormat('Y-m-d', $first);
             $from = \Carbon\Carbon::createFromFormat('Y-m-d', $second);
             $diff_in_days = $to->diffInDays($from);
-            $user = User::findOrFail($id);
 
+            $user = User::findOrFail($id);
 
             Leave::create([
                 'emp_id' => $id,
                 'emp_name' => $user->name,
                 'reason' => $request->reason,
-                'total_days' => $diff_in_days,
+                'total_days' => $diff_in_days + 1,
                 'dates_of_leave' => $first . " to " . $second,
                 'paid' => $request->paid
             ]);
