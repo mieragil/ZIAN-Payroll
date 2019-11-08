@@ -166,6 +166,30 @@
                                 </select>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <label for="time_in">Required Time In</label>
+                                <input type="time" name="time_in" class="form-control new-employee-input" required value="">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="time_out">Required Time Out</label>
+                                <input type="time" name="time_out" class="form-control new-employee-input" required value="">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="salary_type">DAY OFF</label>
+                                <select class="form-control" name="salary_type" id="salary_type">
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     {{-- endmodalbody --}}

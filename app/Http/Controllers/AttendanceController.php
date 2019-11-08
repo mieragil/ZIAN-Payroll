@@ -24,7 +24,10 @@ class AttendanceController extends Controller
         $attendance = DB::table('users')->select([
             'users.name', 'users.id', 'attendances.time_in', 'attendances.time_out', 'attend_date', 'attendances.id as att_id'
             ])->join('attendances','attendances.emp_id','=','users.id')->where('attend_date', $date)->orderBy('attendances.id', 'DESC')->get();
+
+            
         return view('admin.attendance', compact('attendance', 'users') );
+
     }
 
     /**

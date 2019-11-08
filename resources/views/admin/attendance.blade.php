@@ -42,7 +42,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $item)
+                                    @foreach ($attendance as $item)
                                         <tr>
                                             <th scope="row">{{$item->id}}</th>
                                             <td>{{$item->name}}</td>
@@ -54,16 +54,10 @@
                                                     <td>{{$attend->attend_date}}</td>
                                                 @endif
                                             @endforeach
-
-                                            {{-- <td>{{$item->time_in}}</td>
-                                            <td>{{$item->time_out}}</td> --}}
-                                            {{-- <td><i class="fas fa-circle mr-2 text-success"></i> Present</td> --}}
-                                            {{-- <td>{{date("M. d, Y", strtotime($item->attend_date))}}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
                               </table>
-
                     </div>
                 </div>
         </div>
