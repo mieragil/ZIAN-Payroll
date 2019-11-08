@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="form-group">
                                     <label for="paid">Is it a paid leave?</label>
-                                        <select multiple class="form-control" name="paid" id="paid" style="height:60px" required>
+                                        <select class="form-control" name="paid" id="paid" style="height:40px" required>
                                             <option value="yes">Yes, it's a paid leave.</option>
                                             <option value="no">No, it's not.</option>
                                         </select>
