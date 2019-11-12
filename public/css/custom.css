@@ -203,7 +203,7 @@ body{
     display: none;
 }
 
-a {
+.tt {
 	position: relative;
 	color: #07b39b;
 	margin: 0 .25em;
@@ -211,7 +211,7 @@ a {
 	text-decoration: none;
 }
 
-a::before, a::after {
+.tt::before, .tt::after {
 	position: absolute;
 	left: 50%;
 	background: #1c1d22;
@@ -219,7 +219,7 @@ a::before, a::after {
 	visibility: hidden;
 }
 
-a::before {
+.tt::before {
 	font-size: 0.9em;
 	min-width: 13em;
 	bottom: calc(110% + .5em);
@@ -234,7 +234,7 @@ a::before {
 	content: attr(data-tooltip);
 }
 
-a::after {
+.tt::after {
 	bottom: calc(110% + .25em);
 	transform: translateX(-50%) rotate(45deg);
 	content: '';
@@ -242,11 +242,11 @@ a::after {
 	height: 10px;
 }
 
-a:hover {
+.tt:hover {
 	color: #f37055;
 }
 
-a:hover::before,a:hover::after {
+.tt:hover::before,.tt:hover::after {
 	opacity: 1;
 	visibility: visible;
 }
