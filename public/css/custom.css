@@ -35,6 +35,13 @@
     margin-top:18px;
 }
 
+.highlighter{
+    border: solid 1px red;
+}
+
+.highlighter-g{
+    border: solid 1px rgb(20, 216, 20);
+}
 
 /*!
  * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
@@ -183,3 +190,63 @@
     color: rgb(243, 243, 243);
 }
 
+body{
+	background: linear-gradient(90deg, #ffffff 0%, #EF3B36 110%);
+
+}
+
+.ui-timepicker-container{ 
+    z-index:1151 !important; 
+}
+
+.hider{
+    display: none;
+}
+
+a {
+	position: relative;
+	color: #07b39b;
+	margin: 0 .25em;
+	transition: color .25s ease;
+	text-decoration: none;
+}
+
+a::before, a::after {
+	position: absolute;
+	left: 50%;
+	background: #1c1d22;
+	opacity: 0;
+	visibility: hidden;
+}
+
+a::before {
+	font-size: 0.9em;
+	min-width: 13em;
+	bottom: calc(110% + .5em);
+	transform: translateX(-50%);
+	color: hsl(0,0%,80%);
+	line-height: 1.6;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	text-align: center;
+	content: attr(data-tooltip);
+}
+
+a::after {
+	bottom: calc(110% + .25em);
+	transform: translateX(-50%) rotate(45deg);
+	content: '';
+	width: 10px;
+	height: 10px;
+}
+
+a:hover {
+	color: #f37055;
+}
+
+a:hover::before,a:hover::after {
+	opacity: 1;
+	visibility: visible;
+}

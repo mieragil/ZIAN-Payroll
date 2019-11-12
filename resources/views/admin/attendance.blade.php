@@ -23,7 +23,7 @@
                         <div class="input-group">
                                 
                             <h4 class="mr-3"><small class="text-muted">SELECT DATE</small></h4>
-                        <input type="date" name="date" id="date" class="form-control mb-3" required value="{{date('Y-m-d')}}">
+                            <input type="date" name="date" id="date" class="form-control mb-3" required value="{{date('Y-m-d')}}">
                             <span class="input-group-btn">
                                 @csrf
                                 <button class="btn btn-primary px-3 mx-3">SEARCH</button>
