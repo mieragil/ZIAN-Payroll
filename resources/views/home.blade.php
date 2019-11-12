@@ -112,7 +112,7 @@
                                     Submit</button>
                         </form>
                         <br><br>
-                
+
                         <hr>
                         @if (!$data['OTs']->isEmpty())
                             <p class="text-left font-weight-bolder">Overtime Record:</p>
@@ -163,21 +163,13 @@
                         Attendance SHIT</h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item py-0">Friday - 10/02/2019 <br>
+                            @foreach ($attend as $item)
+
+                            <li class="list-group-item py-0">{{date("M. d, Y", strtotime($item->attend_date))}}<br>
                             <p class ="text-success"> <i class="fas fa-circle mr-2"></i></i> Present</p>
                             </li>
-                            <li class="list-group-item py-1">Thursday - 10/02/2019 <br>
-                            <p class="text-danger"> <i class="fas fa-circle mr-2"></i></i> Absent</p>
-                            </li>
-                            <li class="list-group-item py-1">Wednesday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i> Present</p>
-                            </li>
-                            <li class="list-group-item py-1">Tuesday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i> Present</p>
-                            </li>
-                            <li class="list-group-item py-1">Tuesday - 10/02/2019 <br>
-                            <p class ="text-success"> <i class="fas fa-circle mr-2"></i> Present</p>
-                            </li>
+                            @endforeach
+
                         </ul>
                         <br>
                         <div class="text-right">
@@ -192,13 +184,15 @@
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item py-0">
-                                <p>Laptop</p>
-                                <p>Tablet</p>
+                                    @foreach ($account as $item)
+                                        <p>{{$item->item_name}} x {{$item->quantity}}</p>
+                                    @endforeach
+
                                 </li>
                             </ul>
-                            <div class="text-right">
+                            {{-- <div class="text-right">
                                 <a href="#" class="">View More...</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 <br>

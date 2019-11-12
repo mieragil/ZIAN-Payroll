@@ -8,6 +8,7 @@ use App\holiday;
 use App\Leave;
 use App\Overtime;
 use App\User;
+use App\Item;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -36,9 +37,12 @@ class HomeController extends Controller
 
         $data['OTs'] = Overtime::where('emp_id', Auth::user()->id)->get();
         // return $data['OTs'];
+        $account = Item::where('emp_id', Auth::user()->id)->get();
 
+        $attend = Attendance::where('emp_id', Auth::user()->id)->orderby('id', 'DESC')->get();
 
-        return view('home', compact('data'));
+        return view('home', compact('data', 'account', 'attend'));
+        // return $account;
     }
 
     public function attendtoday()
