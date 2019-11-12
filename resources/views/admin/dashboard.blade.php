@@ -126,7 +126,7 @@
                             </div>
                             <div class="col-md-4 mt-2" id="colll">
                                 <label for="password">Confirm Password</label>
-                                    <a href="#" data-tooltip="Password not match">
+                                    <a href="#" data-tooltip="Password not match" class="tt">
                                         <i id="exclam" class="fas fa-exclamation ml-1 fa-2x hider" style="color:red"></i>
                                     </a>
                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control new-employee-input" required value="{{old('password')}}">
