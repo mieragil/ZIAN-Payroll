@@ -33,6 +33,7 @@
                     @endif
 
                     {{-- Employee table --}}
+
                     <table class="table table-hover">
                         <thead class="text-secondary">
                             <tr>
@@ -112,30 +113,33 @@
                             </div>
                         </div>
 
+                        <div class="demo"></div>
+
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
                                 <label for="email">Username</label>
                                 <input type="text" name="username" class="form-control new-employee-input" required value="{{old('username')}}">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control new-employee-input" required value="{{old('password')}}">
+                                <input type="password" name="password" id="password" class="form-control new-employee-input" required value="{{old('password')}}">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-2" id="colll">
                                 <label for="password">Confirm Password</label>
-                                <input type="password" name="confirm_password" class="form-control new-employee-input" required value="{{old('password')}}">
+                                    <a href="#" data-tooltip="Password not match">
+                                        <i id="exclam" class="fas fa-exclamation ml-1 fa-2x hider" style="color:red"></i>
+                                    </a>
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control new-employee-input" required value="{{old('password')}}">
                             </div>
                         </div>
-
                         <hr class="col-md-5">
-
                         <div class="row">
+
                             <div class="col-md-4">
                                 <label for="rate"><strong>Enter DAILY RATE:</strong></label>
                                 <input type="number" name="rate" class="form-control new-employee-input" required value="{{old('rate')}}" min="1" max="10000">
                             </div>
                             <div class="col-md-4">
-
                                 <label for="inlineRadio1">Enter WEEKS of training:</label>
                                 <input type="number" name="weeks_of_training" class="form-control new-employee-input" required value="{{old('rate')}}" min="1" max="10000">
                             </div>
@@ -145,6 +149,34 @@
                                     <option value="FIXED">Yes</option>
                                     <option value="UNFIXED">No</option>
                                 </select>
+                            </div>
+                        </div>
+                        <hr class="mt-3">
+                        <div class="alert alert-warning text-center font-weight-bold">
+                            <i class="fas fa-exclamation-triangle mr-3"></i>Please double check the required time-in and required time-out of the Employee.
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="dayoff">ENTER DAY OFF:</label>
+                                <select name="dayoff" id="dayoff" class="form-control">
+                                    <option value="SUN">Sunday</option>
+                                    <option value="MON">Monday</option>
+                                    <option value="TUE">Tuesday</option>
+                                    <option value="WED">Wednesday</option>
+                                    <option value="THU">Thursday</option>
+                                    <option value="FRI">Friday</option>
+                                    <option value="SAT">Saturday</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="timein">TIME IN:</label>
+                                <input type="text" class="timepicker form-control" id="timein" name="timein">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="timein">TIME OUT:</label>
+                                <input type="text" class="timepicker form-control" id="timein" name="timeout">
                             </div>
                         </div>
                         <hr>

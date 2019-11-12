@@ -49359,6 +49359,24 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+$('#confirm_password').change(function () {
+  var pass = $('#password').val();
+  var confirm_pass = $('#confirm_password').val();
+
+  if (pass != confirm_pass) {
+    $("#exclam").removeClass('hider');
+    $("#colll").removeClass('mt-2');
+    $("#confirm_password").addClass('highlighter');
+    $("#confirm_password").removeClass('highlighter-g');
+  } else {
+    $("#exclam").addClass('hider');
+    $("#confirm_password").removeClass('highlighter');
+    $("#confirm_password").addClass('highlighter-g');
+    $("#colll").addClass('mt-2');
+  }
+
+  console.log(pass);
+});
 $('#promote').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var name = button.data('myname');
@@ -49506,8 +49524,7 @@ $(".btn-edit-duduction").click(function () {
   $(".ded-id").val(did);
 });
 $(document).ready(function () {
-  var div = document.getElementById("edit");
-  div.style.display = "none";
+  var div = document.getElementById("edit"); // div.style.display = "none";
 });
 $('.table tbody').on('click', '.btn', function () {
   var row = $(this).closest('tr');
@@ -49534,6 +49551,9 @@ $("#close").click(function (e) {
 $("#editemp").click(function () {
   $("#divsave").show();
 });
+$(document).ready(function () {
+  $('input.timepicker').timepicker({});
+});
 
 /***/ }),
 
@@ -49555,7 +49575,8 @@ try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js"); // require('jquery-timepicker');
+
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -49669,8 +49690,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZARI\Desktop\LaravelProjects\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ZARI\Desktop\LaravelProjects\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
