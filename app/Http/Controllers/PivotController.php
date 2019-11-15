@@ -7,6 +7,7 @@ use App\Item;
 use App\User;
 use App\Leave;
 use App\Overtime;
+use App\Schedule;
 use DateTime;
 use Illuminate\Http\Request;
 use OverflowException;
@@ -52,8 +53,31 @@ class PivotController extends Controller
      */
     public function show($id)
     {
+        $sched = Schedule::where('emp_id', $id)->first();
+        $date1 = new DateTime($sched->req_in);
+        $date2 = new DateTime($sched->req_out);
+        $in = $date1->format('h:i a') ;
+        $out = $date2->format('h:i a') ;
+
+        $day = "";
+        if($sched->dayoff == 'SUN'){
+            $day = 'Sunday';
+        }elseif($sched->dayoff == 'MON'){
+            $day = 'Monday';
+        }elseif($sched->dayoff == 'TUE'){
+            $day = 'Tuesday';
+        }elseif($sched->dayoff == 'WED'){
+            $day = 'Wednesday';
+        }elseif($sched->dayoff == 'THU'){
+            $day = 'Thursday';
+        }elseif($sched->dayoff == 'FRI'){
+            $day = 'Friday';
+        }elseif($sched->dayoff == 'SAT'){
+            $day = 'Saturday';
+        }
+
         $user = User::findOrFail($id);
-        return view('admin.employee', compact('user'));
+        return view('admin.employee', compact('user','sched','in','out','day'));
     }
 
     /**

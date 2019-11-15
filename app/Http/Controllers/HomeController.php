@@ -9,6 +9,8 @@ use App\Leave;
 use App\Overtime;
 use App\User;
 use App\Item;
+use App\Schedule;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -34,15 +36,35 @@ class HomeController extends Controller
     public function index()
     {
         $data = array();
+        $sched = Schedule::where('emp_id', Auth::user()->id)->first();
+        $date1 = new DateTime($sched->req_in);
+        $date2 = new DateTime($sched->req_out);
+        $in = $date1->format('h:i a') ;
+        $out = $date2->format('h:i a') ;
 
+        // return $sched->dayoff;
+        $day = "";
+        if($sched->dayoff == 'SUN'){
+            $day = 'Sunday';
+        }elseif($sched->dayoff == 'MON'){
+            $day = 'Monday';
+        }elseif($sched->dayoff == 'TUE'){
+            $day = 'Tuesday';
+        }elseif($sched->dayoff == 'WED'){
+            $day = 'Wednesday';
+        }elseif($sched->dayoff == 'THU'){
+            $day = 'Thursday';
+        }elseif($sched->dayoff == 'FRI'){
+            $day = 'Friday';
+        }elseif($sched->dayoff == 'SAT'){
+            $day = 'Saturday';
+        }
+        $schedule = Schedule::where('emp_id', Auth::user()->id)->get();
         $data['OTs'] = Overtime::where('emp_id', Auth::user()->id)->get();
-        // return $data['OTs'];
         $account = Item::where('emp_id', Auth::user()->id)->get();
-
         $attend = Attendance::where('emp_id', Auth::user()->id)->orderby('id', 'DESC')->get();
 
-        return view('home', compact('data', 'account', 'attend'));
-        // return $account;
+        return view('home', compact('data', 'account', 'attend', 'day', 'in','out'));
     }
 
     public function attendtoday()

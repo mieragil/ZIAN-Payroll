@@ -40,13 +40,19 @@
 
                                 <small class="text-secondary">Employee Status</small>
                                 <p class="lead">{{strtoupper(Auth::user()->emp_status)}}</p>
+
+                                <small class="text-secondary">Your Dayoff:</small>
+                                <p class="lead">{{$day}}</p>
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-lg-4">
                                 <small class="text-secondary">Department</small>
                                 <p class="lead">{{strtoupper(Auth::user()->department)}}</p>
 
                                 <small class="text-secondary">Position</small>
                                 <p class="lead">{{strtoupper(Auth::user()->position)}}</p>
+
+                                <small class="text-secondary">Working Hours:</small>
+                                <p class="lead">{{$in}} to {{$out}}</p>
                             </div>
                        </div>
                     </div>

@@ -12,6 +12,7 @@
 */
 
 use App\Deduction;
+use App\Schedule;
 use Carbon\Carbon;
 use App\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -85,10 +86,12 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
 
 
     Route::post('users/create-new', function (Request $request) {
-        request()->validate([
-            'username' => 'unique:users',
-            'password' => 'required|min:3',
-            ]);
+
+    // return $request;
+
+    request()->validate([
+        'password' => 'required|min:3',
+    ]);
 
     $user = User::create([
         'name' => $request->name,
@@ -109,10 +112,23 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
         'emp_id' => $user->id,
         'phic' => $request->phic,
         'sss' => $request->sss,
-        'pag_ibig' => $request->pag_ibig,
+        'pag-ibig' => $request->pag_ibig,
         ]);
 
+
+    $time_in_24_hour_format_timein  = date("H:i", strtotime($request->timein));
+    $time_in_24_hour_format_timeout  = date("H:i", strtotime($request->timeout));
+
+
+    Schedule::create([
+        'emp_id' => $user->id,
+        'dayoff' => $request->dayoff,
+        'req_in' => $time_in_24_hour_format_timein,
+        'req_out' => $time_in_24_hour_format_timeout
+    ]); 
+
     return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
+
     })->name('users.create');
 });
 

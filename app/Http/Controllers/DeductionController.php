@@ -21,7 +21,7 @@ class DeductionController extends Controller
         $data['users'] = User::where('priority','LO')->where('active', 1)->get();
         $data['deduct'] = Deduction::all();
         $data['tables'] = DB::table('users')->select([
-                        'users.name', 'users.id', 'deductions.phic', 'deductions.sss', 'deductions.pag_ibig as pagibig' ,
+                        'users.name', 'users.id', 'deductions.phic', 'deductions.sss', 'deductions.pag-ibig as pagibig' ,
                         ])->join('deductions','deductions.emp_id','=','users.id')->where('active', 1)
                         ->get();
         return view('admin.deductions', compact('data'));

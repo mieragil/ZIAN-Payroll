@@ -33,17 +33,28 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h1 class="display-4">{{($user->name)}}</h1>
+                                            <h1 class="display-5">{{strtoupper($user->name)}}</h1>
                                             <h5 class="lead">{{strtoupper($user->department)}} | {{strtoupper($user->position)}}</h5>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
+                                            <small class="text-secondary">Employee's Username</small>
+                                            <p class="lead">{{$user->username}}</p>
                                             <small class="text-secondary">Employment Status</small>
                                             <p class="lead">{{$user->emp_status}}</p>
-                                            <hr>
                                             <small class="text-secondary">Salary Type</small>
                                             <p class="lead">{{$user->salary_type}}</p>
                                         </div>
+                                        <div class="col-md-3">
+                                            <small class="text-secondary">Employee's time-in</small>
+                                            <p class="lead">{{$in}}</p>
+                                            <small class="text-secondary">Employee's time-out</small>
+                                            <p class="lead">{{$out}}</p>
+                                            <small class="text-secondary">Employee's day-off</small>
+                                            <p class="lead">{{$day}}</p>
+                                        </div>
                                     </div>
+
+                                    <hr>
 
                                 </div>
                             </div>
@@ -56,22 +67,26 @@
                                 <a id="editemp" href="#" class="text-primary">edit <i class="fas fa-pencil-alt"></i></a>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <label for="name">Employee Name</label>
                                     <input type="text" name="name" class="form-control" required value="{{$user->name}}" disabled>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <label for="email">Username</label>
                                     <input type="text"  id="email" name="email" class="form-control" required value="{{$user->username}}" disabled>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="name">Employee's Rquired Time-in</label>
+
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <label for="rate"><strong>DAILY RATE:</strong></label>
                                     <input type="number"  id="rate" name="rate" class="form-control" required value="{{$user->rate}}" min="1" max="10000" disabled>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <label for="inlineRadio1">WEEKS OF TRAINING:</label>
                                     <input type="number"  id="weeks_of_training" name="weeks_of_training"  class="form-control" required value="{{$user->weeks_of_training}}" min="1" max="10000" disabled>
                                 </div>
@@ -116,7 +131,7 @@
 
 
 
-    <form action="{{route('attendance.store',$user->id)}}" method="post">
+    {{-- <form action="{{route('attendance.store',$user->id)}}" method="post">
     <div class="card">
             @csrf
             <div class="card-body">
@@ -124,7 +139,7 @@
                 <button type="submit">submit</button>
             </div>
         </div>
-    </form>
+    </form> --}}
 
 
     <div class="modal fade" id="promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

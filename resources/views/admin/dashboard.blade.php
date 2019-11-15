@@ -147,39 +147,11 @@
                                 <label for="salary_type">FIXED SALARY?</label>
                                 <select class="form-control" name="salary_type" id="salary_type">
                                     <option value="FIXED">Yes</option>
-                                    <option value="UNFIXED">No</option>
+                                    <option value="HOURLY">No</option>
                                 </select>
                             </div>
                         </div>
                         <hr class="mt-3">
-                        <div class="alert alert-warning text-center font-weight-bold">
-                            <i class="fas fa-exclamation-triangle mr-3"></i>Please double check the required time-in and required time-out of the Employee.
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label for="dayoff">ENTER DAY OFF:</label>
-                                <select name="dayoff" id="dayoff" class="form-control">
-                                    <option value="SUN">Sunday</option>
-                                    <option value="MON">Monday</option>
-                                    <option value="TUE">Tuesday</option>
-                                    <option value="WED">Wednesday</option>
-                                    <option value="THU">Thursday</option>
-                                    <option value="FRI">Friday</option>
-                                    <option value="SAT">Saturday</option>
-
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="timein">TIME IN:</label>
-                                <input type="text" class="timepicker form-control" id="timein" name="timein">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="timein">TIME OUT:</label>
-                                <input type="text" class="timepicker form-control" id="timein" name="timeout">
-                            </div>
-                        </div>
-                        <hr>
                         <div class="row">
 
                             <div class="col-md-6">
@@ -199,29 +171,33 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-
-                            <div class="col-lg-4">
-                                <label for="time_in">Required Time In</label>
-                                <input type="time" name="time_in" class="form-control new-employee-input" required value="">
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="time_out">Required Time Out</label>
-                                <input type="time" name="time_out" class="form-control new-employee-input" required value="">
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="salary_type">DAY OFF</label>
-                                <select class="form-control" name="salary_type" id="salary_type">
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                </select>
-                            </div>
+                        <div class="alert alert-warning text-center font-weight-bold">
+                            <i class="fas fa-exclamation-triangle mr-3"></i>Please double check the required time-in and required time-out of the Employee.
                         </div>
+                        <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <label for="dayoff">ENTER DAY OFF:</label>
+                                    <select name="dayoff" id="dayoff" class="form-control">
+                                        <option value="SUN">Sunday</option>
+                                        <option value="MON">Monday</option>
+                                        <option value="TUE">Tuesday</option>
+                                        <option value="WED">Wednesday</option>
+                                        <option value="THU">Thursday</option>
+                                        <option value="FRI">Friday</option>
+                                        <option value="SAT">Saturday</option>
+    
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="timein">TIME IN:</label>
+                                    <input type="text" class="timepicker form-control" id="timein" name="timein" required>
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label for="timein">TIME OUT:</label>
+                                    <input type="text" class="timepicker form-control" id="timein" name="timeout" required>
+                                </div>
+                            </div>
                     </div>
 
                     {{-- endmodalbody --}}
