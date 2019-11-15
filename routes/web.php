@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
 
     Route::get('/employees', 'HomeController@dashboard')->name('dashboard');
 
+    Route::get('/payroll', 'PayrollController@index')->name('payroll');
+
 
     Route::POST('/setPosition', 'DepartmentController@setPosition')->name('setPosition');
     Route::POST('/delPosition', 'DepartmentController@delPosition')->name('delPosition');

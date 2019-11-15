@@ -254,5 +254,14 @@ $("#editemp").click(function(){
 $(document).ready(function(){
     $('input.timepicker').timepicker({});
 });
-  
+
+$("#salary_type").change(function(){
+    var sal = $("#salary_type").val();
+    if(sal=="UNFIXED"){
+        $(".row-timein").show();
+    }else if(sal=="FIXED"){
+        $(".row-timein").hide();
+    }
+});
+
 

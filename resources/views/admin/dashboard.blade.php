@@ -75,7 +75,7 @@
 </div>
 
 <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-header  text-light bg-primary">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New Employee Details</h5>
@@ -144,18 +144,39 @@
                                 <input type="number" name="weeks_of_training" class="form-control new-employee-input" required value="{{old('rate')}}" min="1" max="10000">
                             </div>
                             <div class="col-md-4">
-                                <label for="salary_type">FIXED SALARY?</label>
+                                <label for="salary_type">Salary Type:</label>
                                 <select class="form-control" name="salary_type" id="salary_type">
-                                    <option value="FIXED">Yes</option>
-                                    <option value="UNFIXED">No</option>
+                                    <option value="FIXED">Fixed</option>
+                                    <option value="UNFIXED">Hourly</option>
                                 </select>
                             </div>
                         </div>
                         <hr class="mt-3">
-                        <div class="alert alert-warning text-center font-weight-bold">
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="select1">Department</label>
+                                <select name="department" id="department" class="form-control new-employee-input">
+                                    <option value="">--Select Department--</option>
+                                    @foreach ($showDep as $rowDep)
+                                    <option value="{{$selectedDep=$rowDep->department_name}}">{{$rowDep->department_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="select2">Position</label>
+                                <select name="position" id="position" class="form-control new-employee-input">
+                                    <option value="">--Select Position</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="alert alert-warning text-center font-weight-bold row-timein" style="display:none">
                             <i class="fas fa-exclamation-triangle mr-3"></i>Please double check the required time-in and required time-out of the Employee.
                         </div>
-                        <div class="row mt-3">
+                        <div class="row mt-3 row-timein" style="display:none">
                             <div class="col-md-4">
                                 <label for="dayoff">ENTER DAY OFF:</label>
                                 <select name="dayoff" id="dayoff" class="form-control">
@@ -179,49 +200,7 @@
                                 <input type="text" class="timepicker form-control" id="timein" name="timeout">
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
 
-                            <div class="col-md-6">
-                                <label for="select1">Department</label>
-                                <select name="department" id="department" class="form-control new-employee-input">
-                                    <option value="">--Select Department--</option>
-                                    @foreach ($showDep as $rowDep)
-                                    <option value="{{$selectedDep=$rowDep->department_name}}">{{$rowDep->department_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="select2">Position</label>
-                                <select name="position" id="position" class="form-control new-employee-input">
-                                    <option value="">--Select Position</option>
-                                </select>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-
-                            <div class="col-lg-4">
-                                <label for="time_in">Required Time In</label>
-                                <input type="time" name="time_in" class="form-control new-employee-input" required value="">
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="time_out">Required Time Out</label>
-                                <input type="time" name="time_out" class="form-control new-employee-input" required value="">
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="salary_type">DAY OFF</label>
-                                <select class="form-control" name="salary_type" id="salary_type">
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
-                                </select>
-                            </div>
-                        </div>
                     </div>
 
                     {{-- endmodalbody --}}
