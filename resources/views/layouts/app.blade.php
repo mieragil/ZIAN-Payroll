@@ -18,12 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/jquery.timepicker.min.css')}}">
 
-        
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    
-    
+
+
 </head>
 <body >
 
@@ -117,6 +117,9 @@
                         </li>
                         <li  class="{{ (request()->is('leave')) ? 'active-sidebar' : '' }}">
                         <a href="{{route('leave')}}"><i class="fas fa-plane-departure m-3"></i></i>Leaves</a>
+                        </li>
+                        <li  class="{{ (request()->is('payroll')) ? 'active-sidebar' : '' }}">
+                        <a href="{{route('payroll')}}"><i class="fas fa-file-invoice-dollar m-3"></i></i></i></i>Payroll</a>
                         </li>
                         <li  class="{{ (request()->is('settings')) ? 'active-sidebar' : '' }}">
                             <a href="{{route('settings')}}"><i class="fas fa-cogs m-3"></i>Settings</a>

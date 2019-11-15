@@ -49554,6 +49554,15 @@ $("#editemp").click(function () {
 $(document).ready(function () {
   $('input.timepicker').timepicker({});
 });
+$("#salary_type").change(function () {
+  var sal = $("#salary_type").val();
+
+  if (sal == "UNFIXED") {
+    $(".row-timein").show();
+  } else if (sal == "FIXED") {
+    $(".row-timein").hide();
+  }
+});
 
 /***/ }),
 
@@ -49690,8 +49699,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ZARI\Desktop\LaravelProjects\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ZARI\Desktop\LaravelProjects\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ZARI-IT\Desktop\ZIAN-Payroll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
