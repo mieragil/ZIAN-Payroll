@@ -97,7 +97,7 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                              {{-- modalbody --}}
                 <div class="modal-body">
-                    <div class="alert alert-warning" id="error-empty" role="alert" style="display:none;">
+                    <div class="alert alert-warning font-weight-bold" id="error-empty" role="alert" style="display:none;">
                         Please fill out all the fields.
                       </div>
                         <div class="row">
@@ -146,8 +146,9 @@
                             <div class="col-md-4">
                                 <label for="salary_type">Salary Type:</label>
                                 <select class="form-control" name="salary_type" id="salary_type">
+                                    <option disabled selected value="">--Choose Salary Type--</option>
                                     <option value="FIXED">Fixed</option>
-                                    <option value="UNFIXED">Hourly</option>
+                                    <option value="HOURLY">Hourly</option>
                                 </select>
                             </div>
                         </div>
@@ -158,28 +159,30 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="select1">Department</label>
-                                <select name="department" id="department" class="form-control new-employee-input">
-                                    <option value="">--Select Department--</option>
+                                <select name="department" id="department" class="form-control new-employee-input" required>
+                                    <option disabled selected>--Select Department--</option>
                                     @foreach ($showDep as $rowDep)
                                     <option value="{{$selectedDep=$rowDep->department_name}}">{{$rowDep->department_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            
                             <div class="col-md-6">
                                 <label for="select2">Position</label>
-                                <select name="position" id="position" class="form-control new-employee-input">
-                                    <option value="">--Select Position</option>
+                                <select name="position" id="position" class="form-control new-employee-input" required>
+                                    <option disabled selected value="">--Select Position--</option>
                                 </select>
                             </div>
                         </div>
                         <hr>
-                        <div class="alert alert-warning text-center font-weight-bold row-timein" style="display:none">
+                        <div class="alert alert-warning text-center font-weight-bold" style="display:none">
                             <i class="fas fa-exclamation-triangle mr-3"></i>Please double check the required time-in and required time-out of the Employee.
                         </div>
                         <div class="row mt-3 row-timein" style="display:none">
                             <div class="col-md-4">
                                 <label for="dayoff">ENTER DAY OFF:</label>
-                                <select name="dayoff" id="dayoff" class="form-control">
+                                <select name="dayoff" id="dayoff" class="form-control" required>
+                                    <option disabled selected value="">--Select Dayoff--</option>
                                     <option value="SUN">Sunday</option>
                                     <option value="MON">Monday</option>
                                     <option value="TUE">Tuesday</option>
@@ -197,7 +200,7 @@
 
                             <div class="col-md-4">
                                 <label for="timein">TIME OUT:</label>
-                                <input type="text" class="timepicker form-control" id="timein" name="timeout">
+                                <input type="text" class="timepicker form-control" id="timeout" name="timeout">
                             </div>
                         </div>
 

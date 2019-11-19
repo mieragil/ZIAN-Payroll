@@ -16,7 +16,7 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('empId');
+            $table->integer('emp_id');
             $table->string('dayoff');
             $table->string('req_in');
             $table->string('req_out');

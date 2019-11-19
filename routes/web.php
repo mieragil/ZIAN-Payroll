@@ -12,6 +12,7 @@
 */
 
 use App\Deduction;
+use App\Schedule;
 use Carbon\Carbon;
 use App\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,34 +88,75 @@ Route::group(['middleware' => ['auth' , 'admin']], function () {
 
 
     Route::post('users/create-new', function (Request $request) {
-        request()->validate([
-            'username' => 'unique:users',
-            'password' => 'required|min:3',
-            ]);
 
-    $user = User::create([
-        'name' => $request->name,
-        'date_hired' => $request->hired,
-        'username' => $request->username,
-        'password' => Hash::make($request->password),
-        'weeks_of_training' => $request->weeks_of_training,
-        'emp_status' => 'TRAINEE',
-        'department' => $request->department,
-        'rate' => $request->rate,
-        'salary_type' => $request->salary_type,
-        'position' => $request->position,
-        'priority' => 'LO',
-        'active' => '1',
+    // return $request;
+    $time_in_24_hour_format_timein  = date("H:i", strtotime($request->timein));
+    $time_in_24_hour_format_timeout  = date("H:i", strtotime($request->timeout));
+
+    request()->validate([
+        'password' => 'required|min:3',
     ]);
 
-    $deduct = Deduction::create([
-        'emp_id' => $user->id,
-        'phic' => $request->phic,
-        'sss' => $request->sss,
-        'pag_ibig' => $request->pag_ibig,
+    if($request->salary_type != 'FIXED'){
+
+        $user = User::create([
+            'name' => $request->name,
+            'date_hired' => $request->hired,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'weeks_of_training' => $request->weeks_of_training,
+            'emp_status' => 'TRAINEE',
+            'department' => $request->department,
+            'rate' => $request->rate,
+            'salary_type' => $request->salary_type,
+            'position' => $request->position,
+            'priority' => 'LO',
+            'active' => '1',
         ]);
 
+        Schedule::create([
+            'emp_id' => $user->id,
+            'dayoff' => $request->dayoff,
+            'req_in' => $time_in_24_hour_format_timein,
+            'req_out' => $time_in_24_hour_format_timeout
+        ]); 
+
+    }else{
+
+        $user = User::create([
+            'name' => $request->name,
+            'date_hired' => $request->hired,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'weeks_of_training' => $request->weeks_of_training,
+            'emp_status' => 'TRAINEE',
+            'department' => $request->department,
+            'rate' => $request->rate,
+            'salary_type' => $request->salary_type,
+            'position' => $request->position,
+            'priority' => 'LO',
+            'active' => '1',
+        ]);
+
+        Schedule::create([
+            'emp_id' => $user->id,
+            'dayoff' => 'NA',
+            'req_in' => 'NA',
+            'req_out' =>'NA'
+        ]); 
+        
+    }
+
+    Deduction::create([
+        'emp_id' => $user->id,
+        'phic' => $request->phic == null ? $request->phic : '0',
+        'sss' => $request->sss == null ? $request->sss : '0',
+        'pagibig' => $request->pag_ibig  == null ? $request->pag_ibig : '0',
+    ]);
+
+
     return redirect()->route('dashboard', $user->id)->with('success', 'SUCCESSFULLY ADDED NEW EMPLOYEE: '. $request->name);
+
     })->name('users.create');
 });
 

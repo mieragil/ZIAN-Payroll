@@ -25,7 +25,7 @@
 
 
 </head>
-<body >
+<body class="raleway">
 
     <div id="app">
 
@@ -33,13 +33,13 @@
             <div class="container">
                 @auth
                     @if (Auth::user()->priority == 'HI')
-                    <a class="navbar-brand" href="{{ url('/homedashboard') }}">
-                        ZIAN
-                    </a>
+                        <a class="navbar-brand" href="{{ url('/homedashboard') }}">
+                            ZIAN
+                        </a>
                     @else
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        ZIAN
-                    </a>
+                        <a class="navbar-brand" href="{{ url('/home') }}">
+                            ZIAN
+                        </a>
                     @endif
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

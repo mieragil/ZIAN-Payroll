@@ -18,7 +18,7 @@ class CreateDeductionsTable extends Migration
             $table->integer('emp_id');
             $table->integer('phic');
             $table->integer('sss');
-            $table->integer('pag-ibig');
+            $table->integer('pagibig');
             $table->timestamps();
         });
     }
