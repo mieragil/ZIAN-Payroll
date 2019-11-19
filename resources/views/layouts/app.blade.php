@@ -18,14 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/jquery.timepicker.min.css')}}">
 
-        
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    
-    
+
+
 </head>
-<body >
+<body class="raleway">
 
     <div id="app">
 
@@ -33,13 +33,13 @@
             <div class="container">
                 @auth
                     @if (Auth::user()->priority == 'HI')
-                    <a class="navbar-brand" href="{{ url('/homedashboard') }}">
-                        ZIAN
-                    </a>
+                        <a class="navbar-brand" href="{{ url('/homedashboard') }}">
+                            ZIAN
+                        </a>
                     @else
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        ZIAN
-                    </a>
+                        <a class="navbar-brand" href="{{ url('/home') }}">
+                            ZIAN
+                        </a>
                     @endif
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -117,6 +117,9 @@
                         </li>
                         <li  class="{{ (request()->is('leave')) ? 'active-sidebar' : '' }}">
                         <a href="{{route('leave')}}"><i class="fas fa-plane-departure m-3"></i></i>Leaves</a>
+                        </li>
+                        <li  class="{{ (request()->is('payroll')) ? 'active-sidebar' : '' }}">
+                        <a href="{{route('payroll')}}"><i class="fas fa-file-invoice-dollar m-3"></i></i></i></i>Payroll</a>
                         </li>
                         <li  class="{{ (request()->is('settings')) ? 'active-sidebar' : '' }}">
                             <a href="{{route('settings')}}"><i class="fas fa-cogs m-3"></i>Settings</a>

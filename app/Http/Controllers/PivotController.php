@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Deduction;
 use App\holiday;
 use App\Item;
 use App\User;
 use App\Leave;
+use App\Department;
 use App\Overtime;
 use App\Schedule;
 use DateTime;
@@ -53,13 +55,23 @@ class PivotController extends Controller
      */
     public function show($id)
     {
-        $sched = Schedule::where('emp_id', $id)->first();
-        $date1 = new DateTime($sched->req_in);
-        $date2 = new DateTime($sched->req_out);
-        $in = $date1->format('h:i a') ;
-        $out = $date2->format('h:i a') ;
-
+        $date1 = "";
+        $date2 = "";
         $day = "";
+        $sched = Schedule::where('emp_id', $id)->first();
+
+        if($sched->req_in == 'NA'){
+            $in = 'Not applicable.';
+            $out = 'Not applicable.';
+            $day = 'Not applicable';
+        }else{
+            $date1 = new DateTime($sched->req_in);
+            $date2 = new DateTime($sched->req_out);
+            $in = $date1->format('h:i a') ;
+            $out = $date2->format('h:i a') ;
+        }
+
+
         if($sched->dayoff == 'SUN'){
             $day = 'Sunday';
         }elseif($sched->dayoff == 'MON'){
@@ -77,7 +89,10 @@ class PivotController extends Controller
         }
 
         $user = User::findOrFail($id);
-        return view('admin.employee', compact('user','sched','in','out','day'));
+        $showDep = Department::distinct()->get('department_name');
+        $showPos = Department::all();
+        $deductions = Deduction::where('emp_id', $id)->first();
+        return view('admin.employee', compact('user','sched','in','out','day','deductions','showDep','showPos'));
     }
 
     /**
@@ -86,9 +101,10 @@ class PivotController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         //
+        return $request;
     }
 
     /**
@@ -100,7 +116,17 @@ class PivotController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd ($request);
+        User::where('id', $id)->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'rate' => $request->rate,
+            'salary_type' => $request->new_salary_type,
+            'department' => $request->department,
+            'position' => $request->position,
+            'weeks_of_training' => $request->weeks_of_training,
+        ]);
+
     }
 
     /**

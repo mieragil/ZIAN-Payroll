@@ -49394,7 +49394,7 @@ $('#promote').on('show.bs.modal', function (event) {
   console.log(id);
   modal.find('.modal-body #myname').val(name);
   modal.find('.modal-body #myid').val(id);
-  document.getElementById('myname').textContent = "  " + name;
+  document.getElementById('myname').textContent = "  " + name + "?";
   document.getElementById('mystatus').textContent = "  " + show;
 });
 $('#terminate').on('show.bs.modal', function (event) {
@@ -49405,7 +49405,7 @@ $('#terminate').on('show.bs.modal', function (event) {
   var modal = $(this);
   modal.find('.modal-body #mynameterminate').val(name);
   modal.find('.modal-body #myidterminate').val(id);
-  document.getElementById('mynameterminate').textContent = "  " + name;
+  document.getElementById('mynameterminate').textContent = "  " + name + "?";
 });
 $('#minus').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
@@ -49553,6 +49553,41 @@ $("#editemp").click(function () {
 });
 $(document).ready(function () {
   $('input.timepicker').timepicker({});
+});
+$("#salary_type").change(function () {
+  // alert("YO");
+  var sal = $("#salary_type").val();
+
+  if (sal == "HOURLY") {
+    $(".row-timein").show();
+  } else if (sal == "FIXED") {
+    $(".row-timein").hide();
+  }
+});
+$("#editemp").click(function () {
+  $('html,body').animate({
+    scrollTop: $("#divsave").offset().top
+  }, 'slow');
+});
+$("#close_edit").click(function () {
+  $('html,body').animate({
+    scrollTop: $("#detailsss").offset().top
+  }, 'slow');
+  $("#divsave").hide();
+});
+$("#new_salary_type").change(function () {
+  // alert("YO");
+  var sal = $("#new_salary_type").val();
+
+  if (sal == "HOURLY") {
+    $("#schedule").show();
+    $('#new_timein').prop('required', 'required');
+    $('#new_timeout').prop('required', 'required');
+  } else if (sal == "FIXED") {
+    $("#schedule").hide();
+    $('#new_timein').prop('required', '');
+    $('#new_timeout').prop('required', '');
+  }
 });
 
 /***/ }),

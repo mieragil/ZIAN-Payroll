@@ -21,11 +21,11 @@
                     <div class="card-header text-light bg-dark">
                         <div class="row">
                             <div class="col-6">
-                                <h1>4:20 PM</h1>
+                                <h1>{{ date("h:i A") }}</h1>
                             </div>
                             <div class="col text-right">
-                                Tuesday <br>
-                                October 1, 2019
+                                {{ date("l") }} <br>
+                                {{ date("M. d, Y") }}
                             </div>
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                                 <small class="text-secondary">Employee Status</small>
                                 <p class="lead">{{strtoupper(Auth::user()->emp_status)}}</p>
 
-                                <small class="text-secondary">Your Dayoff:</small>
-                                <p class="lead">{{$day}}</p>
+                                <small class="text-secondary">Schedule</small>
+                                {{-- <p class="lead">10:00am - 7:00pm</p> --}}
                             </div>
                             <div class="col-lg-4">
                                 <small class="text-secondary">Department</small>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="card shadow">
+                {{-- <div class="card shadow">
                     <div class="card-header pb-0" style="background-color:mediumslateblue">
                         <div class="row">
                             <div class="col-6 text-white">
@@ -148,7 +148,7 @@
                             </table>
                         @endif
                     </div>
-                </div><br>
+                </div><br> --}}
 
 
             </div>

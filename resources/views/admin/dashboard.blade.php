@@ -75,7 +75,7 @@
 </div>
 
 <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-header  text-light bg-primary">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New Employee Details</h5>
@@ -97,7 +97,7 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                              {{-- modalbody --}}
                 <div class="modal-body">
-                    <div class="alert alert-warning" id="error-empty" role="alert" style="display:none;">
+                    <div class="alert alert-warning font-weight-bold" id="error-empty" role="alert" style="display:none;">
                         Please fill out all the fields.
                       </div>
                         <div class="row">
@@ -144,60 +144,66 @@
                                 <input type="number" name="weeks_of_training" class="form-control new-employee-input" required value="{{old('rate')}}" min="1" max="10000">
                             </div>
                             <div class="col-md-4">
-                                <label for="salary_type">FIXED SALARY?</label>
+                                <label for="salary_type">Salary Type:</label>
                                 <select class="form-control" name="salary_type" id="salary_type">
-                                    <option value="FIXED">Yes</option>
-                                    <option value="HOURLY">No</option>
+                                    <option disabled selected value="">--Choose Salary Type--</option>
+                                    <option value="FIXED">Fixed</option>
+                                    <option value="HOURLY">Hourly</option>
                                 </select>
                             </div>
                         </div>
                         <hr class="mt-3">
-                        <div class="row">
 
+
+
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="select1">Department</label>
-                                <select name="department" id="department" class="form-control new-employee-input">
-                                    <option value="">--Select Department--</option>
+                                <select name="department" id="department" class="form-control new-employee-input" required>
+                                    <option disabled selected>--Select Department--</option>
                                     @foreach ($showDep as $rowDep)
                                     <option value="{{$selectedDep=$rowDep->department_name}}">{{$rowDep->department_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            
                             <div class="col-md-6">
                                 <label for="select2">Position</label>
-                                <select name="position" id="position" class="form-control new-employee-input">
-                                    <option value="">--Select Position</option>
+                                <select name="position" id="position" class="form-control new-employee-input" required>
+                                    <option disabled selected value="">--Select Position--</option>
                                 </select>
                             </div>
                         </div>
                         <hr>
-                        <div class="alert alert-warning text-center font-weight-bold">
+                        <div class="alert alert-warning text-center font-weight-bold" style="display:none">
                             <i class="fas fa-exclamation-triangle mr-3"></i>Please double check the required time-in and required time-out of the Employee.
                         </div>
-                        <div class="row mt-3">
-                                <div class="col-md-4">
-                                    <label for="dayoff">ENTER DAY OFF:</label>
-                                    <select name="dayoff" id="dayoff" class="form-control">
-                                        <option value="SUN">Sunday</option>
-                                        <option value="MON">Monday</option>
-                                        <option value="TUE">Tuesday</option>
-                                        <option value="WED">Wednesday</option>
-                                        <option value="THU">Thursday</option>
-                                        <option value="FRI">Friday</option>
-                                        <option value="SAT">Saturday</option>
-    
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="timein">TIME IN:</label>
-                                    <input type="text" class="timepicker form-control" id="timein" name="timein" required>
-                                </div>
-    
-                                <div class="col-md-4">
-                                    <label for="timein">TIME OUT:</label>
-                                    <input type="text" class="timepicker form-control" id="timein" name="timeout" required>
-                                </div>
+                        <div class="row mt-3 row-timein" style="display:none">
+                            <div class="col-md-4">
+                                <label for="dayoff">ENTER DAY OFF:</label>
+                                <select name="dayoff" id="dayoff" class="form-control" required>
+                                    <option disabled selected value="">--Select Dayoff--</option>
+                                    <option value="SUN">Sunday</option>
+                                    <option value="MON">Monday</option>
+                                    <option value="TUE">Tuesday</option>
+                                    <option value="WED">Wednesday</option>
+                                    <option value="THU">Thursday</option>
+                                    <option value="FRI">Friday</option>
+                                    <option value="SAT">Saturday</option>
+
+                                </select>
                             </div>
+                            <div class="col-md-4">
+                                <label for="timein">TIME IN:</label>
+                                <input type="text" class="timepicker form-control" id="timein" name="timein">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="timein">TIME OUT:</label>
+                                <input type="text" class="timepicker form-control" id="timeout" name="timeout">
+                            </div>
+                        </div>
+
                     </div>
 
                     {{-- endmodalbody --}}
