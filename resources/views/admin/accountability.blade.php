@@ -10,20 +10,19 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">
+            <h4 class="card-header bg-dark text-light">
                 <div class="row">
                     <div class="col-lg-8">
-
-                        <h4><a href="{{route('dashboard')}}" class="btn btn-secondary mr-2"><i class="fas fa-arrow-left"></i> Back</a>ACCOUNTABILITY OF: {{strtoupper($data['user']->name)}}</h4>
+                        <a href="{{route('dashboard')}}" class="btn btn-light mr-2"><i class="fas fa-arrow-left"></i> Back</a>ACCOUNTABILITY OF: {{strtoupper($data['user']->name)}}
                     </div>
                     <div class="col-lg-4 text-right">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#newitem">Add Item</button>
+                        <button class="btn btn-success shadow" data-toggle="modal" data-target="#newitem"><i class="fas fa-plus"></i> Add Item</button>
                     </div>
                 </div>
-            </div>
+            </h4>
             <div class="card-body">
                 @if (!$data['items']->isEmpty())
-                    <ul class="list-group col-md-6">
+                    <ul class="list-group col-lg-12">
                         @foreach ($data['items'] as $item)
 
                             <li class="list-group-item">
