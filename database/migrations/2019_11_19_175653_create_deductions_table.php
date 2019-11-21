@@ -20,6 +20,7 @@ class CreateDeductionsTable extends Migration
             $table->integer('sss');
             $table->integer('pagibig');
             $table->timestamps();
+
         });
     }
 
